@@ -13,7 +13,7 @@ class ReservationScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
             child: Text('Username', style: TextStyle(fontSize: 30)),
           ),
           SizedBox(height: 20),
