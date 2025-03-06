@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:study_cafe_p6/Screen/reservationhistory_screen.dart';
 import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 import 'package:study_cafe_p6/main.dart';
@@ -18,14 +19,12 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
       selectIndex = index;
       if (index == 0) {
         print('[D]탭바 0 홈');
+        Get.to(() => HomeScreen());
       } else if (index == 1) {
         print('[D]탭바 1 좌석');
       } else if (index == 2) {
         print('[D]탭바 3 내정보');
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const MyinfoScreen()),
-        );
+        Get.to(() => MyinfoScreen());
       }
     });
   }
@@ -55,12 +54,7 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
             ElevatedButton(
               onPressed: () {
                 print("[D]예약내역확인");
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ReservationhistoryScreen(),
-                  ),
-                );
+                Get.to(() => ReservationhistoryScreen());
               },
               child: const Text('예약 내역 확인'),
             ),
