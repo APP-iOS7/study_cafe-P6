@@ -49,6 +49,7 @@ class ReservationScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15.0),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 '${plan[index]} 이용권: ${formatAmount(price)}',
@@ -57,7 +58,6 @@ class ReservationScreen extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Spacer(),
                               Icon(Icons.chevron_right_rounded, size: 30),
                             ],
                           ),
