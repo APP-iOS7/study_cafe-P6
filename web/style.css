@@ -1,0 +1,81 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(221, 219, 219);
+    overflow: hidden;
+}
+
+.header h1 {
+    position: absolute;
+    top: 10px;
+    left: 100px;
+    color: darkblue;
+}
+
+.header img {
+    position: relative;
+    top: 40px;
+    left: 1750px;
+}
+
+.header p {
+    position: relative;
+    top: -5px;
+    left: 1700px;
+}
+
+.container {
+    position: absolute;
+    top: 150px;
+    left: 100px;
+    width: 1706px;
+    height: 696px;
+    background-color: #fff;
+}
+
+.container h1 {
+    position: relative;
+    left: 100px;
+}
+
+.container .divider {
+    width: 1506px;
+    height: 1px;
+    background-color: rgb(195, 195, 195);
+}
+
+.container .Reserve_info li {
+    list-style: none;
+}
+
+.container .Reserve_info li a {
+    position: relative;
+    top: 50px;
+    left: 90px;
+    color: #222;
+    margin: 25px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.container .divider2 {
+    position: relative;
+    top: 80px;
+    left: 100px;
+    width: 1200px;
+    height: 1px;
+    background-color: #222;
+}
+
+.Reserve_filed li {
+    list-style: none;
+}
+
+.Reserve_filed li a {
+    position: relative;
+    top: 100px;
+    left: 90px;
+    color: #000;
+    text-decoration: none;
+    margin: 25px;
+}
