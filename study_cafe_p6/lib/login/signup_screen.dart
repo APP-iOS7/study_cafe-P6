@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_cafe_p6/Screen/reserve_screen.dart';
+import 'package:study_cafe_p6/Screen/reservation_screen.dart';
 import 'package:study_cafe_p6/login/login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -48,7 +48,7 @@ class _SignupScreenState extends State<SignupScreen> {
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text('회원가입 성공!')));
-        Get.off(() => ReserveScreen());
+        Get.off(() => ReservationScreen());
       } catch (e) {
         debugPrint('$e');
         setState(() {

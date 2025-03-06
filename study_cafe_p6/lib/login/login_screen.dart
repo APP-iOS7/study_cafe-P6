@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_cafe_p6/Screen/reserve_screen.dart';
 import 'package:study_cafe_p6/login/signup_screen.dart';
 import 'package:study_cafe_p6/loginViewModel/login_view_model.dart';
+
+import '../Screen/reservation_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -74,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => ReserveScreen());
+                    Get.to(() => ReservationScreen());
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(
