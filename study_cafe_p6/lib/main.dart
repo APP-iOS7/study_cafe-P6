@@ -28,11 +28,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0;
+  int selectIndex = 0;
 
-  void _onItemTapped(int index) {
+  void onTap(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectIndex = index;
       if (index == 0) {
         print('[D]탭바 0 홈');
       } else if (index == 1) {
@@ -69,8 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       bottomNavigationBar: BottomTabBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
+        selectedIndex: selectIndex,
+        onItemTapped: onTap,
       ),
     );
   }

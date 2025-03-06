@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_cafe_p6/Screen/reservationhistory_screen.dart';
 import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 import 'package:study_cafe_p6/main.dart';
 
@@ -10,11 +11,11 @@ class MyinfoScreen extends StatefulWidget {
 }
 
 class _MyinfoScreenState extends State<MyinfoScreen> {
-  int _selectedIndex = 2;
+  int selectIndex = 2;
 
-  void _onItemTapped(int index) {
+  void onTap(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectIndex = index;
       if (index == 0) {
         print('[D]탭바 0 홈');
       } else if (index == 1) {
@@ -45,15 +46,21 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
           children: [
             RoundCircle(size: 200),
 
-            SizedBox(width: 10, height: 10),
+            SizedBox(height: 10),
 
             Text('User0123'),
 
-            SizedBox(width: 10, height: 10),
+            SizedBox(height: 100),
 
             ElevatedButton(
               onPressed: () {
                 print("[D]예약내역확인");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ReservationhistoryScreen(),
+                  ),
+                );
               },
               child: const Text('예약 내역 확인'),
             ),
@@ -82,8 +89,8 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
         ),
       ),
       bottomNavigationBar: BottomTabBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
+        selectedIndex: selectIndex,
+        onItemTapped: onTap,
       ),
     );
   }
