@@ -41,43 +41,160 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
         height: double.infinity,
         color: Colors.white,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            RoundCircle(size: 200),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 50,
+                bottom: 10,
+                left: 10,
+                right: 10,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RoundCircle(size: 100),
+                  SizedBox(width: 50, height: 0),
+                  Text(
+                    'User0123',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
 
-            SizedBox(height: 10),
+            SizedBox(height: 50),
 
-            Text('User0123'),
-
-            SizedBox(height: 100),
-
-            ElevatedButton(
-              onPressed: () {
+            GestureDetector(
+              onTap: () {
                 print("[D]예약내역확인");
                 Get.to(() => ReservationhistoryScreen());
               },
-              child: const Text('예약 내역 확인'),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  bottom: 10,
+                  left: 10,
+                  right: 10,
+                ),
+                child: Container(
+                  width: double.infinity,
+                  height: 50,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFECDCBF),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    '예약 내역 확인',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
             ),
 
-            ElevatedButton(
-              onPressed: () {
+            SizedBox(height: 10),
+
+            GestureDetector(
+              onTap: () {
                 print("[D]비밀번호변경");
+                // Get.to(() => ReservationhistoryScreen());
               },
-              child: const Text('비밀번호 변경'),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  bottom: 10,
+                  left: 10,
+                  right: 10,
+                ),
+                child: Container(
+                  width: double.infinity,
+                  height: 50,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFECDCBF),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    '비밀번호 변경',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
             ),
 
-            ElevatedButton(
-              onPressed: () {
+            SizedBox(height: 10),
+
+            GestureDetector(
+              onTap: () {
                 print("[D]로그아웃");
               },
-              child: const Text('로그아웃'),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  bottom: 10,
+                  left: 10,
+                  right: 10,
+                ),
+                child: Container(
+                  width: double.infinity,
+                  height: 50,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFD84040),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    '로그아웃',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
             ),
 
-            ElevatedButton(
-              onPressed: () {
+            SizedBox(height: 10),
+
+            GestureDetector(
+              onTap: () {
                 print("[D]회원탈퇴");
               },
-              child: const Text('회원탈퇴'),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  bottom: 10,
+                  left: 10,
+                  right: 10,
+                ),
+                child: Container(
+                  width: double.infinity,
+                  height: 50,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFD84040),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    '회원 탈퇴',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
