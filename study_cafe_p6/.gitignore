@@ -11,6 +11,8 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
 
 # IntelliJ related
 *.iml
@@ -45,3 +47,29 @@ app.*.map.json
 /android/app/release
 
 .DS_Store
+
+# Xcode related files
+xcuserdata/
+*.xcworkspace
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/xcshareddata/
+DerivedData/
+*.xcscmblueprint
+*.xccheckout
+*.pbxuser
+*.mode1v3
+*.mode2v3
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Log & debug files
+*.log
+*.lock
+*.tmp
+
+# Windows related (if collaborating with Windows users)
+Thumbs.db
+desktop.ini
