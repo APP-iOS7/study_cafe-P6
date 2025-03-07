@@ -19,7 +19,7 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
       selectIndex = index;
       if (index == 0) {
         print('[D]탭바 0 홈');
-        Get.to(() => HomeScreen());
+        // Get.to(() => HomeScreen());
       } else if (index == 1) {
         print('[D]탭바 1 좌석');
       } else if (index == 2) {
