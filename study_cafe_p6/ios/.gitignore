@@ -26,6 +26,7 @@ Flutter/flutter_assets/
 Flutter/flutter_export_environment.sh
 ServiceDefinitions.json
 Runner/GeneratedPluginRegistrant.*
+.DS_Store
 google-services.json
 GoogleService-Info.plist
 
@@ -53,6 +54,7 @@ build/
 key.properties
 local.properties
 google-services.json
+.DS_Store
 
 # iOS 관련
 *.xcworkspace
