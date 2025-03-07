@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class MainHomeView extends StatefulWidget {
   const MainHomeView({super.key});
@@ -26,30 +27,36 @@ class _MainHomeViewState extends State<MainHomeView> {
       ),
 
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('${user!.displayName}님의 ID'),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, left: 20),
+                  child: Text(
+                    '${user!.displayName}님의 이용권',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
                 Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(right: 30),
                   child: IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.local_activity),
+                    icon: Icon(CupertinoIcons.ticket),
                   ),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 300),
+              padding: const EdgeInsets.only(bottom: 10, left: 270),
               child: Text('이용권 구매'),
             ),
             Container(
               width: 400,
-              height: 535,
+              height: 522,
               decoration: BoxDecoration(
                 color: Colors.grey,
                 borderRadius: BorderRadius.circular(10),
