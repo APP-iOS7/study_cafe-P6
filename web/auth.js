@@ -1,15 +1,14 @@
-import { auth } from './firebase';
+import { auth } from './firebase.js';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
-// 로그인 함수 
 export const login = async (email, password) => {
+    console.log('로그인 시도:', email, password); // 입력값 확인
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        console.log('로그인 성공', user.email);
-        return { success: true, user };
+        console.log('로그인 성공:', userCredential.user);
+        return { success: true, user: userCredential.user };
     } catch (error) {
-        console.error('로그인 실패:', error.code, error.message);
+        console.log('로그인 실패:', error.message);
         return { success: false, message: error.message };
     }
 };

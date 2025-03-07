@@ -24,6 +24,12 @@ body {
     left: 1700px;
 }
 
+.header button {
+    position: relative;
+    top: 10px;
+    left: 500px;
+}
+
 .container {
     position: absolute;
     top: 150px;

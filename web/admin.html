@@ -1,45 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="admin.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>예약확인 시스템</title>
 </head>
 
 <body>
-    <div class="login_container">
-        <h1>로그인</h1>
-        <input type="email" id="email" placeholder="이메일" />
-        <br />
-        <input type="password" id="password" placeholder="비밀번호" />
-        <br />
-        <button onclick="handleLogin()">로그인</button>
-        <p id="message"></p>
+
+    <header>
+        <div class="header">
+            <h1>예약확인</h1>
+            <img src="./image/user.png" alt="">
+            <p>관리자</p>
+            <button id="logOutButton">로그아웃</button>
+
+    </header>
+
+    <div class="container">
+        <h1>예약내역</h1>
+        <div class="divider"></div>
+        <div class="Reserve_info">
+            <li>
+                <a href="#">예약번호</a>
+                <a href="#">고객명</a>
+                <a href="#">예약날짜</a>
+                <a href="#">결제금액</a>
+            </li>
+        </div>
+
+        <div class="divider2"></div>
+
+        <div class="Reserve_filed">
+            <li>
+                <a href="#">AB12345</a>
+                <a href="#">김덕원</a>
+                <a href="#">2025년 03월 06일</a>
+                <a href="#">30,000원</a>
+            </li>
+        </div>
     </div>
-    <script src="auth.js"></script>
+
     <script type="module">
-        // 모듈 가져오기 
-        import { login } from './auth.js';
+        // Firebase 모듈 가져오기
+        import { initializeApp } from 'firebase/app';
+        import { getAuth, signOut } from 'firebase/auth';
 
-        // 로그인 처리 함수 
-        window.handleLogin = async () => {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const result = await login(email, password);
+        // Firebase 구성
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
 
-            const messageElement = document.getElementById('message');
-            if (result.success) {
-                messageElement.style.color = 'green';
-                messageElement.text.color = '로그인 성공! 환영합니다, ${result.user.email}';
+        // Firebase 초기화
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // 로그아웃 함수 정의
+        const logout = async () => {
+            try {
+                await signOut(auth);
+                console.log('로그아웃 성공');
                 window.location.href = '/index.html';
-            } else {
-                messageElement.style.color = 'red';
-                messageElement.textContent = `로그인 실패: ${result.message}`;
+            } catch (error) {
+                console.error('로그아웃 실패:', error.message);
             }
         };
+
+        document.getElementById('logOutButton').addEventListener('click', logout);
     </script>
+
 </body>
+
 
 </html>
