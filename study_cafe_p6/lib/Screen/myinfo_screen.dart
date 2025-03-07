@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_cafe_p6/Screen/alertdialog_screen.dart';
@@ -13,6 +14,7 @@ class MyinfoScreen extends StatefulWidget {
 }
 
 class _MyinfoScreenState extends State<MyinfoScreen> {
+  User? user = FirebaseAuth.instance.currentUser;
   var vm = LoginViewModel();
   int selectIndex = 2;
 
@@ -58,7 +60,7 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
                   RoundCircle(size: 100),
                   SizedBox(width: 50, height: 0),
                   Text(
-                    'User0123',
+                    '${user!.displayName}',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ],

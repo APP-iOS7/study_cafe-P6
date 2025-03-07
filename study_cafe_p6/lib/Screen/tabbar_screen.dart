@@ -11,24 +11,67 @@ class BottomTabBar extends StatefulWidget {
 }
 
 class _BottomTabBarState extends State<BottomTabBar> {
-  int _currentIndex = 0;
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   final List<Widget> _pages = [MainHomeView(), SeatPageView(), MyinfoScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_currentIndex],
+      body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        onTap: (value) {
-          setState(() {
-            _currentIndex = value;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
-          BottomNavigationBarItem(icon: Icon(Icons.chair), label: '좌석'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: '내정보'),
+        onTap: _onItemTapped,
+        selectedItemColor: Color(0xffd84040),
+        unselectedItemColor: Colors.grey,
+        items: [
+          BottomNavigationBarItem(
+            icon: _selectedTabItem(Icons.home_outlined, '홈', 0),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: _selectedTabItem(Icons.chair_outlined, '좌석현황', 1),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: _selectedTabItem(Icons.person_outline, '내 정보', 2),
+            label: '',
+          ),
         ],
       ),
+    );
+  }
+
+  Widget _selectedTabItem(
+    IconData icon,
+    String label,
+    int index, {
+    bool isActive = false,
+  }) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(
+          icon,
+          color: _selectedIndex == index ? Color(0xffd84040) : Colors.grey,
+          size: 30,
+        ),
+        Text(
+          label,
+          style: TextStyle(
+            color: _selectedIndex == index ? Color(0xffd84040) : Colors.grey,
+          ),
+        ),
+        SizedBox(height: 4),
+        if (_selectedIndex == index)
+          Container(width: 50, height: 3, color: Color(0xffd84040))
+        else
+          SizedBox(height: 2),
+      ],
     );
   }
 }
