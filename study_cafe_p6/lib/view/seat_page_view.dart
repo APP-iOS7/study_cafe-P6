@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:study_cafe_p6/Screen/reservation_screen.dart';
 
 class SeatPageView extends StatefulWidget {
   const SeatPageView({super.key});
@@ -50,19 +52,19 @@ class _SeatPageViewState extends State<SeatPageView> {
     {'top': 480, 'left': 70, 'isReserved': false},
 
     // 스터디룸 (6인)
-    {'top': 300, 'left': 190, 'isReserved': false},
-    {'top': 300, 'left': 240, 'isReserved': false},
-    {'top': 300, 'left': 290, 'isReserved': false},
-    {'top': 350, 'left': 190, 'isReserved': false},
-    {'top': 350, 'left': 240, 'isReserved': true},
-    {'top': 350, 'left': 290, 'isReserved': true},
+    {'top': 300, 'left': 150, 'isReserved': false},
+    {'top': 300, 'left': 200, 'isReserved': false},
+    {'top': 300, 'left': 250, 'isReserved': false},
+    {'top': 350, 'left': 150, 'isReserved': false},
+    {'top': 350, 'left': 200, 'isReserved': true},
+    {'top': 350, 'left': 250, 'isReserved': true},
 
-    {'top': 430, 'left': 190, 'isReserved': false},
-    {'top': 430, 'left': 240, 'isReserved': true},
-    {'top': 430, 'left': 290, 'isReserved': false},
-    {'top': 480, 'left': 190, 'isReserved': false},
-    {'top': 480, 'left': 240, 'isReserved': true},
-    {'top': 480, 'left': 290, 'isReserved': false},
+    {'top': 430, 'left': 150, 'isReserved': false},
+    {'top': 430, 'left': 200, 'isReserved': true},
+    {'top': 430, 'left': 250, 'isReserved': false},
+    {'top': 480, 'left': 150, 'isReserved': false},
+    {'top': 480, 'left': 200, 'isReserved': true},
+    {'top': 480, 'left': 250, 'isReserved': false},
   ];
 
   @override
@@ -103,7 +105,10 @@ class _SeatPageViewState extends State<SeatPageView> {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.calendar_today),
-                      onPressed: () {},
+                      onPressed: () {
+                        // 클릭 시 달력 및 시간 설정 창 띄우고,
+                        // 날짜 및 시간 선택 시 좌석 뷰 변화
+                      },
                     ),
                     Text('날짜와 시간 선택하기'),
                   ],
@@ -116,7 +121,10 @@ class _SeatPageViewState extends State<SeatPageView> {
                 width: 400,
                 height: 600,
                 child: Container(
-                  color: Colors.grey,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 190, 189, 189),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                   child: Stack(
                     children:
                         seats.map((seat) => _seatIconButton(seat)).toList(),
@@ -124,7 +132,21 @@ class _SeatPageViewState extends State<SeatPageView> {
                 ),
               ),
             ),
-            TextButton(onPressed: () {}, child: Text('예약하기')),
+            SizedBox(height: 30),
+            TextButton(
+              onPressed:
+                  seats.any((seat) => seat['isSelected'] == true)
+                      ? () => Get.to(() => ReservationScreen())
+                      : null, // 노란색 좌석이 없으면 버튼 비활성화
+              style: TextButton.styleFrom(
+                backgroundColor:
+                    seats.any((seat) => seat['isSelected'] == true)
+                        ? Colors.red
+                        : Colors.grey, // 비활성화 상태 (회색)
+                foregroundColor: Colors.white,
+              ),
+              child: const Text('예약하기'),
+            ),
           ],
         ),
       ),
@@ -135,6 +157,7 @@ class _SeatPageViewState extends State<SeatPageView> {
     final double top = (seat['top'] as int).toDouble();
     final double left = (seat['left'] as int).toDouble();
     bool isReserved = seat['isReserved'];
+    bool isSelected = seat['isSelected'] ?? false;
 
     return Positioned(
       top: top,
@@ -144,20 +167,27 @@ class _SeatPageViewState extends State<SeatPageView> {
         height: 45,
         child: IconButton(
           icon: const Icon(Icons.event_seat),
-          color: isReserved ? Colors.red : Colors.green,
-          iconSize: 35,
-          onPressed:
+          color:
               isReserved
-                  ? () {
-                    setState(() {
-                      seat['isReserved'] = false;
-                    });
-                  }
-                  : () {
-                    setState(() {
-                      seat['isReserved'] = true;
-                    });
-                  },
+                  ? Colors.red
+                  : (isSelected ? Colors.amber : Colors.green),
+          iconSize: 35,
+          onPressed: () {
+            setState(() {
+              if (isReserved) {
+                seat['isReserved'] = false; // 예약된 상태에서 클릭하면 예약 해제
+              } else {
+                if (isSelected) {
+                  // 선택된 상태에서 다시 클릭하면 예약 확정 (빨간색)
+                  seat['isReserved'] = true;
+                  seat['isSelected'] = false;
+                } else {
+                  // 선택되지 않은 경우 선택 상태로 변경 (노란색)
+                  seat['isSelected'] = true;
+                }
+              }
+            });
+          },
         ),
       ),
     );

@@ -24,8 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Study Cafe_Reserve',
       home: SeatPageView(),
-
-      //StreamBuilder(
+      // StreamBuilder(
       //   stream: FirebaseAuth.instance.authStateChanges(),
       //   builder: (context, snapshot) {
       //     if (snapshot.connectionState == ConnectionState.waiting) {
