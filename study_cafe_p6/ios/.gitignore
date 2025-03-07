@@ -34,3 +34,40 @@ GoogleService-Info.plist
 !default.mode2v3
 !default.pbxuser
 !default.perspectivev3
+
+# Flutter/Dart 관련
+*.dart_tool/
+*.packages
+*.flutter-plugins
+build/
+.dart_tool/
+.packages
+
+# 환경 변수
+.env
+*.env.*
+
+# Android 관련
+*.apk
+*.aab
+key.properties
+local.properties
+google-services.json
+
+# iOS 관련
+*.xcworkspace
+*.xcodeproj
+GoogleService-Info.plist
+
+# IDE 설정
+.idea/
+*.iml
+.vscode/
+
+# 로그 및 임시 파일
+*.log
+*.tmp
+
+# 민감한 키 파일
+*.key
+*.pem
