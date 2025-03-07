@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:study_cafe_p6/Screen/reservation_final_screen.dart';
 
 class ReservationScreen extends StatelessWidget {
-  const ReservationScreen({super.key});
+  ReservationScreen({super.key});
+
+  final List<String> plan = ['1 시간', '2 시간', '4 시간', '6 시간', '일주일', '한 달'];
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +24,10 @@ class ReservationScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: ListView.builder(
+                itemCount: plan.length,
                 itemBuilder: (context, index) {
-                  final plan = ['1 시간', '2 시간', '4 시간', '6 시간', '일주일', '한 달'];
+                  // final plan = ['1 시간', '2 시간', '4 시간', '6 시간', '일주일', '한 달'];
+
                   final price = planPrice(plan[index]);
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 18.0),
@@ -34,14 +39,10 @@ class ReservationScreen extends StatelessWidget {
                       ),
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder:
-                                  (context) => ReservationFinalScreen(
-                                    selectedPlan: '${plan[index]} 이용권',
-                                    selectedPrice: price,
-                                  ),
+                          Get.to(
+                            () => ReservationFinalScreen(
+                              selectedPlan: plan[index],
+                              selectedPrice: price,
                             ),
                           );
                         },
@@ -66,7 +67,6 @@ class ReservationScreen extends StatelessWidget {
                     ),
                   );
                 },
-                itemCount: 6,
               ),
             ),
           ),
