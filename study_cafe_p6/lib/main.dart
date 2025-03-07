@@ -6,6 +6,7 @@ import 'package:study_cafe_p6/Screen/reservation_screen.dart';
 import 'package:get/route_manager.dart';
 import 'package:study_cafe_p6/firebase_options.dart';
 import 'package:study_cafe_p6/login/login_screen.dart';
+import 'package:study_cafe_p6/view/seat_page_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
