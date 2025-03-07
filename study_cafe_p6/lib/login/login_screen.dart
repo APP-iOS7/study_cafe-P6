@@ -16,15 +16,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
-  void _logIn() {
-    // Form 유효성 검사
-    if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('로그인 성공!')));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
