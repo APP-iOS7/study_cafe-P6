@@ -110,7 +110,7 @@ class _SeatPageViewState extends State<SeatPageView> {
                         // 날짜 및 시간 선택 시 좌석 뷰 변화
                       },
                     ),
-                    Text('날짜와 시간 선택하기'),
+                    Text('날짜 선택하기'),
                   ],
                 ),
               ],

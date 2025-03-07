@@ -26,19 +26,20 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Study Cafe_Reserve',
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
-          }
-          if (snapshot.hasData) {
-            return ReservationScreen();
-          }
-          // return LoginScreen();
-          return ReservationhistoryScreen();
-        },
-      ),
+      home: SeatPageView(),
+      // StreamBuilder(
+      //   stream: FirebaseAuth.instance.authStateChanges(),
+      //   builder: (context, snapshot) {
+      //     if (snapshot.connectionState == ConnectionState.waiting) {
+      //       return CircularProgressIndicator();
+      //     }
+      //     if (snapshot.hasData) {
+      //       return ReservationScreen();
+      //     }
+      //     // return LoginScreen();
+      //     return ReservationhistoryScreen();
+      //   },
+      // ),
     );
   }
 }
