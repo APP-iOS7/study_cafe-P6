@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:study_cafe_p6/Screen/reservation_screen.dart';
 
 class MainHomeView extends StatefulWidget {
   const MainHomeView({super.key});
@@ -9,7 +12,7 @@ class MainHomeView extends StatefulWidget {
 }
 
 Future<String> fetchData() async {
-  await Future.delayed(Duration(seconds: 2));
+  await Future.delayed(Duration(seconds: 1));
   return '서버에서 받아온 데이터';
 }
 
@@ -26,32 +29,40 @@ class _MainHomeViewState extends State<MainHomeView> {
       ),
 
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('${user!.displayName}님의 ID'),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, left: 20),
+                  child: Text(
+                    '${user!.displayName}님의 이용권',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
                 Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(right: 30),
                   child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.local_activity),
+                    onPressed: () {
+                      Get.to(() => ReservationScreen());
+                    },
+                    icon: Icon(CupertinoIcons.ticket, size: 40),
                   ),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 300),
+              padding: const EdgeInsets.only(bottom: 10, left: 290),
               child: Text('이용권 구매'),
             ),
             Container(
               width: 400,
-              height: 535,
+              height: 522,
               decoration: BoxDecoration(
-                color: Colors.grey,
+                color: const Color.fromARGB(255, 235, 233, 233),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: FutureBuilder(
@@ -63,7 +74,52 @@ class _MainHomeViewState extends State<MainHomeView> {
                   if (!snapshot.hasData) {
                     return CircularProgressIndicator();
                   } else {
-                    return Center(child: Text('예약 정보 표시'));
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 130),
+                      child: Column(
+                        children: [
+                          Icon(CupertinoIcons.ticket, size: 130),
+                          SizedBox(height: 50),
+                          Text(
+                            '이용권 구매는 상단 오른쪽의\n이용권 구매에서도 가능합니다.',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 30),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => ReservationScreen());
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                left: 50,
+                                right: 50,
+                                bottom: 30,
+                              ),
+                              child: Container(
+                                width: double.infinity,
+                                height: 50,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Text(
+                                  '이용권 구매',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
                   }
                 },
               ),

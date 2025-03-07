@@ -10,7 +10,9 @@ class SeatPageView extends StatefulWidget {
 }
 
 class _SeatPageViewState extends State<SeatPageView> {
+  DateTime date = DateTime.now();
   // 좌석 데이터
+
   final List<Map<String, dynamic>> seats = [
     // 집중존
     {'top': 8, 'left': 8, 'isReserved': false},
@@ -105,12 +107,21 @@ class _SeatPageViewState extends State<SeatPageView> {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.calendar_today),
-                      onPressed: () {
-                        // 클릭 시 달력 및 시간 설정 창 띄우고,
-                        // 날짜 및 시간 선택 시 좌석 뷰 변화
+                      onPressed: () async {
+                        final selectedData = await showDatePicker(
+                          context: context,
+                          initialDate: date,
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime.now().add(Duration(days: 90)),
+                        );
+                        if (selectedData != null) {
+                          setState(() {
+                            date = selectedData;
+                          });
+                        }
                       },
                     ),
-                    Text('날짜 선택하기'),
+                    Text('${date.year}-${date.month}-${date.day}'),
                   ],
                 ),
               ],
@@ -119,7 +130,7 @@ class _SeatPageViewState extends State<SeatPageView> {
               padding: const EdgeInsets.only(top: 30),
               child: SizedBox(
                 width: 400,
-                height: 610,
+                height: 443,
                 child: Container(
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 190, 189, 189),
@@ -163,8 +174,8 @@ class _SeatPageViewState extends State<SeatPageView> {
       top: top,
       left: left,
       child: SizedBox(
-        width: 45,
-        height: 45,
+        width: 55,
+        height: 55,
         child: IconButton(
           icon: const Icon(Icons.event_seat),
           color:
