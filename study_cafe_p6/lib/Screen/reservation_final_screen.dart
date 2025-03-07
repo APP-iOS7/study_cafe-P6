@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:study_cafe_p6/Screen/payment_screen.dart';
 
 class ReservationFinalScreen extends StatelessWidget {
   const ReservationFinalScreen({
@@ -62,9 +60,7 @@ class ReservationFinalScreen extends StatelessWidget {
               ),
               Spacer(),
               InkWell(
-                onTap: () {
-                  Get.to(() => PaymentScreen(selectedPrice: selectedPrice));
-                },
+                onTap: () {},
                 child: Container(
                   width: 250,
                   height: 60,
