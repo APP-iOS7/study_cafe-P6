@@ -52,14 +52,10 @@ class ReservationScreen extends StatelessWidget {
                         ),
                         child: InkWell(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder:
-                                    (context) => ReservationFinalScreen(
-                                      selectedPlan: '${plan[index]} 이용권',
-                                      selectedPrice: price,
-                                    ),
+                            Get.to(
+                              () => ReservationFinalScreen(
+                                selectedPlan: plan[index],
+                                selectedPrice: price,
                               ),
                             );
                           },
@@ -69,7 +65,7 @@ class ReservationScreen extends StatelessWidget {
                               horizontal: 15.0,
                             ),
                             child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   '${plan[index]} 이용권: ${formatAmount(price)}',
@@ -78,7 +74,7 @@ class ReservationScreen extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                  Icon(Icons.chevron_right_rounded, size: 30),
+                                Icon(Icons.chevron_right_rounded, size: 30),
                               ],
                             ),
                           ),
