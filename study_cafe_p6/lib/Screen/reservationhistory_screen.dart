@@ -35,6 +35,16 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
     '공부다방 11번 자리',
     '공부다방 2번 자리',
     '공부다방 6번 자리',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
   ];
 
   //날짜, 시간
@@ -49,6 +59,16 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
     '2024.06.02 11:01',
     '2024.07.04 16:07',
     '2024.12.06 22:16',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
   ];
 
   //결제 금액
@@ -63,6 +83,16 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
     '999원',
     '99원',
     '0원',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
+    '----------',
   ];
 
   void onTap(int index) {
@@ -128,36 +158,45 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
               ],
             ),
 
-            GestureDetector(
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 10,
-                  bottom: 10,
-                  left: 10,
-                  right: 10,
-                ),
-                child: Container(
-                  width: double.infinity,
-                  height: 70,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFECDCBF),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-
-                  child: Text(
-                    '구매 내역',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
+            // GestureDetector(
+            //   onTap: () {},
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(
+            //       top: 10,
+            //       bottom: 10,
+            //       left: 10,
+            //       right: 10,
+            //     ),
+            //     child: Container(
+            //       width: double.infinity,
+            //       height: 70,
+            //       alignment: Alignment.center,
+            //       decoration: BoxDecoration(
+            //         color: Color(0xFFECDCBF),
+            //         borderRadius: BorderRadius.circular(20),
+            //       ),
+            //       child: Align(
+            //         alignment: Alignment.centerLeft,
+            //         child: Padding(
+            //           padding: const EdgeInsets.only(
+            //             top: 0,
+            //             bottom: 0,
+            //             left: 20,
+            //             right: 0,
+            //           ),
+            //           child: Text(
+            //             '구매 내역',
+            //             style: TextStyle(
+            //               color: Colors.black,
+            //               fontSize: 25,
+            //               fontWeight: FontWeight.bold,
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
             SizedBox(height: 10),
 
             Expanded(
@@ -179,22 +218,22 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                               ),
                               title: Text(
                                 testreservationData[index],
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                // style: TextStyle(
+                                //   fontSize: 20,
+                                //   fontWeight: FontWeight.bold,
+                                // ),
                               ),
-                              subtitle: Text(
-                                testdateData[index],
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              trailing: Text(
-                                testpayData[index],
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              // subtitle: Text(
+                              //   testdateData[index],
+                              //   style: TextStyle(fontSize: 15),
+                              // ),
+                              // trailing: Text(
+                              //   testpayData[index],
+                              //   style: TextStyle(
+                              //     fontSize: 15,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
                               onTap: () {
                                 print("[D] ${testreservationData[index]} 확인");
                               },
@@ -205,7 +244,7 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                       : Center(
                         child: Text(
                           '예약 내역이 없습니다.',
-                          style: TextStyle(fontSize: 18, color: Colors.black),
+                          style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
                       ),
             ),
