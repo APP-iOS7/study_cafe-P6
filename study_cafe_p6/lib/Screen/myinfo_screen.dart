@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:study_cafe_p6/Screen/alertdialog_screen.dart';
 import 'package:study_cafe_p6/Screen/reservationhistory_screen.dart';
 import 'package:study_cafe_p6/login/login_screen.dart';
 import 'package:study_cafe_p6/loginViewModel/login_view_model.dart';
@@ -172,6 +173,11 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
             GestureDetector(
               onTap: () {
                 print("[D]회원탈퇴");
+                deleteAccountalert(
+                  context: context,
+                  // title: '알림',
+                  // content: '이건 커스텀 AlertDialog 예시입니다.',
+                );
               },
               child: Padding(
                 padding: const EdgeInsets.only(
