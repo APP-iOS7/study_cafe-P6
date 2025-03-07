@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:study_cafe_p6/loginViewModel/login_view_model.dart';
 
-class EmailTextField extends StatelessWidget {
-  const EmailTextField({super.key, required this.vm});
+class LoginEmailTextField extends StatelessWidget {
+  const LoginEmailTextField({super.key, required this.emailController});
 
-  final LoginViewModel vm;
+  final TextEditingController emailController;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: vm.emailController,
+      controller: emailController,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.email),
         enabledBorder: OutlineInputBorder(
@@ -32,15 +31,15 @@ class EmailTextField extends StatelessWidget {
   }
 }
 
-class PasswordTextField extends StatelessWidget {
-  const PasswordTextField({super.key, required this.vm});
+class LoginPasswordTextField extends StatelessWidget {
+  const LoginPasswordTextField({super.key, required this.pwController});
 
-  final LoginViewModel vm;
+  final TextEditingController pwController;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: vm.pwController,
+      controller: pwController,
       obscureText: true,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.lock),

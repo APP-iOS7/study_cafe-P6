@@ -17,77 +17,88 @@ class ReservationScreen extends StatelessWidget {
     }
     var vm = LoginViewModel();
 
-    return Scaffold(
-      appBar: AppBar(title: Text('예약하기'), backgroundColor: Color(0xfff8f2de)),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
-            child: Text('${user!.displayName}', style: TextStyle(fontSize: 30)),
-          ),
-          SizedBox(height: 20),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  final plan = ['1 시간', '2 시간', '4 시간', '6 시간', '일주일', '한 달'];
-                  final price = planPrice(plan[index]);
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 18.0),
-                    child: Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder:
-                                  (context) => ReservationFinalScreen(
-                                    selectedPlan: '${plan[index]} 이용권',
-                                    selectedPrice: price,
-                                  ),
-                            ),
-                          );
-                        },
-
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                          child: Row(
-                            children: [
-                              Text(
-                                '${plan[index]} 이용권: ${formatAmount(price)}',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        appBar: AppBar(title: Text('예약하기'), backgroundColor: Color(0xfff8f2de)),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 30,
+              ),
+              child: Text(
+                '${user!.displayName}',
+                style: TextStyle(fontSize: 30),
+              ),
+            ),
+            SizedBox(height: 20),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    final plan = ['1 시간', '2 시간', '4 시간', '6 시간', '일주일', '한 달'];
+                    final price = planPrice(plan[index]);
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 18.0),
+                      child: Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => ReservationFinalScreen(
+                                      selectedPlan: '${plan[index]} 이용권',
+                                      selectedPrice: price,
+                                    ),
                               ),
-                              Spacer(),
-                              Icon(Icons.chevron_right_rounded, size: 30),
-                            ],
+                            );
+                          },
+
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 15.0,
+                            ),
+                            child: Row(
+                              children: [
+                                Text(
+                                  '${plan[index]} 이용권: ${formatAmount(price)}',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Spacer(),
+                                Icon(Icons.chevron_right_rounded, size: 30),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                },
-                itemCount: 6,
+                    );
+                  },
+                  itemCount: 6,
+                ),
               ),
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              vm.signOut();
-              Get.off(() => LoginScreen());
-            },
-            child: Text('로그아웃'),
-          ),
-        ],
+            ElevatedButton(
+              onPressed: () {
+                vm.signOut();
+                Get.off(() => LoginScreen());
+              },
+              child: Text('로그아웃'),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:study_cafe_p6/Screen/reservation_screen.dart';
 import 'package:study_cafe_p6/Screen/text_field.dart';
 import 'package:study_cafe_p6/login/signup_screen.dart';
 import 'package:study_cafe_p6/loginViewModel/login_view_model.dart';
@@ -12,9 +14,48 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final emailController = TextEditingController();
+  final pwController = TextEditingController();
   var vm = LoginViewModel();
-
   final _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
+
+  Future<void> signIn() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = false;
+      });
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text,
+          password: pwController.text,
+        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('로그인 성공')));
+        Get.to(() => ReservationScreen());
+      } on FirebaseAuthException catch (e) {
+        String message;
+        switch (e.code) {
+          case 'user-not-found':
+            message = '사용자를 찾을수 없습니다.';
+            break;
+          case 'wrong-password':
+            message = '잘못된 비밀번호 입니다.';
+            break;
+          default:
+            message = '로그인 실패: ${e.message}';
+        }
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(message)));
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,16 +86,25 @@ class _LoginScreenState extends State<LoginScreen> {
                             left: 20,
                             right: 20,
                           ),
-                          child: EmailTextField(vm: vm),
+                          child: LoginEmailTextField(
+                            emailController: emailController,
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 20),
-                          child: PasswordTextField(vm: vm),
+                          child: LoginPasswordTextField(
+                            pwController: pwController,
+                          ),
                         ),
                         SizedBox(height: 20),
+                        _isLoading
+                            ? Center(child: CircularProgressIndicator())
+                            : Padding(padding: const EdgeInsets.all(15)),
 
                         GestureDetector(
-                          onTap: vm.signIn,
+                          onTap: () {
+                            signIn();
+                          },
                           child: Padding(
                             padding: const EdgeInsets.only(
                               top: 30,
