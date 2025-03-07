@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             return CircularProgressIndicator();
           }
           if (snapshot.hasData) {
-            return ReservationScreen();
+            return BottomTabBar();
           }
           // return LoginScreen();
           return LoginScreen();

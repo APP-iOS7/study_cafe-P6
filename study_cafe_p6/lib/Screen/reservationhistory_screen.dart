@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 
 class ReservationhistoryScreen extends StatefulWidget {
   const ReservationhistoryScreen({super.key});
@@ -212,7 +211,6 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomTabBar(selectedIndex: 0, onItemTapped: onTap),
     );
   }
 }

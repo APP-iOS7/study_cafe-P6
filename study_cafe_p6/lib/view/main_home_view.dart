@@ -1,5 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../model/reserve_model.dart';
 
 class MainHomeView extends StatefulWidget {
   const MainHomeView({super.key});
@@ -14,6 +14,8 @@ Future<String> fetchData() async {
 }
 
 class _MainHomeViewState extends State<MainHomeView> {
+  User? user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +32,7 @@ class _MainHomeViewState extends State<MainHomeView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('  @@@님의 ID'),
+                Text('${user!.displayName}님의 ID'),
                 Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(right: 30),
@@ -47,7 +49,7 @@ class _MainHomeViewState extends State<MainHomeView> {
             ),
             Container(
               width: 400,
-              height: 650,
+              height: 535,
               decoration: BoxDecoration(
                 color: Colors.grey,
                 borderRadius: BorderRadius.circular(10),
