@@ -26,6 +26,7 @@ Flutter/flutter_assets/
 Flutter/flutter_export_environment.sh
 ServiceDefinitions.json
 Runner/GeneratedPluginRegistrant.*
+.DS_Store
 
 # Exceptions to above rules.
 !default.mode1v3
@@ -51,6 +52,7 @@ build/
 key.properties
 local.properties
 google-services.json
+.DS_Store
 
 # iOS 관련
 *.xcworkspace

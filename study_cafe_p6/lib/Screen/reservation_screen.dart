@@ -1,12 +1,22 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:study_cafe_p6/Screen/reservation_final_screen.dart';
+import 'package:study_cafe_p6/login/login_screen.dart';
+import 'package:study_cafe_p6/loginViewModel/login_view_model.dart';
 
 class ReservationScreen extends StatelessWidget {
   const ReservationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      print('현재 사용자 이름: ${user.displayName}');
+    }
+    var vm = LoginViewModel();
+
     return Scaffold(
       appBar: AppBar(title: Text('예약하기'), backgroundColor: Color(0xfff8f2de)),
       body: Column(
@@ -14,7 +24,7 @@ class ReservationScreen extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
-            child: Text('Username', style: TextStyle(fontSize: 30)),
+            child: Text('${user!.displayName}', style: TextStyle(fontSize: 30)),
           ),
           SizedBox(height: 20),
           Expanded(
@@ -69,6 +79,13 @@ class ReservationScreen extends StatelessWidget {
                 itemCount: 6,
               ),
             ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              vm.signOut();
+              Get.off(() => LoginScreen());
+            },
+            child: Text('로그아웃'),
           ),
         ],
       ),
