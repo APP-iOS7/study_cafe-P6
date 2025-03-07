@@ -174,8 +174,8 @@ class _SeatPageViewState extends State<SeatPageView> {
       top: top,
       left: left,
       child: SizedBox(
-        width: 55,
-        height: 55,
+        width: 45,
+        height: 45,
         child: IconButton(
           icon: const Icon(Icons.event_seat),
           color:
