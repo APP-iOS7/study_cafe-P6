@@ -6,6 +6,7 @@ import 'package:study_cafe_p6/Screen/reservation_screen.dart';
 import 'package:get/route_manager.dart';
 import 'package:study_cafe_p6/firebase_options.dart';
 import 'package:study_cafe_p6/login/login_screen.dart';
+import 'package:study_cafe_p6/view/seat_page_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,18 +23,20 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Study Cafe_Reserve',
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
-          }
-          if (snapshot.hasData) {
-            return ReservationScreen();
-          }
-          return LoginScreen();
-        },
-      ),
+      home: SeatPageView(),
+
+      //StreamBuilder(
+      //   stream: FirebaseAuth.instance.authStateChanges(),
+      //   builder: (context, snapshot) {
+      //     if (snapshot.connectionState == ConnectionState.waiting) {
+      //       return CircularProgressIndicator();
+      //     }
+      //     if (snapshot.hasData) {
+      //       return ReservationScreen();
+      //     }
+      //     return LoginScreen();
+      //   },
+      // ),
     );
   }
 }
