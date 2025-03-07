@@ -8,13 +8,70 @@ class SeatPageView extends StatefulWidget {
 }
 
 class _SeatPageViewState extends State<SeatPageView> {
+  // 좌석 데이터
+  final List<Map<String, dynamic>> seats = [
+    // 집중존
+    {'top': 8, 'left': 8, 'isReserved': false},
+    {'top': 8, 'left': 70, 'isReserved': false},
+    {'top': 68, 'left': 8, 'isReserved': false},
+    {'top': 68, 'left': 70, 'isReserved': false},
+    {'top': 8, 'left': 130, 'isReserved': true},
+    {'top': 68, 'left': 130, 'isReserved': false},
+    {'top': 128, 'left': 8, 'isReserved': true},
+    {'top': 128, 'left': 70, 'isReserved': false},
+    {'top': 128, 'left': 130, 'isReserved': false},
+    {'top': 188, 'left': 8, 'isReserved': false},
+    {'top': 188, 'left': 70, 'isReserved': false},
+    {'top': 188, 'left': 130, 'isReserved': false},
+
+    // 노트북존
+    {'top': 15, 'left': 220, 'isReserved': false},
+    {'top': 10, 'left': 280, 'isReserved': false},
+    {'top': 10, 'left': 340, 'isReserved': false},
+    {'top': 60, 'left': 220, 'isReserved': false},
+    {'top': 70, 'left': 280, 'isReserved': true},
+    {'top': 70, 'left': 340, 'isReserved': false},
+    {'top': 130, 'left': 225, 'isReserved': false},
+    {'top': 130, 'left': 270, 'isReserved': false},
+    {'top': 135, 'left': 340, 'isReserved': true},
+    {'top': 190, 'left': 220, 'isReserved': false},
+    {'top': 190, 'left': 280, 'isReserved': false},
+    {'top': 180, 'left': 340, 'isReserved': false},
+
+    // 스터디룸 (4인)
+    {'top': 300, 'left': 20, 'isReserved': false},
+    {'top': 300, 'left': 70, 'isReserved': false},
+    {'top': 350, 'left': 20, 'isReserved': false},
+    {'top': 350, 'left': 70, 'isReserved': false},
+
+    {'top': 430, 'left': 20, 'isReserved': true},
+    {'top': 430, 'left': 70, 'isReserved': true},
+    {'top': 480, 'left': 20, 'isReserved': false},
+    {'top': 480, 'left': 70, 'isReserved': false},
+
+    // 스터디룸 (6인)
+    {'top': 300, 'left': 190, 'isReserved': false},
+    {'top': 300, 'left': 240, 'isReserved': false},
+    {'top': 300, 'left': 290, 'isReserved': false},
+    {'top': 350, 'left': 190, 'isReserved': false},
+    {'top': 350, 'left': 240, 'isReserved': true},
+    {'top': 350, 'left': 290, 'isReserved': true},
+
+    {'top': 430, 'left': 190, 'isReserved': false},
+    {'top': 430, 'left': 240, 'isReserved': true},
+    {'top': 430, 'left': 290, 'isReserved': false},
+    {'top': 480, 'left': 190, 'isReserved': false},
+    {'top': 480, 'left': 240, 'isReserved': true},
+    {'top': 480, 'left': 290, 'isReserved': false},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('좌석현황'),
+        title: const Text('좌석 현황'),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(234, 225, 201, 1),
+        backgroundColor: const Color.fromRGBO(234, 225, 201, 1),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -25,7 +82,7 @@ class _SeatPageViewState extends State<SeatPageView> {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const [
                     Row(
                       children: [
                         Icon(Icons.check_circle, color: Colors.green),
@@ -45,7 +102,7 @@ class _SeatPageViewState extends State<SeatPageView> {
                 Row(
                   children: [
                     IconButton(
-                      icon: Icon(Icons.calendar_today),
+                      icon: const Icon(Icons.calendar_today),
                       onPressed: () {},
                     ),
                     Text('날짜와 시간 선택하기'),
@@ -61,55 +118,8 @@ class _SeatPageViewState extends State<SeatPageView> {
                 child: Container(
                   color: Colors.grey,
                   child: Stack(
-                    children: [
-                      //집중존
-                      Positioned(top: 8, left: 10, child: _seatWidget(true)),
-                      Positioned(top: 8, left: 70, child: _seatWidget(true)),
-                      Positioned(top: 68, left: 10, child: _seatWidget(false)),
-                      Positioned(top: 68, left: 70, child: _seatWidget(false)),
-                      Positioned(top: 8, left: 130, child: _seatWidget(true)),
-                      Positioned(top: 68, left: 130, child: _seatWidget(false)),
-                      Positioned(top: 128, left: 10, child: _seatWidget(true)),
-                      Positioned(top: 128, left: 70, child: _seatWidget(false)),
-                      Positioned(
-                        top: 128,
-                        left: 130,
-                        child: _seatWidget(false),
-                      ),
-                      Positioned(top: 188, left: 10, child: _seatWidget(false)),
-                      Positioned(top: 188, left: 70, child: _seatWidget(false)),
-                      Positioned(
-                        top: 188,
-                        left: 130,
-                        child: _seatWidget(false),
-                      ),
-
-                      //노트북존
-                      Positioned(top: 15, left: 220, child: _seatWidget(false)),
-                      Positioned(top: 10, left: 280, child: _seatWidget(true)),
-                      Positioned(top: 10, left: 340, child: _seatWidget(false)),
-                      Positioned(top: 60, left: 220, child: _seatWidget(false)),
-                      Positioned(top: 70, left: 280, child: _seatWidget(true)),
-                      Positioned(top: 70, left: 340, child: _seatWidget(false)),
-                      Positioned(top: 130, left: 225, child: _seatWidget(true)),
-                      Positioned(top: 130, left: 270, child: _seatWidget(true)),
-                      Positioned(top: 135, left: 340, child: _seatWidget(true)),
-                      Positioned(
-                        top: 190,
-                        left: 220,
-                        child: _seatWidget(false),
-                      ),
-                      Positioned(
-                        top: 190,
-                        left: 280,
-                        child: _seatWidget(false),
-                      ),
-                      Positioned(
-                        top: 180,
-                        left: 340,
-                        child: _seatWidget(false),
-                      ),
-                    ],
+                    children:
+                        seats.map((seat) => _seatIconButton(seat)).toList(),
                   ),
                 ),
               ),
@@ -121,12 +131,35 @@ class _SeatPageViewState extends State<SeatPageView> {
     );
   }
 
-  Widget _seatWidget(bool isReserved) {
-    return Container(
-      width: 45,
-      height: 45,
-      decoration: BoxDecoration(color: isReserved ? Colors.red : Colors.green),
-      child: Center(child: Text(isReserved ? "X" : "O")),
+  Widget _seatIconButton(Map<String, dynamic> seat) {
+    final double top = (seat['top'] as int).toDouble();
+    final double left = (seat['left'] as int).toDouble();
+    bool isReserved = seat['isReserved'];
+
+    return Positioned(
+      top: top,
+      left: left,
+      child: SizedBox(
+        width: 45,
+        height: 45,
+        child: IconButton(
+          icon: const Icon(Icons.event_seat),
+          color: isReserved ? Colors.red : Colors.green,
+          iconSize: 35,
+          onPressed:
+              isReserved
+                  ? () {
+                    setState(() {
+                      seat['isReserved'] = false;
+                    });
+                  }
+                  : () {
+                    setState(() {
+                      seat['isReserved'] = true;
+                    });
+                  },
+        ),
+      ),
     );
   }
 }
