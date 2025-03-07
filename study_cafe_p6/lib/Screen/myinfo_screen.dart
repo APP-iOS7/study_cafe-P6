@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_cafe_p6/Screen/reservationhistory_screen.dart';
 import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
-import 'package:study_cafe_p6/main.dart';
 
 class MyinfoScreen extends StatefulWidget {
   const MyinfoScreen({super.key});
@@ -211,7 +210,7 @@ class RoundCircle extends StatelessWidget {
   final double size;
   final ImageProvider? image;
 
-  const RoundCircle({required this.size, this.image});
+  const RoundCircle({super.key, required this.size, this.image});
 
   @override
   Widget build(BuildContext context) {
