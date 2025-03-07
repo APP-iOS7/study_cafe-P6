@@ -175,14 +175,12 @@ class _SeatPageViewState extends State<SeatPageView> {
           onPressed: () {
             setState(() {
               if (isReserved) {
-                seat['isReserved'] = false; // 예약된 상태에서 클릭하면 예약 해제
+                seat['isReserved'] = false;
               } else {
                 if (isSelected) {
-                  // 선택된 상태에서 다시 클릭하면 예약 확정 (빨간색)
                   seat['isReserved'] = true;
                   seat['isSelected'] = false;
                 } else {
-                  // 선택되지 않은 경우 선택 상태로 변경 (노란색)
                   seat['isSelected'] = true;
                 }
               }
