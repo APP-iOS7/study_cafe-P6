@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_cafe_p6/Screen/reservation_screen.dart';
+import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 import 'package:study_cafe_p6/Screen/text_field.dart';
 import 'package:study_cafe_p6/login/signup_screen.dart';
 import 'package:study_cafe_p6/loginViewModel/login_view_model.dart';
@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text('로그인 성공')));
-        Get.to(() => ReservationScreen());
+        Get.to(() => BottomTabBar());
       } on FirebaseAuthException catch (e) {
         String message;
         switch (e.code) {
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
             message = '잘못된 비밀번호 입니다.';
             break;
           default:
-            message = '로그인 실패: ${e.message}';
+            message = '로그인 실패: ${e.message.toString()}';
         }
         ScaffoldMessenger.of(
           context,

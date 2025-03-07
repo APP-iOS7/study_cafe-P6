@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_cafe_p6/Screen/reservationhistory_screen.dart';
-import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
+import 'package:study_cafe_p6/login/login_screen.dart';
+import 'package:study_cafe_p6/loginViewModel/login_view_model.dart';
 
 class MyinfoScreen extends StatefulWidget {
   const MyinfoScreen({super.key});
@@ -11,6 +12,7 @@ class MyinfoScreen extends StatefulWidget {
 }
 
 class _MyinfoScreenState extends State<MyinfoScreen> {
+  var vm = LoginViewModel();
   int selectIndex = 2;
 
   void onTap(int index) {
@@ -134,6 +136,8 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
 
             GestureDetector(
               onTap: () {
+                vm.signOut();
+                Get.off(() => LoginScreen());
                 print("[D]로그아웃");
               },
               child: Padding(
@@ -197,10 +201,6 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomTabBar(
-        selectedIndex: selectIndex,
-        onItemTapped: onTap,
       ),
     );
   }
