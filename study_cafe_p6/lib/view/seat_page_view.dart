@@ -119,7 +119,7 @@ class _SeatPageViewState extends State<SeatPageView> {
               padding: const EdgeInsets.only(top: 30),
               child: SizedBox(
                 width: 400,
-                height: 600,
+                height: 610,
                 child: Container(
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 190, 189, 189),
