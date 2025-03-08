@@ -24,10 +24,6 @@ class UserPasswordChangeModel {
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text('비밀번호가 변경되었습니다.')));
-        // print('[D]check 1');
-        // Navigator.of(context).pop();
-        // print('[D]check 2');
-        // Get.to(() => LoginScreen());
         // print('[D]check 3');
         Navigator.of(context).pop();
         // print('[D]check 4');
