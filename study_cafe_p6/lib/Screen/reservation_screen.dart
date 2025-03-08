@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:study_cafe_p6/Screen/reservation_final_screen.dart';
-import 'package:study_cafe_p6/login/login_screen.dart';
 import 'package:study_cafe_p6/loginViewModel/login_view_model.dart';
-import 'package:study_cafe_p6/model/reserve_model.dart';
 
 class ReservationScreen extends StatelessWidget {
   final String seatInfo;

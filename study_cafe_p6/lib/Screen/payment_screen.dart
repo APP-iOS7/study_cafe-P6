@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:tosspayments_widget_sdk_flutter/model/payment_info.dart';
 import 'package:tosspayments_widget_sdk_flutter/model/payment_widget_options.dart';
 import 'package:tosspayments_widget_sdk_flutter/payment_widget.dart';
@@ -20,7 +21,13 @@ import 'package:tosspayments_widget_sdk_flutter/widgets/payment_method.dart';
 
 class PaymentScreen extends StatefulWidget {
   final int selectedPrice;
-  const PaymentScreen({super.key, required this.selectedPrice});
+  const PaymentScreen({
+    super.key,
+    required this.selectedPrice,
+    required this.selectedPlan,
+  });
+
+  final String selectedPlan;
 
   @override
   State<PaymentScreen> createState() {
@@ -32,6 +39,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
   late PaymentWidget _paymentWidget;
   PaymentMethodWidgetControl? _paymentMethodWidgetControl;
   AgreementWidgetControl? _agreementWidgetControl;
+
+  String formatAmount(int amount) {
+    final formatter = NumberFormat('#,###');
+    return '${formatter.format(amount)}원';
+  }
 
   @override
   void initState() {
@@ -66,6 +78,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('결제하기'),
         backgroundColor: Color(0xfff8f2de),
@@ -87,6 +100,40 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Expanded(
               child: ListView(
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.all(40.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20.0),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Column(
+                            children: [
+                              Text('(좌석 정보)', style: TextStyle(fontSize: 20)),
+                              Text(
+                                widget.selectedPlan,
+                                style: TextStyle(fontSize: 20),
+                                softWrap: true,
+                              ),
+                              SizedBox(height: 20),
+                              Text(
+                                '결제 금액: ${formatAmount(widget.selectedPrice)}',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                softWrap: true,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   PaymentMethodWidget(
                     paymentWidget: _paymentWidget,
                     selector: 'methods',
@@ -102,9 +149,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       onTap: () async {
                         final paymentResult = await _paymentWidget
                             .requestPayment(
-                              paymentInfo: const PaymentInfo(
+                              paymentInfo: PaymentInfo(
                                 orderId: 'zvRVFvMqSNSzOzBothLZF',
-                                orderName: '토스 티셔츠 외 2건',
+                                orderName: '${widget.selectedPlan} 이용권',
                               ),
                             );
                         if (paymentResult.success != null) {

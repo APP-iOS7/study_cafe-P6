@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:study_cafe_p6/Screen/reservation_screen.dart';
 import 'package:study_cafe_p6/Screen/seat_page_screen.dart';
 
 class MainHomeView extends StatefulWidget {

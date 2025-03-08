@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:study_cafe_p6/Screen/myinfo_screen.dart';
 import 'package:study_cafe_p6/Screen/main_home_screen.dart';
+import 'package:study_cafe_p6/Screen/myinfo_screen.dart';
 import 'package:study_cafe_p6/Screen/seat_page_screen.dart';
 
 class BottomTabBar extends StatefulWidget {
@@ -11,6 +11,8 @@ class BottomTabBar extends StatefulWidget {
 }
 
 class _BottomTabBarState extends State<BottomTabBar> {
+  final int _currentIndex = 0;
+  final List<Widget> _pages = [MainHomeView(), SeatPageView(), MyinfoScreen()];
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -19,7 +21,6 @@ class _BottomTabBarState extends State<BottomTabBar> {
     });
   }
 
-  final List<Widget> _pages = [MainHomeView(), SeatPageView(), MyinfoScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

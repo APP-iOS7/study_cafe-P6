@@ -23,6 +23,7 @@ class ReservationFinalScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('사용자 예약정보'),
         backgroundColor: Color(0xfff8f2de),
@@ -45,21 +46,25 @@ class ReservationFinalScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          '선택한 이용권: $selectedPlan',
+                          '좌석 정보: ${seatInfo}',
                           style: TextStyle(fontSize: 25),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          '$selectedPlan 이용권',
+                          style: TextStyle(fontSize: 20),
                           softWrap: true,
                         ),
                         SizedBox(height: 20),
                         Text(
                           '결제 금액: ${formatAmount(selectedPrice)}',
-                          style: TextStyle(fontSize: 25),
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                           softWrap: true,
                         ),
                         SizedBox(height: 20),
-                        Text(
-                          '좌석 정보: ${seatInfo}',
-                          style: TextStyle(fontSize: 25),
-                        ),
                       ],
                     ),
                   ),
@@ -68,7 +73,12 @@ class ReservationFinalScreen extends StatelessWidget {
               Spacer(),
               InkWell(
                 onTap: () {
-                  Get.to(() => PaymentScreen(selectedPrice: selectedPrice));
+                  Get.to(
+                    () => PaymentScreen(
+                      selectedPlan: selectedPlan,
+                      selectedPrice: selectedPrice,
+                    ),
+                  );
                 },
                 child: Container(
                   width: 250,

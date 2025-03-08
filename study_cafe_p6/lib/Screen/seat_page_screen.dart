@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_cafe_p6/Screen/reservation_screen.dart';
-import '../model/reserve_model.dart';
 
 class SeatPageView extends StatefulWidget {
   const SeatPageView({super.key});
