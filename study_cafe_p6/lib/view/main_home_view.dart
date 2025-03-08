@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:study_cafe_p6/Screen/reservation_screen.dart';
 
 class MainHomeView extends StatefulWidget {
   const MainHomeView({super.key});
@@ -37,7 +39,9 @@ class _MainHomeViewState extends State<MainHomeView> {
                 Padding(
                   padding: const EdgeInsets.only(right: 30),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(() => ReservationScreen());
+                    },
                     icon: Icon(Icons.local_activity),
                   ),
                 ),

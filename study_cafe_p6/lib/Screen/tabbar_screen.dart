@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:study_cafe_p6/Screen/myinfo_screen.dart';
+import 'package:study_cafe_p6/Screen/reservation_final_screen.dart';
+import 'package:study_cafe_p6/Screen/reservation_screen.dart';
 import 'package:study_cafe_p6/view/main_home_view.dart';
 import 'package:study_cafe_p6/view/seat_page_view.dart';
 
@@ -12,7 +14,12 @@ class BottomTabBar extends StatefulWidget {
 
 class _BottomTabBarState extends State<BottomTabBar> {
   int _currentIndex = 0;
-  final List<Widget> _pages = [MainHomeView(), SeatPageView(), MyinfoScreen()];
+  final List<Widget> _pages = [
+    MainHomeView(),
+    SeatPageView(),
+    MyinfoScreen(),
+    ReservationScreen(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
