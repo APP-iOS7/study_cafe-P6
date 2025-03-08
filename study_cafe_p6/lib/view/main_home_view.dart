@@ -49,8 +49,6 @@ class _MainHomeViewState extends State<MainHomeView> {
                     onPressed: () {
                       Get.to(() => ReservationScreen());
                     },
-                    icon: Icon(Icons.local_activity),
-                    onPressed: () {},
                     icon: Icon(CupertinoIcons.ticket),
                   ),
                 ),

@@ -13,7 +13,7 @@ class BottomTabBar extends StatefulWidget {
 }
 
 class _BottomTabBarState extends State<BottomTabBar> {
-  int _currentIndex = 0;
+  final int _currentIndex = 0;
   final List<Widget> _pages = [
     MainHomeView(),
     SeatPageView(),
@@ -28,7 +28,6 @@ class _BottomTabBarState extends State<BottomTabBar> {
     });
   }
 
-  final List<Widget> _pages = [MainHomeView(), SeatPageView(), MyinfoScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
