@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ReservationhistoryScreen extends StatefulWidget {
@@ -10,7 +11,7 @@ class ReservationhistoryScreen extends StatefulWidget {
 
 class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
   int selectIndex = 0;
-
+  User? user = FirebaseAuth.instance.currentUser;
   /*
   final String reservationId;
   final String serviceName;       // 서비스 / 상품명
@@ -145,7 +146,7 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
-                        'User0123',
+                        '${user!.displayName}',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 15,
