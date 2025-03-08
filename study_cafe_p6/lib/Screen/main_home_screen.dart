@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:study_cafe_p6/Screen/reservation_screen.dart';
+import 'package:study_cafe_p6/Screen/seat_page_screen.dart';
 
 class MainHomeView extends StatefulWidget {
   const MainHomeView({super.key});
@@ -33,7 +34,7 @@ class _MainHomeViewState extends State<MainHomeView> {
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 20, left: 20),
@@ -42,25 +43,12 @@ class _MainHomeViewState extends State<MainHomeView> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
-                Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(right: 30),
-                  child: IconButton(
-                    onPressed: () {
-                      Get.to(() => ReservationScreen());
-                    },
-                    icon: Icon(CupertinoIcons.ticket, size: 40),
-                  ),
-                ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10, left: 290),
-              child: Text('이용권 구매'),
-            ),
+            SizedBox(height: 30),
             Container(
-              width: 400,
-              height: 522,
+              width: MediaQuery.of(context).size.width * 0.83,
+              height: MediaQuery.of(context).size.height * 0.63,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 235, 233, 233),
                 borderRadius: BorderRadius.circular(10),
@@ -79,7 +67,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                       child: Column(
                         children: [
                           Icon(CupertinoIcons.ticket, size: 130),
-                          SizedBox(height: 50),
+                          SizedBox(height: 100),
                           Text(
                             '이용권 구매는 상단 오른쪽의\n이용권 구매에서도 가능합니다.',
                             style: TextStyle(
@@ -90,7 +78,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                           SizedBox(height: 30),
                           GestureDetector(
                             onTap: () {
-                              Get.to(() => ReservationScreen());
+                              Get.to(() => SeatPageView());
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(

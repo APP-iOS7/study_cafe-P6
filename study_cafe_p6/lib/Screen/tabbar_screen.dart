@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:study_cafe_p6/Screen/myinfo_screen.dart';
-import 'package:study_cafe_p6/view/main_home_view.dart';
-import 'package:study_cafe_p6/view/seat_page_view.dart';
+import 'package:study_cafe_p6/Screen/main_home_screen.dart';
+import 'package:study_cafe_p6/Screen/seat_page_screen.dart';
 
 class BottomTabBar extends StatefulWidget {
   const BottomTabBar({super.key});

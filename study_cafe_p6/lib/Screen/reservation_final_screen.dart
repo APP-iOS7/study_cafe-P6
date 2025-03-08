@@ -8,10 +8,12 @@ class ReservationFinalScreen extends StatelessWidget {
     super.key,
     required this.selectedPlan,
     required this.selectedPrice,
+    required this.seatInfo,
   });
 
   final String selectedPlan;
   final int selectedPrice;
+  final String seatInfo;
 
   String formatAmount(int amount) {
     final formatter = NumberFormat('#,###');
@@ -54,7 +56,10 @@ class ReservationFinalScreen extends StatelessWidget {
                           softWrap: true,
                         ),
                         SizedBox(height: 20),
-                        Text('좌석 정보', style: TextStyle(fontSize: 25)),
+                        Text(
+                          '좌석 정보: ${seatInfo}',
+                          style: TextStyle(fontSize: 25),
+                        ),
                       ],
                     ),
                   ),
