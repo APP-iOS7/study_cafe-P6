@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_cafe_p6/Screen/alertdialog_screen.dart';
-import 'package:study_cafe_p6/Screen/reservationhistory_screen.dart';
+import 'package:study_cafe_p6/Screen/reservation_history_screen.dart';
 import 'package:study_cafe_p6/login/login_screen.dart';
 import 'package:study_cafe_p6/loginViewModel/login_view_model.dart';
 
@@ -107,6 +107,7 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
               onTap: () {
                 print("[D]비밀번호변경");
                 // Get.to(() => ReservationhistoryScreen());
+                passwordChangeAlert(context: context);
               },
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -175,7 +176,7 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
             GestureDetector(
               onTap: () {
                 print("[D]회원탈퇴");
-                deleteAccountalert(context: context);
+                deleteAccountAlert(context: context);
               },
               child: Padding(
                 padding: const EdgeInsets.only(
