@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'korea bold';
+    src: url(./fonts/korea_bold.otf);
+}
+
+@font-face {
+    font-family: 'korea light';
+    src: url(./fonts/korea_thin.otf);
+}
+
+@font-face {
+    font-family: 'kbo medium';
+    src: url(./fonts/korea_medium.otf);
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -21,7 +36,18 @@ body {
 .header p {
     position: relative;
     top: -5px;
+    left: 1600px;
+}
+
+.header button {
+    position: relative;
     left: 1700px;
+    width: 100px;
+    height: 30px;
+    background-color: #a31d1d;
+    color: #fff;
+    border: 1px solid #a31d1d;
+    border-radius: 30px;
 }
 
 .container {
@@ -53,7 +79,7 @@ body {
     top: 50px;
     left: 90px;
     color: #222;
-    margin: 25px;
+    margin: 55px;
     font-size: 18px;
     text-decoration: none;
 }
@@ -67,15 +93,28 @@ body {
     background-color: #222;
 }
 
-.Reserve_filed li {
-    list-style: none;
+#reserveData table {
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-.Reserve_filed li a {
+#reserveData th,
+#reserveData td {
+    width: 300px;
+    height: 30px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+#reserveData th {
+
+    background-color: #222;
+}
+
+#reserveData tr {
     position: relative;
+    width: 1000px;
     top: 100px;
-    left: 90px;
-    color: #000;
-    text-decoration: none;
-    margin: 25px;
+    left: 100px;
 }

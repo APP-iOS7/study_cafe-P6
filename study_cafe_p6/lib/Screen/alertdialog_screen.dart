@@ -5,7 +5,7 @@ import 'package:study_cafe_p6/ViewModel/user_password_change_model.dart';
 Future<void> passwordChangeAlert({
   required BuildContext context,
   String title = '비밀번호 변경',
-  String content = '비밀번호 변경 창이지롱',
+  String content = '\'새 비밀번호\' 입력 후 \'확인\'을 누르면 로그인 화면으로 이동합니다.',
 }) {
   final UserPasswordChangeModel passwordModel = UserPasswordChangeModel();
 
@@ -32,9 +32,12 @@ Future<void> passwordChangeAlert({
         actions: [
           TextButton(
             onPressed: () {
+              // print('[D]TextButton check 1');
               // Navigator.of(dialogContext).pop();
+              // print('[D]TextButton check 2');
               passwordModel.updatePassword(dialogContext);
-              //여기 수정하면 될 듯 이어서 진행 예정.
+              // Navigator.of(dialogContext).pop();
+              // print('[D]TextButton check 3');
             },
             child: Text(
               '확인',
@@ -48,7 +51,6 @@ Future<void> passwordChangeAlert({
           TextButton(
             onPressed: () {
               Navigator.of(dialogContext).pop();
-              //여기 수정하면 될 듯 이어서 진행 예정.
             },
             child: Text(
               '취소',
@@ -62,7 +64,8 @@ Future<void> passwordChangeAlert({
         ],
       );
     },
-  ).then((_) => passwordModel.dispose());
+    // ).then((_) => passwordModel.dispose());
+  );
 }
 
 Future<void> deleteAccountAlert({

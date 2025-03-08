@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="logout.js" defer></script>
+    <script type="module" src="firebase.js" defer></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <h1>예약확인</h1>
+            <img src="./image/user.png" alt="">
+            <p id="admin"></p>
+            <button id="logoutButton">로그아웃</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>예약내역</h1>
+        <div class="divider"></div>
+        <div class="Reserve_info">
+            <li>
+                <a href="#">예약번호</a>
+                <a href="#">고객명</a>
+                <a href="#">예약날짜</a>
+                <a href="#">결제금액</a>
+            </li>
+        </div>
+
+        <div class="divider2"></div>
+
+        <div id="reserveData">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

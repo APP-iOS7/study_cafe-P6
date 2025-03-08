@@ -8,10 +8,12 @@ class ReservationFinalScreen extends StatelessWidget {
     super.key,
     required this.selectedPlan,
     required this.selectedPrice,
+    required this.seatInfo,
   });
 
   final String selectedPlan;
   final int selectedPrice;
+  final String seatInfo;
 
   String formatAmount(int amount) {
     final formatter = NumberFormat('#,###');
@@ -43,7 +45,11 @@ class ReservationFinalScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Column(
                       children: [
-                        Text('(좌석 정보)', style: TextStyle(fontSize: 20)),
+                        Text(
+                          '좌석 정보: ${seatInfo}',
+                          style: TextStyle(fontSize: 25),
+                        ),
+                        SizedBox(height: 10),
                         Text(
                           '$selectedPlan 이용권',
                           style: TextStyle(fontSize: 20),
@@ -58,6 +64,7 @@ class ReservationFinalScreen extends StatelessWidget {
                           ),
                           softWrap: true,
                         ),
+                        SizedBox(height: 20),
                       ],
                     ),
                   ),
