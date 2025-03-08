@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:study_cafe_p6/Screen/reservation_screen.dart';
 import 'package:tosspayments_widget_sdk_flutter/model/payment_info.dart';
 import 'package:tosspayments_widget_sdk_flutter/model/payment_widget_options.dart';
 import 'package:tosspayments_widget_sdk_flutter/payment_widget.dart';
@@ -143,7 +142,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     paymentWidget: _paymentWidget,
                     selector: 'agreement',
                   ),
-
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: InkWell(

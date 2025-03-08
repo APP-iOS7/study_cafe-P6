@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:study_cafe_p6/Screen/myinfo_screen.dart';
-import 'package:study_cafe_p6/Screen/reservation_final_screen.dart';
 import 'package:study_cafe_p6/Screen/reservation_screen.dart';
 import 'package:study_cafe_p6/view/main_home_view.dart';
 import 'package:study_cafe_p6/view/seat_page_view.dart';
