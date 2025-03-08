@@ -15,7 +15,7 @@ class MyinfoScreen extends StatefulWidget {
 
 class _MyinfoScreenState extends State<MyinfoScreen> {
   User? user = FirebaseAuth.instance.currentUser;
-  var vm = LoginViewModel();
+  var loginViewModel = LoginViewModel();
   int selectIndex = 2;
 
   void onTap(int index) {
@@ -139,7 +139,7 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
 
             GestureDetector(
               onTap: () {
-                vm.signOut();
+                loginViewModel.signOut();
                 Get.off(() => LoginScreen());
                 print("[D]로그아웃");
               },
@@ -175,11 +175,7 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
             GestureDetector(
               onTap: () {
                 print("[D]회원탈퇴");
-                deleteAccountalert(
-                  context: context,
-                  // title: '알림',
-                  // content: '이건 커스텀 AlertDialog 예시입니다.',
-                );
+                deleteAccountalert(context: context);
               },
               child: Padding(
                 padding: const EdgeInsets.only(

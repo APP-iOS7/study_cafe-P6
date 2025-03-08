@@ -9,12 +9,13 @@ Future<void> deleteAccountalert({
     context: context,
     builder: (BuildContext dialogContext) {
       return AlertDialog(
-        title: Text(title),
-        content: Text(content),
+        title: Text(title, textAlign: TextAlign.center),
+        content: Text(content, textAlign: TextAlign.center),
+        actionsAlignment: MainAxisAlignment.center,
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text(
+            child: Text(
               '확인',
               style: TextStyle(
                 color: Colors.black,
@@ -25,7 +26,7 @@ Future<void> deleteAccountalert({
           ),
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text(
+            child: Text(
               '취소',
               style: TextStyle(
                 color: Colors.black,
