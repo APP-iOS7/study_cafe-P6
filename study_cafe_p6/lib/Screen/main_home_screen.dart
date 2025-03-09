@@ -58,7 +58,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                       return Center(child: Text('에러 발생'));
                     }
                     if (!snapshot.hasData) {
-                      return CircularProgressIndicator();
+                      return Center(child: CircularProgressIndicator());
                     } else {
                       return Padding(
                         padding: const EdgeInsets.only(top: 130),
