@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -199,33 +198,8 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
   }
 }
 
-// class RoundCircle extends StatelessWidget {
-//   final double size;
-//   final ImageProvider? image;
-
-//   const RoundCircle({super.key, required this.size, this.image});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       width: size,
-//       height: size,
-//       decoration: BoxDecoration(
-//         shape: BoxShape.circle,
-//         color: Colors.grey[300],
-//         border: Border.all(color: Colors.black, width: 2),
-//         image:
-//             image != null
-//                 ? DecorationImage(image: image!, fit: BoxFit.cover)
-//                 : null,
-//       ),
-//     );
-//   }
-// }
-
 class RoundCircle extends StatefulWidget {
   final double size;
-
   const RoundCircle({super.key, required this.size});
 
   @override
