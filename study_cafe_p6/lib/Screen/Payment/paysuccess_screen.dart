@@ -119,11 +119,7 @@ class PaySuccess extends StatelessWidget {
               SizedBox(height: 100),
               GestureDetector(
                 onTap: () {
-                  Get.to(
-                    () => ReservationhistoryScreen(
-                      reservationInfo: reservationInfo,
-                    ),
-                  );
+                  Get.to(() => ReservationhistoryScreen());
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),

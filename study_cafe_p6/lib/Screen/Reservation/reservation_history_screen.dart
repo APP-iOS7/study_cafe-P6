@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:study_cafe_p6/model/reserve_model.dart';
 
 class ReservationhistoryScreen extends StatefulWidget {
-  final ReservationInfo reservationInfo;
-  const ReservationhistoryScreen({super.key, required this.reservationInfo});
+  const ReservationhistoryScreen({super.key});
 
   @override
   State<ReservationhistoryScreen> createState() =>
