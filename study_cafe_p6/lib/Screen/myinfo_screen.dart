@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:study_cafe_p6/Screen/Reservation/reservation_history_screen.dart';
 import 'package:study_cafe_p6/Screen/alertdialog_screen.dart';
+import 'package:study_cafe_p6/ViewModel/user_profile_model.dart';
 import 'package:study_cafe_p6/login/login_screen.dart';
 import 'package:study_cafe_p6/loginViewModel/login_view_model.dart';
 
@@ -207,24 +209,45 @@ class RoundCircle extends StatefulWidget {
 }
 
 class _RoundCircleState extends State<RoundCircle> {
-  File? _imageFile;
+  String? _base64Image;
+  final UserRepository _userRepo = UserRepository();
 
-  Future<void> _pickImage() async {
+  @override
+  void initState() {
+    super.initState();
+    _loadProfileImage();
+  }
+
+  Future<void> _loadProfileImage() async {
+    var user = await _userRepo.getUserFromFirestore();
+    if (user != null && user.profileImage != null) {
+      setState(() {
+        _base64Image = user.profileImage;
+      });
+    }
+  }
+
+  Future<void> _pickAndSaveImage() async {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
     );
+    if (pickedFile == null) return;
 
-    if (pickedFile != null) {
-      setState(() {
-        _imageFile = File(pickedFile.path);
-      });
-    }
+    File imageFile = File(pickedFile.path);
+    List<int> imageBytes = await imageFile.readAsBytes();
+    String base64Image = base64Encode(imageBytes);
+
+    await _userRepo.updateProfileImage(base64Image);
+
+    setState(() {
+      _base64Image = base64Image;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _pickImage,
+      onTap: _pickAndSaveImage,
       child: Container(
         width: widget.size,
         height: widget.size,
@@ -233,15 +256,15 @@ class _RoundCircleState extends State<RoundCircle> {
           color: Colors.grey[300],
           border: Border.all(color: Colors.black, width: 2),
           image:
-              _imageFile != null
+              _base64Image != null
                   ? DecorationImage(
-                    image: FileImage(_imageFile!),
+                    image: MemoryImage(base64Decode(_base64Image!)),
                     fit: BoxFit.cover,
                   )
                   : null,
         ),
         child:
-            _imageFile == null
+            _base64Image == null
                 ? Icon(Icons.camera_alt, size: 40, color: Colors.black54)
                 : null,
       ),
