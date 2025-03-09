@@ -26,9 +26,7 @@ class ReservationScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(width: 15),
                 Text(user?.displayName ?? '익명', style: TextStyle(fontSize: 30)),
-                SizedBox(width: 65),
                 Text(reservationInfo.seatInfo, style: TextStyle(fontSize: 30)),
               ],
             ),
