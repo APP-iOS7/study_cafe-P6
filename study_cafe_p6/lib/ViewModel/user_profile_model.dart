@@ -14,6 +14,8 @@ class UserRepository {
 
   Future<UserModel?> getUserFromFirestore() async {
     String userId = FirebaseAuth.instance.currentUser!.uid;
+    // print('[D]${userId}');
+
     DocumentSnapshot userDoc =
         await _firestore.collection('users').doc(userId).get();
 
