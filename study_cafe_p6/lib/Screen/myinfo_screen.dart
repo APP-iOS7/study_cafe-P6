@@ -34,7 +34,6 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
         height: double.infinity,
         color: Colors.white,
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.only(
