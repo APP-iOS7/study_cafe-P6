@@ -24,6 +24,7 @@ class ReservationScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(width: 15),
                 Text(user?.displayName ?? '익명', style: TextStyle(fontSize: 30)),
