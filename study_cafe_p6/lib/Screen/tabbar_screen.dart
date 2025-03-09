@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:study_cafe_p6/Screen/main_home_screen.dart';
 import 'package:study_cafe_p6/Screen/myinfo_screen.dart';
-import 'package:study_cafe_p6/Screen/reservation_screen.dart';
-import 'package:study_cafe_p6/view/main_home_view.dart';
-import 'package:study_cafe_p6/view/seat_page_view.dart';
+import 'package:study_cafe_p6/Screen/seat_page_screen.dart';
 
 class BottomTabBar extends StatefulWidget {
   const BottomTabBar({super.key});
@@ -13,12 +12,7 @@ class BottomTabBar extends StatefulWidget {
 
 class _BottomTabBarState extends State<BottomTabBar> {
   final int _currentIndex = 0;
-  final List<Widget> _pages = [
-    MainHomeView(),
-    SeatPageView(),
-    MyinfoScreen(),
-    ReservationScreen(),
-  ];
+  final List<Widget> _pages = [MainHomeView(), SeatPageView(), MyinfoScreen()];
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
