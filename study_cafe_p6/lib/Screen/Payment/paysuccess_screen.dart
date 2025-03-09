@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:study_cafe_p6/Screen/Reservation/reservation_history_screen.dart';
+import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 import 'package:study_cafe_p6/model/reserve_model.dart';
 
 class PaySuccess extends StatelessWidget {
@@ -119,11 +120,7 @@ class PaySuccess extends StatelessWidget {
               SizedBox(height: 100),
               GestureDetector(
                 onTap: () {
-                  Get.to(
-                    () => ReservationhistoryScreen(
-                      reservationInfo: reservationInfo,
-                    ),
-                  );
+                  Get.to(() => ReservationhistoryScreen());
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -138,6 +135,35 @@ class PaySuccess extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 15, left: 15.0),
                       child: Text(
                         '예약내역 보기',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              GestureDetector(
+                onTap: () {
+                  Get.off(() => BottomTabBar());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 58,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 9, 3, 61),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 15, left: 15.0),
+                      child: Text(
+                        '홈으로 돌아가기',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 17,

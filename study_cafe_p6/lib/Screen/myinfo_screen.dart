@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:study_cafe_p6/Screen/Reservation/reservation_history_screen.dart';
 import 'package:study_cafe_p6/Screen/alertdialog_screen.dart';
-import 'package:study_cafe_p6/Screen/reservation_history_screen.dart';
 import 'package:study_cafe_p6/login/login_screen.dart';
 import 'package:study_cafe_p6/loginViewModel/login_view_model.dart';
 
@@ -16,22 +16,22 @@ class MyinfoScreen extends StatefulWidget {
 class _MyinfoScreenState extends State<MyinfoScreen> {
   User? user = FirebaseAuth.instance.currentUser;
   var loginViewModel = LoginViewModel();
-  int selectIndex = 2;
+  // int selectIndex = 2;
 
-  void onTap(int index) {
-    setState(() {
-      selectIndex = index;
-      if (index == 0) {
-        print('[D]탭바 0 홈');
-        // Get.to(() => HomeScreen());
-      } else if (index == 1) {
-        print('[D]탭바 1 좌석');
-      } else if (index == 2) {
-        print('[D]탭바 3 내정보');
-        Get.to(() => MyinfoScreen());
-      }
-    });
-  }
+  // void onTap(int index) {
+  //   setState(() {
+  //     selectIndex = index;
+  //     if (index == 0) {
+  //       print('[D]탭바 0 홈');
+  //       // Get.to(() => HomeScreen());
+  //     } else if (index == 1) {
+  //       print('[D]탭바 1 좌석');
+  //     } else if (index == 2) {
+  //       print('[D]탭바 3 내정보');
+  //       Get.to(() => MyinfoScreen(reservationInfo: widget.reservationInfo));
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
