@@ -2,12 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:study_cafe_p6/Screen/reservation_final_screen.dart';
-import 'package:study_cafe_p6/loginViewModel/login_view_model.dart';
+import 'package:study_cafe_p6/Screen/Payment/payment_screen.dart';
+import 'package:study_cafe_p6/model/reserve_model.dart';
 
 class ReservationScreen extends StatelessWidget {
-  final String seatInfo;
-  const ReservationScreen({super.key, required this.seatInfo});
+  const ReservationScreen({super.key, required this.reservationInfo});
+  final ReservationInfo reservationInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,6 @@ class ReservationScreen extends StatelessWidget {
     if (user != null) {
       print('현재 사용자 이름: ${user.displayName}');
     }
-    var vm = LoginViewModel();
 
     return Scaffold(
       appBar: AppBar(title: Text('예약하기'), backgroundColor: Color(0xfff8f2de)),
@@ -27,9 +26,9 @@ class ReservationScreen extends StatelessWidget {
             child: Row(
               children: [
                 SizedBox(width: 15),
-                Text('${user!.displayName}', style: TextStyle(fontSize: 30)),
-                SizedBox(width: 225),
-                Text(seatInfo + "번", style: TextStyle(fontSize: 30)),
+                Text(user?.displayName ?? '익명', style: TextStyle(fontSize: 30)),
+                SizedBox(width: 65),
+                Text(reservationInfo.seatInfo, style: TextStyle(fontSize: 30)),
               ],
             ),
           ),
@@ -52,14 +51,17 @@ class ReservationScreen extends StatelessWidget {
                       child: InkWell(
                         onTap: () {
                           Get.to(
-                            () => ReservationFinalScreen(
-                              selectedPlan: plan[index],
-                              selectedPrice: price,
-                              seatInfo: seatInfo,
+                            () => PaymentScreen(
+                              reservationInfo:
+                                  reservationInfo
+                                    ..reservationId =
+                                        'rsv${DateTime.now().millisecondsSinceEpoch}'
+                                    ..amount = price
+                                    ..serviceName = plan[index]
+                                    ..customerName = user?.displayName,
                             ),
                           );
                         },
-
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15.0),
                           child: Row(
