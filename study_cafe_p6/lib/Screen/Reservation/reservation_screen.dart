@@ -5,9 +5,24 @@ import 'package:intl/intl.dart';
 import 'package:study_cafe_p6/Screen/Payment/payment_screen.dart';
 import 'package:study_cafe_p6/model/reserve_model.dart';
 
-class ReservationScreen extends StatelessWidget {
+class ReservationScreen extends StatefulWidget {
   const ReservationScreen({super.key, required this.reservationInfo});
   final ReservationInfo reservationInfo;
+
+  @override
+  State<ReservationScreen> createState() => _ReservationScreenState();
+}
+
+class _ReservationScreenState extends State<ReservationScreen> {
+  late List<bool> _toggledStates;
+  late ReservationInfo _updatedReservationInfo;
+
+  @override
+  void initState() {
+    super.initState();
+    _toggledStates = List<bool>.filled(6, false);
+    _updatedReservationInfo = widget.reservationInfo;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +44,10 @@ class ReservationScreen extends StatelessWidget {
                 SizedBox(width: 15),
                 Text(user?.displayName ?? '익명', style: TextStyle(fontSize: 30)),
                 SizedBox(width: 65),
-                Text(reservationInfo.seatInfo, style: TextStyle(fontSize: 30)),
+                Text(
+                  widget.reservationInfo.seatInfo,
+                  style: TextStyle(fontSize: 30),
+                ),
               ],
             ),
           ),
@@ -43,26 +61,38 @@ class ReservationScreen extends StatelessWidget {
                   final price = planPrice(plan[index]);
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 18.0),
-                    child: Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: InkWell(
-                        onTap: () {
-                          Get.to(
-                            () => PaymentScreen(
-                              reservationInfo:
-                                  reservationInfo
-                                    ..reservationId =
-                                        'rsv${DateTime.now().millisecondsSinceEpoch}'
-                                    ..amount = price
-                                    ..serviceName = plan[index]
-                                    ..customerName = user?.displayName,
-                            ),
-                          );
-                        },
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _toggledStates[index] = !_toggledStates[index];
+                          if (_toggledStates[index]) {
+                            _updatedReservationInfo = ReservationInfo(
+                              reservationId:
+                                  widget.reservationInfo.reservationId,
+                              customerName: widget.reservationInfo.customerName,
+                              reservationDate:
+                                  widget.reservationInfo.reservationDate,
+                              seatInfo: widget.reservationInfo.seatInfo,
+                              serviceName: plan[index], // 선택된 이용권 이름
+                              amount: price, // 선택된 금액
+                            );
+                          } else {
+                            // 선택 해제 시 원래 값으로 되돌리거나 기본값 설정
+                            _updatedReservationInfo = widget.reservationInfo;
+                          }
+                        });
+                      },
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 300),
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color:
+                              _toggledStates[index]
+                                  ? Colors.yellow
+                                  : Colors.white, // 활성화 시 초록색,
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15.0),
                           child: Row(
@@ -84,6 +114,51 @@ class ReservationScreen extends StatelessWidget {
                   );
                 },
                 itemCount: 6,
+              ),
+            ),
+          ),
+          SafeArea(
+            child: Center(
+              child: InkWell(
+                onTap: () {
+                  if (_updatedReservationInfo.serviceName != null &&
+                      _updatedReservationInfo.amount != null) {
+                    Get.to(
+                      () => PaymentScreen(
+                        reservationInfo: _updatedReservationInfo,
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text('이용권을 선택해주세요')));
+                  }
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 40.0,
+                    right: 50,
+                    left: 50,
+                  ),
+                  child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        '결제하기',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
