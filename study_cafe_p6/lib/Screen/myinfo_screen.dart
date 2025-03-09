@@ -18,20 +18,20 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
   var loginViewModel = LoginViewModel();
   int selectIndex = 2;
 
-  void onTap(int index) {
-    setState(() {
-      selectIndex = index;
-      if (index == 0) {
-        print('[D]탭바 0 홈');
-        // Get.to(() => HomeScreen());
-      } else if (index == 1) {
-        print('[D]탭바 1 좌석');
-      } else if (index == 2) {
-        print('[D]탭바 3 내정보');
-        Get.to(() => MyinfoScreen());
-      }
-    });
-  }
+  // void onTap(int index) {
+  //   setState(() {
+  //     selectIndex = index;
+  //     if (index == 0) {
+  //       print('[D]탭바 0 홈');
+  //       // Get.to(() => HomeScreen());
+  //     } else if (index == 1) {
+  //       print('[D]탭바 1 좌석');
+  //     } else if (index == 2) {
+  //       print('[D]탭바 3 내정보');
+  //       Get.to(() => MyinfoScreen());
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
