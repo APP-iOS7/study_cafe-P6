@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:study_cafe_p6/Screen/Payment/paysuccess_screen.dart';
+import 'package:study_cafe_p6/login/login_screen.dart';
 import 'package:study_cafe_p6/model/reserve_model.dart';
 import 'package:tosspayments_widget_sdk_flutter/model/payment_info.dart';
 import 'package:tosspayments_widget_sdk_flutter/model/payment_widget_options.dart';
@@ -20,6 +22,7 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   late PaymentWidget _paymentWidget;
   PaymentMethodWidgetControl? _paymentMethodWidgetControl;
@@ -28,37 +31,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
   String formatAmount(int amount) {
     final formatter = NumberFormat('#,###');
     return '${formatter.format(amount)}원';
-  }
-
-  Future<void> _saveReservationToFirestore(
-    Map<String, dynamic> paymentResult,
-  ) async {
-    try {
-      if (paymentResult['success'] != null) {
-        final updatedReservationInfo = widget.reservationInfo;
-
-        // Firestore 저장
-        await _firestore
-            .collection('reservation')
-            .add(updatedReservationInfo.toJson());
-
-        print('예약 정보가 Firestore에 저장되었습니다.');
-
-        // 저장 성공 후 페이지 이동
-        Get.to(() => PaySuccess(reservationInfo: widget.reservationInfo));
-      } else if (paymentResult['fail'] != null) {
-        // 결제 실패 처리
-      }
-    } catch (e) {
-      print('Firestore 저장 오류: $e');
-      Get.snackbar(
-        '오류',
-        '예약 저장에 실패했습니다: $e',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
-    }
   }
 
   @override
@@ -278,32 +250,74 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     SizedBox(height: 10),
                     GestureDetector(
                       onTap: () async {
-                        // 결제요청
-                        final paymentResult = await _paymentWidget
-                            .requestPayment(
-                              paymentInfo: PaymentInfo(
-                                orderId: widget.reservationInfo.reservationId!,
-                                orderName: widget.reservationInfo.serviceName!,
-                                //추가정보 설정
-                                customerName:
-                                    widget.reservationInfo.customerName,
-                                metadata: {
-                                  'reservation_date':
-                                      widget.reservationInfo.reservationDate
-                                          .toString(),
-                                },
-                              ),
-                            );
+                        // 현재 인증된 사용자 확인
+                        User? currentUser = _auth.currentUser;
+                        if (currentUser == null) {
+                          Get.snackbar(
+                            '인증필요',
+                            '예약정보를 저장하려면 로그인이 필요합니다.',
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Colors.red,
+                            colorText: Colors.white,
+                          );
+                          Get.off(() => LoginScreen());
+                          return;
+                        }
                         try {
-                          _saveReservationToFirestore;
+                          final paymentResult = await _paymentWidget
+                              .requestPayment(
+                                paymentInfo: PaymentInfo(
+                                  orderId:
+                                      widget.reservationInfo.reservationId!,
+                                  orderName:
+                                      widget.reservationInfo.serviceName!,
+                                  //추가정보 설정
+                                  customerName:
+                                      widget.reservationInfo.customerName,
+                                  metadata: {
+                                    'reservation_date':
+                                        widget.reservationInfo.reservationDate
+                                            .toString(),
+                                  },
+                                ),
+                              );
+
+                          // 결제 결과를 성공 형태로 변환(실제 결제 성공 여부에 따라처리)
+                          if (paymentResult.success != null) {
+                            try {
+                              await _firestore
+                                  .collection('users')
+                                  .doc(currentUser.uid)
+                                  .collection('reservations')
+                                  .doc(widget.reservationInfo.reservationId)
+                                  .set({
+                                    'reservation':
+                                        widget.reservationInfo.toJson(),
+                                    'userId': currentUser.uid,
+                                    'updatedAt': FieldValue.serverTimestamp(),
+                                  }, SetOptions(merge: true));
+
+                              print('예약 정보가 Firestore에 저장되었습니다.');
+                            } catch (firestoreError) {
+                              print('Firestore 저장 오류: $firestoreError');
+                            }
+                          }
+                          // 결제 성공 시 결제 성공 화면으로 이동
                           Get.to(
                             () => PaySuccess(
                               reservationInfo: widget.reservationInfo,
                             ),
-                            arguments: {'success': true},
                           );
-                        } catch (e) {}
-                        // 결제 결과 처리
+                        } catch (e) {
+                          print('결제 오류: $e');
+                          Get.snackbar(
+                            '오류',
+                            '결제처리 중 오류가 발생했습니다: $e',
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Colors.red,
+                            colorText: Colors.white,
+                          );
+                        }
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),

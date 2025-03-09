@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_cafe_p6/Screen/Reservation/reservation_screen.dart';
 import 'package:study_cafe_p6/model/reserve_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SeatPageView extends StatefulWidget {
   const SeatPageView({super.key});
@@ -193,6 +194,7 @@ class _SeatPageViewState extends State<SeatPageView> {
                         () => ReservationScreen(
                           reservationInfo: ReservationInfo(
                             reservationDate: date,
+                            uid: FirebaseAuth.instance.currentUser?.uid,
                             seatInfo:
                                 currentSeats.firstWhere(
                                   (seat) => seat['isSelected'] == true,

@@ -57,7 +57,8 @@ class ReservationScreen extends StatelessWidget {
                                         'rsv${DateTime.now().millisecondsSinceEpoch}'
                                     ..amount = price
                                     ..serviceName = plan[index]
-                                    ..customerName = user?.displayName,
+                                    ..customerName = user?.displayName
+                                    ..uid = user?.uid,
                             ),
                           );
                         },

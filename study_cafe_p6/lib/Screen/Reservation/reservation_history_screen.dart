@@ -95,19 +95,6 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
     '----------',
   ];
 
-  void onTap(int index) {
-    setState(() {
-      selectIndex = index;
-      if (index == 0) {
-        print('[D]탭바 0 홈');
-      } else if (index == 1) {
-        print('[D]탭바 1 좌석');
-      } else if (index == 2) {
-        print('[D]탭바 3 내정보');
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

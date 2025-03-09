@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:study_cafe_p6/Screen/Reservation/reservation_history_screen.dart';
 import 'package:study_cafe_p6/Screen/alertdialog_screen.dart';
 import 'package:study_cafe_p6/login/login_screen.dart';
@@ -17,21 +19,6 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
   User? user = FirebaseAuth.instance.currentUser;
   var loginViewModel = LoginViewModel();
   int selectIndex = 2;
-
-  void onTap(int index) {
-    setState(() {
-      selectIndex = index;
-      if (index == 0) {
-        print('[D]탭바 0 홈');
-        // Get.to(() => HomeScreen());
-      } else if (index == 1) {
-        print('[D]탭바 1 좌석');
-      } else if (index == 2) {
-        print('[D]탭바 3 내정보');
-        Get.to(() => MyinfoScreen());
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -211,24 +198,51 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
   }
 }
 
-class RoundCircle extends StatelessWidget {
+class RoundCircle extends StatefulWidget {
   final double size;
-  final ImageProvider? image;
+  const RoundCircle({super.key, required this.size});
 
-  const RoundCircle({super.key, required this.size, this.image});
+  @override
+  _RoundCircleState createState() => _RoundCircleState();
+}
+
+class _RoundCircleState extends State<RoundCircle> {
+  File? _imageFile;
+
+  Future<void> _pickImage() async {
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.grey[300],
-        border: Border.all(color: Colors.black, width: 2),
-        image:
-            image != null
-                ? DecorationImage(image: image!, fit: BoxFit.cover)
+    return GestureDetector(
+      onTap: _pickImage,
+      child: Container(
+        width: widget.size,
+        height: widget.size,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.grey[300],
+          border: Border.all(color: Colors.black, width: 2),
+          image:
+              _imageFile != null
+                  ? DecorationImage(
+                    image: FileImage(_imageFile!),
+                    fit: BoxFit.cover,
+                  )
+                  : null,
+        ),
+        child:
+            _imageFile == null
+                ? Icon(Icons.camera_alt, size: 40, color: Colors.black54)
                 : null,
       ),
     );
