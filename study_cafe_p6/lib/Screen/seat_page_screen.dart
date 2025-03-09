@@ -83,7 +83,7 @@ class _SeatPageViewState extends State<SeatPageView> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> currentSeats = changeSeats(date);
+    List<Map<String, dynamic>> nowSeatData = changeSeats(date);
 
     return Scaffold(
       appBar: AppBar(
@@ -154,7 +154,7 @@ class _SeatPageViewState extends State<SeatPageView> {
                   ),
                   child: Stack(
                     children: [
-                      ...currentSeats.map((seat) => _seatIconButton(seat)),
+                      ...nowSeatData.map((seat) => _seatIconButton(seat)),
                       Positioned(
                         top: 275,
                         left: 300,
@@ -189,14 +189,14 @@ class _SeatPageViewState extends State<SeatPageView> {
             const SizedBox(height: 30),
             GestureDetector(
               onTap:
-                  currentSeats.any((seat) => seat['isSelected'] == true)
+                  nowSeatData.any((seat) => seat['isSelected'] == true)
                       ? () => Get.to(
                         () => ReservationScreen(
                           reservationInfo: ReservationInfo(
                             reservationDate: date,
                             uid: FirebaseAuth.instance.currentUser?.uid,
                             seatInfo:
-                                currentSeats.firstWhere(
+                                nowSeatData.firstWhere(
                                   (seat) => seat['isSelected'] == true,
                                 )['seatNumber'],
                           ),
@@ -211,7 +211,7 @@ class _SeatPageViewState extends State<SeatPageView> {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color:
-                        currentSeats.any((seat) => seat['isSelected'] == true)
+                        nowSeatData.any((seat) => seat['isSelected'] == true)
                             ? Colors.red
                             : Colors.grey,
                     borderRadius: BorderRadius.circular(10),
