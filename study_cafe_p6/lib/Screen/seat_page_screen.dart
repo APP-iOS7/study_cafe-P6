@@ -15,55 +15,46 @@ class _SeatPageViewState extends State<SeatPageView> {
   // 좌석 데이터
   final List<Map<String, dynamic>> seats = [
     // 집중존
-    {'top': 8, 'left': 8, 'isReserved': false, 'seatNumber': 'A1'},
-    {'top': 8, 'left': 70, 'isReserved': false, 'seatNumber': 'A2'},
-    {'top': 68, 'left': 8, 'isReserved': false, 'seatNumber': 'A3'},
-    {'top': 68, 'left': 70, 'isReserved': false, 'seatNumber': 'A4'},
-    {'top': 8, 'left': 130, 'isReserved': true, 'seatNumber': 'A5'},
-    {'top': 68, 'left': 130, 'isReserved': false, 'seatNumber': 'A6'},
-    {'top': 128, 'left': 8, 'isReserved': true, 'seatNumber': 'A7'},
-    {'top': 128, 'left': 70, 'isReserved': false, 'seatNumber': 'A8'},
-    {'top': 128, 'left': 130, 'isReserved': false, 'seatNumber': 'A9'},
-    {'top': 188, 'left': 8, 'isReserved': false, 'seatNumber': 'A10'},
-    {'top': 188, 'left': 70, 'isReserved': false, 'seatNumber': 'A11'},
-    {'top': 188, 'left': 130, 'isReserved': false, 'seatNumber': 'A12'},
+    {'top': 8, 'left': 10, 'isReserved': false, 'seatNumber': 'A1'},
+    {'top': 8, 'left': 60, 'isReserved': false, 'seatNumber': 'A2'},
+    {'top': 68, 'left': 10, 'isReserved': false, 'seatNumber': 'A3'},
+    {'top': 68, 'left': 60, 'isReserved': false, 'seatNumber': 'A4'},
+    {'top': 8, 'left': 110, 'isReserved': true, 'seatNumber': 'A5'},
+    {'top': 68, 'left': 110, 'isReserved': false, 'seatNumber': 'A6'},
+    {'top': 128, 'left': 10, 'isReserved': true, 'seatNumber': 'A7'},
+    {'top': 128, 'left': 60, 'isReserved': false, 'seatNumber': 'A8'},
+    {'top': 128, 'left': 110, 'isReserved': false, 'seatNumber': 'A9'},
+    {'top': 188, 'left': 10, 'isReserved': false, 'seatNumber': 'A10'},
+    {'top': 188, 'left': 60, 'isReserved': false, 'seatNumber': 'A11'},
+    {'top': 188, 'left': 110, 'isReserved': false, 'seatNumber': 'A12'},
 
     // 노트북존
-    {'top': 10, 'left': 220, 'isReserved': false, 'seatNumber': 'B1'},
-    {'top': 10, 'left': 280, 'isReserved': false, 'seatNumber': 'B2'},
-    {'top': 10, 'left': 340, 'isReserved': false, 'seatNumber': 'B3'},
-    {'top': 70, 'left': 220, 'isReserved': false, 'seatNumber': 'B4'},
-    {'top': 70, 'left': 280, 'isReserved': true, 'seatNumber': 'B5'},
-    {'top': 70, 'left': 340, 'isReserved': false, 'seatNumber': 'B6'},
-    {'top': 130, 'left': 220, 'isReserved': false, 'seatNumber': 'B7'},
-    {'top': 130, 'left': 280, 'isReserved': false, 'seatNumber': 'B8'},
-    {'top': 130, 'left': 340, 'isReserved': true, 'seatNumber': 'B9'},
-    {'top': 190, 'left': 220, 'isReserved': false, 'seatNumber': 'B10'},
-    {'top': 190, 'left': 280, 'isReserved': false, 'seatNumber': 'B11'},
-    {'top': 190, 'left': 340, 'isReserved': false, 'seatNumber': 'B12'},
+    {'top': 10, 'left': 200, 'isReserved': false, 'seatNumber': 'B1'},
+    {'top': 10, 'left': 250, 'isReserved': false, 'seatNumber': 'B2'},
+    {'top': 10, 'left': 300, 'isReserved': false, 'seatNumber': 'B3'},
+    {'top': 70, 'left': 200, 'isReserved': false, 'seatNumber': 'B4'},
+    {'top': 70, 'left': 250, 'isReserved': true, 'seatNumber': 'B5'},
+    {'top': 70, 'left': 300, 'isReserved': false, 'seatNumber': 'B6'},
+    {'top': 130, 'left': 200, 'isReserved': false, 'seatNumber': 'B7'},
+    {'top': 130, 'left': 250, 'isReserved': false, 'seatNumber': 'B8'},
+    {'top': 130, 'left': 300, 'isReserved': true, 'seatNumber': 'B9'},
+    {'top': 190, 'left': 200, 'isReserved': false, 'seatNumber': 'B10'},
+    {'top': 190, 'left': 250, 'isReserved': false, 'seatNumber': 'B11'},
+    {'top': 190, 'left': 300, 'isReserved': false, 'seatNumber': 'B12'},
 
     // 스터디룸 (4인)
-    {'top': 300, 'left': 20, 'isReserved': false, 'seatNumber': 'C1'},
-    {'top': 300, 'left': 70, 'isReserved': false, 'seatNumber': 'C2'},
-    {'top': 350, 'left': 20, 'isReserved': false, 'seatNumber': 'C3'},
-    {'top': 350, 'left': 70, 'isReserved': false, 'seatNumber': 'C4'},
-
-    // 스터디룸 (2인)
-    {'top': 430, 'left': 20, 'isReserved': true, 'seatNumber': 'D1'},
-    {'top': 430, 'left': 70, 'isReserved': true, 'seatNumber': 'D2'},
+    {'top': 270, 'left': 10, 'isReserved': false, 'seatNumber': 'C1'},
+    {'top': 270, 'left': 60, 'isReserved': false, 'seatNumber': 'C2'},
+    {'top': 330, 'left': 10, 'isReserved': false, 'seatNumber': 'C3'},
+    {'top': 330, 'left': 60, 'isReserved': false, 'seatNumber': 'C4'},
 
     // 스터디룸 (6인)
-    {'top': 300, 'left': 150, 'isReserved': false, 'seatNumber': 'E1'},
-    {'top': 300, 'left': 200, 'isReserved': false, 'seatNumber': 'E2'},
-    {'top': 300, 'left': 250, 'isReserved': false, 'seatNumber': 'E3'},
-    {'top': 350, 'left': 150, 'isReserved': false, 'seatNumber': 'E4'},
-    {'top': 350, 'left': 200, 'isReserved': true, 'seatNumber': 'E5'},
-    {'top': 350, 'left': 250, 'isReserved': true, 'seatNumber': 'E6'},
-
-    // 스터디룸 (3인)
-    {'top': 430, 'left': 150, 'isReserved': false, 'seatNumber': 'F1'},
-    {'top': 430, 'left': 200, 'isReserved': true, 'seatNumber': 'F2'},
-    {'top': 430, 'left': 250, 'isReserved': false, 'seatNumber': 'F3'},
+    {'top': 270, 'left': 130, 'isReserved': false, 'seatNumber': 'E1'},
+    {'top': 270, 'left': 180, 'isReserved': false, 'seatNumber': 'E2'},
+    {'top': 270, 'left': 230, 'isReserved': false, 'seatNumber': 'E3'},
+    {'top': 330, 'left': 130, 'isReserved': false, 'seatNumber': 'E4'},
+    {'top': 330, 'left': 180, 'isReserved': true, 'seatNumber': 'E5'},
+    {'top': 330, 'left': 230, 'isReserved': true, 'seatNumber': 'E6'},
   ];
 
   @override
@@ -124,10 +115,10 @@ class _SeatPageViewState extends State<SeatPageView> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 30),
+              padding: const EdgeInsets.only(top: 10),
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
-                height: MediaQuery.of(context).size.height * 0.53,
+                height: MediaQuery.of(context).size.height * 0.5,
                 child: Container(
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 235, 233, 233),
@@ -137,8 +128,8 @@ class _SeatPageViewState extends State<SeatPageView> {
                     children: [
                       ...seats.map((seat) => _seatIconButton(seat)),
                       Positioned(
-                        top: 320,
-                        left: 330,
+                        top: 275,
+                        left: 300,
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.08,
                           height: MediaQuery.of(context).size.height * 0.08,
@@ -150,8 +141,8 @@ class _SeatPageViewState extends State<SeatPageView> {
                         ),
                       ),
                       Positioned(
-                        top: 400,
-                        left: 330,
+                        top: 340,
+                        left: 300,
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.08,
                           height: MediaQuery.of(context).size.height * 0.08,
@@ -245,10 +236,13 @@ class _SeatPageViewState extends State<SeatPageView> {
                 });
               },
             ),
-            Text(
-              seatNumber,
-              style: TextStyle(fontSize: 10, color: Colors.black),
-              textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.only(left: 12),
+              child: Text(
+                seatNumber,
+                style: TextStyle(fontSize: 10, color: Colors.black),
+                textAlign: TextAlign.center,
+              ),
             ),
           ],
         ),

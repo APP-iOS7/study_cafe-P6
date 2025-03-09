@@ -36,7 +36,7 @@ class _MainHomeViewState extends State<MainHomeView> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 20),
+                  padding: const EdgeInsets.only(top: 1, left: 20),
                   child: Text(
                     '${user!.displayName}님의 이용권',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -44,7 +44,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                 ),
               ],
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 20),
             Container(
               width: MediaQuery.of(context).size.width * 0.83,
               height: MediaQuery.of(context).size.height * 0.63,

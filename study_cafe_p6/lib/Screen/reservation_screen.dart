@@ -25,11 +25,10 @@ class ReservationScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(width: 15),
                 Text('${user!.displayName}', style: TextStyle(fontSize: 30)),
-                SizedBox(width: 225),
-                Text(seatInfo + "번", style: TextStyle(fontSize: 30)),
+                Text("$seatInfo번", style: TextStyle(fontSize: 30)),
               ],
             ),
           ),

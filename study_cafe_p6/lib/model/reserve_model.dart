@@ -6,7 +6,7 @@ class ReservationInfo {
   final String customerEmail; // 예약자 이메일
   final DateTime reservationDate; // 예약 날짜
   final String additionalInfo; // 추가 정보
-  final String seatInfo;
+  final String seatInfo; //좌석정보
 
   ReservationInfo({
     required this.reservationId,
