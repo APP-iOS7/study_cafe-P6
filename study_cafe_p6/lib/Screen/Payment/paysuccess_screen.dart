@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:study_cafe_p6/Screen/Reservation/reservation_history_screen.dart';
 import 'package:study_cafe_p6/model/reserve_model.dart';
 
 class PaySuccess extends StatelessWidget {
@@ -117,7 +118,13 @@ class PaySuccess extends StatelessWidget {
               ),
               SizedBox(height: 100),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Get.to(
+                    () => ReservationhistoryScreen(
+                      reservationInfo: reservationInfo,
+                    ),
+                  );
+                },
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
