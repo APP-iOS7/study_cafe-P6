@@ -1,21 +1,28 @@
 class ReservationInfo {
-  final String reservationId;
-  final String serviceName; // 서비스 / 상품명
-  final int amount; // 결제 금액
-  final String customerName; // 예약자 이름
-  final String customerEmail; // 예약자 이메일
-  final DateTime reservationDate; // 예약 날짜
-  final String additionalInfo; // 추가 정보
-  final String seatInfo;
+  String? reservationId;
+  String? serviceName; // 서비스 / 상품명
+  int? amount; // 결제 금액
+  String? customerName; // 예약자 이름// 예약자 이메일
+  DateTime reservationDate; // 예약 날짜// 추가 정보
+  String seatInfo;
 
   ReservationInfo({
-    required this.reservationId,
-    required this.serviceName,
-    required this.amount,
-    required this.customerName,
-    this.customerEmail = '',
+    this.reservationId,
+    this.serviceName,
+    this.amount,
+    this.customerName,
     required this.reservationDate,
-    this.additionalInfo = '',
     required this.seatInfo,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'reservationId': reservationId,
+      'serviceName': serviceName,
+      'amount': amount,
+      'customerName': customerName,
+      'reservationDate': reservationDate,
+      'seatInfo': seatInfo,
+    };
+  }
 }

@@ -11,7 +11,6 @@ class BottomTabBar extends StatefulWidget {
 }
 
 class _BottomTabBarState extends State<BottomTabBar> {
-  final int _currentIndex = 0;
   final List<Widget> _pages = [MainHomeView(), SeatPageView(), MyinfoScreen()];
   int _selectedIndex = 0;
 

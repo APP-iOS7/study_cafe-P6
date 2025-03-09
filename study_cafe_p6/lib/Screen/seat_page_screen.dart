@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_cafe_p6/Screen/reservation_screen.dart';
+import 'package:study_cafe_p6/Screen/Reservation/reservation_screen.dart';
+import 'package:study_cafe_p6/model/reserve_model.dart';
 
 class SeatPageView extends StatefulWidget {
   const SeatPageView({super.key});
@@ -169,10 +170,13 @@ class _SeatPageViewState extends State<SeatPageView> {
                   seats.any((seat) => seat['isSelected'] == true)
                       ? () => Get.to(
                         () => ReservationScreen(
-                          seatInfo:
-                              seats.firstWhere(
-                                (seat) => seat['isSelected'] == true,
-                              )['seatNumber'],
+                          reservationInfo: ReservationInfo(
+                            reservationDate: date,
+                            seatInfo:
+                                seats.firstWhere(
+                                  (seat) => seat['isSelected'] == true,
+                                )['seatNumber'],
+                          ),
                         ),
                       )
                       : null,
