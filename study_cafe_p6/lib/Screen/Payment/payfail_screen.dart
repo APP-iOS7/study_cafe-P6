@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_cafe_p6/Screen/main_home_screen.dart';
+import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 
 class PayFailed extends StatelessWidget {
   const PayFailed({super.key});
@@ -23,7 +24,7 @@ class PayFailed extends StatelessWidget {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  Get.off(() => MainHomeView());
+                  Get.off(() => BottomTabBar());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
