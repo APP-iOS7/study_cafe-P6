@@ -35,25 +35,25 @@ class _SplashScreenState extends State<SplashScreen>
 
     // 공: 위쪽에서 시작 (y: -startOffset → 0)
     _gongAnimation = Tween<Offset>(
-      begin: Offset(0, -startOffset), // 위쪽
+      begin: Offset(startOffset, 0), // 위쪽 덕
       end: Offset(0, 0), // 원래 위치
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
     // 부: 왼쪽에서 시작 (x: -startOffset → 0)
     _buAnimation = Tween<Offset>(
-      begin: Offset(-startOffset, 0), // 왼쪽
+      begin: Offset(0, startOffset), // 왼쪽 영
       end: Offset(0, 0), // 원래 위치
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
     // 방: 아래쪽에서 시작 (y: startOffset → 0)
     _bangAnimation = Tween<Offset>(
-      begin: Offset(0, startOffset), // 아래쪽
+      begin: Offset(-startOffset, 0), // 아래쪽 태
       end: Offset(0, 0), // 원래 위치
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
     // 다: 오른쪽에서 시작 (x: startOffset → 0)
     _daAnimation = Tween<Offset>(
-      begin: Offset(startOffset, 0), // 오른쪽
+      begin: Offset(0, -startOffset), // 오른쪽 건
       end: Offset(0, 0), // 원래 위치
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
@@ -63,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen>
     // 애니메이션 완료 후 다음 화면으로 이동
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Future.delayed(Duration(seconds: 2), () {
+        Future.delayed(Duration(seconds: 1), () {
           FlutterNativeSplash.remove();
           Get.off(() => LoginScreen());
         });
@@ -122,7 +122,7 @@ class _SplashScreenState extends State<SplashScreen>
             ),
             // 방
             SlideTransition(
-              position: _bangAnimation,
+              position: _daAnimation,
               child: Padding(
                 padding: const EdgeInsets.only(
                   top: 100,
@@ -142,7 +142,7 @@ class _SplashScreenState extends State<SplashScreen>
             ),
             // 다
             SlideTransition(
-              position: _daAnimation,
+              position: _bangAnimation,
               child: Padding(
                 padding: const EdgeInsets.only(
                   top: 100,
