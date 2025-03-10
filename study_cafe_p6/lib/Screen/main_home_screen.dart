@@ -121,118 +121,115 @@ class _MainHomeViewState extends State<MainHomeView> {
                     }
                     ReservationInfo reservation = snapshot.data!;
                     return Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.only(
+                        top: 40.0,
+                        left: 20,
+                        right: 20,
+                      ),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          SizedBox(height: 20),
-                          Text(
-                            '현재 예약 된 이용권',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Divider(color: Colors.black),
                           SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              Icon(
+                                CupertinoIcons.tickets_fill,
+                                color: Color(0xffd84040),
+                                size: 40,
+                              ),
                               Text(
-                                "예약번호 :",
+                                '사용가능 이용권',
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 22,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
+                            ],
+                          ),
+                          SizedBox(height: 20),
+                          Divider(
+                            color: const Color.fromARGB(255, 212, 212, 212),
+                            height: 0.5,
+                          ),
+                          SizedBox(height: 30),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("예약번호 :", style: TextStyle(fontSize: 18)),
                               Text(
                                 reservation.reservationId ?? 'N/A',
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ],
                           ),
+                          SizedBox(height: 5),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "상품명 :",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              Text("상품명 :", style: TextStyle(fontSize: 18)),
                               Text(
                                 "${reservation.serviceName} 이용권",
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ],
                           ),
+                          SizedBox(height: 5),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "좌석 :",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              Text("좌석 :", style: TextStyle(fontSize: 18)),
                               Text(
                                 reservation.seatInfo,
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ],
                           ),
+                          SizedBox(height: 5),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "결제금액 :",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              Text("결제금액 :", style: TextStyle(fontSize: 18)),
                               Text(
                                 "${NumberFormat('#,###').format(reservation.amount!)}원",
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Color(0xffd84040),
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ],
                           ),
+                          SizedBox(height: 5),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "예약일시 :",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              Text("예약일시 :", style: TextStyle(fontSize: 18)),
                               Text(
                                 reservation.reservationDate.toString().split(
                                   ' ',
                                 )[0],
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 50),
+                          SizedBox(height: 150),
                           GestureDetector(
                             onTap: () {
                               Get.to(() => ReservationhistoryScreen());

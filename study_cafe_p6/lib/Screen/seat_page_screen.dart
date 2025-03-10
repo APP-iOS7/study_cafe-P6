@@ -138,7 +138,11 @@ class _SeatPageViewState extends State<SeatPageView> {
                     Row(
                       children: [
                         IconButton(
-                          icon: const Icon(Icons.calendar_today),
+                          icon: const Icon(
+                            CupertinoIcons.calendar,
+                            size: 30,
+                            color: Color(0xffd84040),
+                          ),
                           onPressed: () async {
                             final selectedData = await showDatePicker(
                               context: context,

@@ -6,7 +6,6 @@ import 'package:study_cafe_p6/Screen/splash_screen.dart';
 import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 import 'package:get/route_manager.dart';
 import 'package:study_cafe_p6/firebase_options.dart';
-import 'package:study_cafe_p6/login/login_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
