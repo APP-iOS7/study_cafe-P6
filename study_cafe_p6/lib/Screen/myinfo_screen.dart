@@ -1,8 +1,12 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:study_cafe_p6/Screen/Reservation/reservation_history_screen.dart';
 import 'package:study_cafe_p6/Screen/alertdialog_screen.dart';
+import 'package:study_cafe_p6/ViewModel/user_profile_model.dart';
 import 'package:study_cafe_p6/login/login_screen.dart';
 import 'package:study_cafe_p6/loginViewModel/login_view_model.dart';
 
@@ -18,21 +22,6 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
   var loginViewModel = LoginViewModel();
   int selectIndex = 2;
 
-  void onTap(int index) {
-    setState(() {
-      selectIndex = index;
-      if (index == 0) {
-        print('[D]탭바 0 홈');
-        // Get.to(() => HomeScreen());
-      } else if (index == 1) {
-        print('[D]탭바 1 좌석');
-      } else if (index == 2) {
-        print('[D]탭바 3 내정보');
-        Get.to(() => MyinfoScreen());
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +34,6 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
         height: double.infinity,
         color: Colors.white,
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.only(
@@ -211,24 +199,72 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
   }
 }
 
-class RoundCircle extends StatelessWidget {
+class RoundCircle extends StatefulWidget {
   final double size;
-  final ImageProvider? image;
+  const RoundCircle({super.key, required this.size});
 
-  const RoundCircle({super.key, required this.size, this.image});
+  @override
+  _RoundCircleState createState() => _RoundCircleState();
+}
+
+class _RoundCircleState extends State<RoundCircle> {
+  String? _base64Image;
+  final UserRepository _userRepo = UserRepository();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProfileImage();
+  }
+
+  Future<void> _loadProfileImage() async {
+    var user = await _userRepo.getUserFromFirestore();
+    if (user != null && user.profileImage != null) {
+      setState(() {
+        _base64Image = user.profileImage;
+      });
+    }
+  }
+
+  Future<void> _pickAndSaveImage() async {
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
+    if (pickedFile == null) return;
+
+    File imageFile = File(pickedFile.path);
+    List<int> imageBytes = await imageFile.readAsBytes();
+    String base64Image = base64Encode(imageBytes);
+
+    await _userRepo.updateProfileImage(base64Image);
+
+    setState(() {
+      _base64Image = base64Image;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.grey[300],
-        border: Border.all(color: Colors.black, width: 2),
-        image:
-            image != null
-                ? DecorationImage(image: image!, fit: BoxFit.cover)
+    return GestureDetector(
+      onTap: _pickAndSaveImage,
+      child: Container(
+        width: widget.size,
+        height: widget.size,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.grey[300],
+          border: Border.all(color: Colors.black, width: 2),
+          image:
+              _base64Image != null
+                  ? DecorationImage(
+                    image: MemoryImage(base64Decode(_base64Image!)),
+                    fit: BoxFit.cover,
+                  )
+                  : null,
+        ),
+        child:
+            _base64Image == null
+                ? Icon(Icons.camera_alt, size: 40, color: Colors.black54)
                 : null,
       ),
     );
