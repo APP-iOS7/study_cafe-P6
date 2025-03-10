@@ -13,6 +13,7 @@ class SeatPageView extends StatefulWidget {
 
 class _SeatPageViewState extends State<SeatPageView> {
   DateTime date = DateTime.now();
+  String? selectedSeat;
 
   final List<Map<String, dynamic>> seats = [
     // 집중존
@@ -189,16 +190,13 @@ class _SeatPageViewState extends State<SeatPageView> {
             const SizedBox(height: 30),
             GestureDetector(
               onTap:
-                  nowSeatData.any((seat) => seat['isSelected'] == true)
+                  selectedSeat != null
                       ? () => Get.to(
                         () => ReservationScreen(
                           reservationInfo: ReservationInfo(
                             reservationDate: date,
                             uid: FirebaseAuth.instance.currentUser?.uid,
-                            seatInfo:
-                                nowSeatData.firstWhere(
-                                  (seat) => seat['isSelected'] == true,
-                                )['seatNumber'],
+                            seatInfo: selectedSeat!,
                           ),
                         ),
                       )
@@ -210,10 +208,7 @@ class _SeatPageViewState extends State<SeatPageView> {
                   height: MediaQuery.of(context).size.height * 0.05,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color:
-                        nowSeatData.any((seat) => seat['isSelected'] == true)
-                            ? Colors.red
-                            : Colors.grey,
+                    color: selectedSeat != null ? Colors.red : Colors.grey,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: const Text(
@@ -237,8 +232,8 @@ class _SeatPageViewState extends State<SeatPageView> {
     final double top = (seat['top'] as int).toDouble();
     final double left = (seat['left'] as int).toDouble();
     bool isReserved = seat['isReserved'];
-    bool isSelected = seat['isSelected'] ?? false;
     String seatNumber = seat['seatNumber'];
+    bool isSelected = selectedSeat == seat['seatNumber'];
 
     return Positioned(
       top: top,
@@ -263,9 +258,9 @@ class _SeatPageViewState extends State<SeatPageView> {
                   } else {
                     if (isSelected) {
                       seat['isReserved'] = true;
-                      seat['isSelected'] = false;
+                      selectedSeat = null;
                     } else {
-                      seat['isSelected'] = true;
+                      selectedSeat = seatNumber;
                     }
                   }
                 });
