@@ -119,7 +119,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                       amount: selectedPrice,
                       serviceName: selectedPlan,
                       customerName: user?.displayName ?? '익명',
-                      // uid: user?.uid,
+                      uid: user?.uid,
                       seatInfo: widget.reservationInfo.seatInfo,
                       reservationDate: widget.reservationInfo.reservationDate,
                     );
