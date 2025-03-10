@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:study_cafe_p6/Screen/Payment/payfail_screen.dart';
 import 'package:study_cafe_p6/Screen/Payment/paysuccess_screen.dart';
 import 'package:study_cafe_p6/login/login_screen.dart';
 import 'package:study_cafe_p6/model/reserve_model.dart';
@@ -17,12 +18,7 @@ class PaymentScreen extends StatefulWidget {
   // final int price;
   final ReservationInfo reservationInfo;
 
-  const PaymentScreen({
-    super.key,
-    required this.reservationInfo,
-    // required this.plan,
-    // required this.price,
-  });
+  const PaymentScreen({super.key, required this.reservationInfo});
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -75,8 +71,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('결제하기', style: TextStyle(fontWeight: FontWeight.bold)),
-        backgroundColor: Color(0xffe4d7c4),
+        leading: const BackButton(color: Colors.white),
+        title: Text(
+          '결제하기',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        backgroundColor: Color(0xffd84040),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20.0),
@@ -84,7 +84,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Icon(Icons.close_rounded, size: 30),
+              child: Icon(Icons.close_rounded, size: 30, color: Colors.white),
             ),
           ),
         ],
@@ -309,13 +309,20 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             } catch (firestoreError) {
                               print('Firestore 저장 오류: $firestoreError');
                             }
+                            Get.to(
+                              () => PaySuccess(
+                                reservationInfo: widget.reservationInfo,
+                              ),
+                            );
+                          } else if (paymentResult.fail != null) {
+                            Get.off(() => PayFailed());
                           }
                           // 결제 성공 시 결제 성공 화면으로 이동
-                          Get.to(
-                            () => PaySuccess(
-                              reservationInfo: widget.reservationInfo,
-                            ),
-                          );
+                          // Get.to(
+                          //   () => PaySuccess(
+                          //     reservationInfo: widget.reservationInfo,
+                          //   ),
+                          // );
                         } catch (e) {
                           print('결제 오류: $e');
                           Get.snackbar(
@@ -325,6 +332,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             backgroundColor: Colors.red,
                             colorText: Colors.white,
                           );
+                          Get.off(() => PayFailed());
                         }
                       },
                       child: Padding(
@@ -333,7 +341,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           width: double.infinity,
                           height: 53,
                           decoration: BoxDecoration(
-                            color: Color(0xff305cde),
+                            color: Color(0xffd84040),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Padding(
@@ -342,7 +350,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               '결제하기',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 17,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
                               textAlign: TextAlign.center,

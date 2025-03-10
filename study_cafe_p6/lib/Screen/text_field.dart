@@ -13,11 +13,11 @@ class LoginEmailTextField extends StatelessWidget {
         prefixIcon: Icon(Icons.email),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blueGrey),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         hintText: 'Email',
       ),
@@ -45,11 +45,11 @@ class LoginPasswordTextField extends StatelessWidget {
         prefixIcon: Icon(Icons.lock),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blueGrey),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         hintText: 'Password',
       ),
@@ -79,17 +79,17 @@ class SignUpUserNameTextField extends StatelessWidget {
         prefixIcon: Icon(Icons.account_circle),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blueGrey),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         hintText: 'UserName',
       ),
       validator: (value) {
-        if (value == null || value.isEmpty) {
-          return '사용자 이름을 입력해주세요.';
+        if (value == null || value.isEmpty || value.length > 5) {
+          return '사용자 이름은 5자 이하여야 합니다.';
         }
         return null;
       },
@@ -113,11 +113,11 @@ class SignUpEmailTextField extends StatelessWidget {
         prefixIcon: Icon(Icons.email),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blueGrey),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         hintText: 'Email',
       ),
@@ -148,11 +148,11 @@ class SignUpPasswordTextField extends StatelessWidget {
         prefixIcon: Icon(Icons.lock),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blueGrey),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         hintText: 'Password',
       ),
