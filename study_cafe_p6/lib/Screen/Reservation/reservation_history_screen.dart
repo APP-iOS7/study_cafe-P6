@@ -78,7 +78,7 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: Color(0xFFECDCBF),
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   child: Align(
                     alignment: Alignment.centerLeft,
