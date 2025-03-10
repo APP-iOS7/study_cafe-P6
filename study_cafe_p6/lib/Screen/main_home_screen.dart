@@ -69,7 +69,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                               size: 130,
                               color: Colors.grey,
                             ),
-                            SizedBox(height: 100),
+                            SizedBox(height: 80),
                             Text(
                               '이용권 구매는 상단 오른쪽의\n이용권 구매에서도 가능합니다.',
                               style: TextStyle(
@@ -78,7 +78,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                                 color: Colors.grey,
                               ),
                             ),
-                            SizedBox(height: 30),
+                            SizedBox(height: 50),
                             GestureDetector(
                               onTap: () {
                                 Get.to(() => SeatPageView());
