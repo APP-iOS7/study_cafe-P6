@@ -90,7 +90,7 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                         right: 0,
                       ),
                       child: Text(
-                        '구매 내역',
+                        '예약 내역',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 25,
