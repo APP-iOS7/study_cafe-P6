@@ -116,14 +116,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: 58,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                color: Color(0xffa31d1d),
+                                color: Color(0xffd84040),
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               child: Text(
                                 '로그인',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 17,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text(
                                 '회원가입',
                                 style: TextStyle(
-                                  color: Color(0xffa31d1d),
+                                  color: Color(0xffd84040),
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
                                 ),

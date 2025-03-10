@@ -41,29 +41,34 @@ class _ReservationScreenState extends State<ReservationScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 20, right: 30, left: 30),
+            padding: const EdgeInsets.only(top: 30, right: 30, left: 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(user?.displayName ?? '익명', style: TextStyle(fontSize: 30)),
-                Column(
-                  children: [
-                    Text(
-                      widget.reservationInfo.reservationDate.toString().split(
-                        ' ',
-                      )[0],
-                    ),
-                    Text(
-                      '좌석: ${widget.reservationInfo.seatInfo}',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                Text(
+                  user?.displayName ?? '익명',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  '좌석: ${widget.reservationInfo.seatInfo}',
+                  style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 30.0),
+                child: Text(
+                  widget.reservationInfo.reservationDate.toString().split(
+                    ' ',
+                  )[0],
+                  style: TextStyle(fontSize: 17),
+                ),
+              ),
+            ],
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.08,
