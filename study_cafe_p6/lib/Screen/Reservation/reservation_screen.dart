@@ -31,8 +31,12 @@ class _ReservationScreenState extends State<ReservationScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('예약하기', style: TextStyle(fontWeight: FontWeight.bold)),
-        backgroundColor: Color(0xffe4d7c4),
+        leading: const BackButton(color: Colors.white),
+        title: Text(
+          '예약하기',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        backgroundColor: Color(0xffd84040),
       ),
       body: Column(
         children: [
@@ -87,20 +91,34 @@ class _ReservationScreenState extends State<ReservationScreen> {
                       decoration: BoxDecoration(
                         color:
                             _toggledStates[index]
-                                ? Color(0xffe4d7c4)
-                                : Colors.white,
-                        border: Border.all(color: Colors.black),
+                                ? Color(0xffd84040)
+                                : Color(0xffeeeeee),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              '${plan[index]} 이용권: ${formatAmount(price)}',
+                              '${plan[index]} 이용권',
                               style: TextStyle(
                                 fontSize: 20,
+                                color:
+                                    _toggledStates[index]
+                                        ? Colors.white
+                                        : Colors.black,
+                              ),
+                            ),
+                            Text(
+                              formatAmount(price),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color:
+                                    _toggledStates[index]
+                                        ? Colors.white
+                                        : Color(0xffd84040),
+
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -116,7 +134,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
           ),
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.only(left: 30, right: 30),
+              padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
               child: InkWell(
                 onTap: () {
                   int selectedIndex = _toggledStates.indexOf(true);
@@ -155,7 +173,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                   decoration: BoxDecoration(
                     color:
                         _toggledStates.contains(true)
-                            ? Color(0xff305cde)
+                            ? Color(0xffd84040)
                             : Colors.grey,
                     borderRadius: BorderRadius.circular(10),
                   ),

@@ -18,12 +18,7 @@ class PaymentScreen extends StatefulWidget {
   // final int price;
   final ReservationInfo reservationInfo;
 
-  const PaymentScreen({
-    super.key,
-    required this.reservationInfo,
-    // required this.plan,
-    // required this.price,
-  });
+  const PaymentScreen({super.key, required this.reservationInfo});
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -76,8 +71,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('결제하기', style: TextStyle(fontWeight: FontWeight.bold)),
-        backgroundColor: Color(0xffe4d7c4),
+        leading: const BackButton(color: Colors.white),
+        title: Text(
+          '결제하기',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        backgroundColor: Color(0xffd84040),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20.0),
@@ -85,7 +84,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Icon(Icons.close_rounded, size: 30),
+              child: Icon(Icons.close_rounded, size: 30, color: Colors.white),
             ),
           ),
         ],
@@ -342,7 +341,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           width: double.infinity,
                           height: 53,
                           decoration: BoxDecoration(
-                            color: Color(0xff305cde),
+                            color: Color(0xffd84040),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Padding(
@@ -351,7 +350,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               '결제하기',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 17,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
                               textAlign: TextAlign.center,

@@ -88,12 +88,13 @@ class _SeatPageViewState extends State<SeatPageView> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: const BackButton(color: Colors.white),
         title: const Text(
           '좌석 현황',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: const Color(0xffe4d7c4),
+        backgroundColor: const Color(0xffd84040),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -109,14 +110,14 @@ class _SeatPageViewState extends State<SeatPageView> {
                     children: const [
                       Row(
                         children: [
-                          Icon(Icons.circle, color: Colors.green),
+                          Icon(Icons.circle, color: Color(0xffd84040)),
                           SizedBox(width: 5),
                           Text('선택 가능'),
                         ],
                       ),
                       Row(
                         children: [
-                          Icon(Icons.circle, color: Colors.red),
+                          Icon(Icons.circle, color: Color(0xffafafaf)),
                           SizedBox(width: 5),
                           Text('선택 불가능'),
                         ],
@@ -149,14 +150,23 @@ class _SeatPageViewState extends State<SeatPageView> {
                 ],
               ),
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('예약 가능한 좌석', style: TextStyle(fontSize: 18)),
+                ),
+              ],
+            ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
               height: MediaQuery.of(context).size.height * 0.5,
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Color(0xffe4d7c4),
-                  borderRadius: BorderRadius.circular(30),
+                  color: const Color.fromARGB(255, 235, 235, 235),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Stack(
                   children: [
@@ -214,7 +224,7 @@ class _SeatPageViewState extends State<SeatPageView> {
                     decoration: BoxDecoration(
                       color:
                           selectedSeat != null
-                              ? Color(0xff3861df)
+                              ? Color(0xffd84040)
                               : Colors.grey,
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -256,8 +266,10 @@ class _SeatPageViewState extends State<SeatPageView> {
               icon: const Icon(Icons.event_seat),
               color:
                   isReserved
-                      ? Colors.red
-                      : (isSelected ? Colors.amber : Colors.green),
+                      ? Color(0xffafafaf)
+                      : (isSelected
+                          ? const Color.fromARGB(255, 119, 11, 177)
+                          : Color(0xffd84040)),
               iconSize: 25,
               onPressed: () {
                 setState(() {

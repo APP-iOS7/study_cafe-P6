@@ -34,7 +34,7 @@ class PaySuccess extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black26, // 그림자 색상
+                      color: const Color.fromARGB(30, 0, 0, 0), // 그림자 색상
                       offset: Offset(4, 4), // 그림자 위치 (오른쪽 아래로 4px)
                       blurRadius: 10, // 흐림 정도
                       spreadRadius: 2, // 확산 정도
@@ -57,12 +57,12 @@ class PaySuccess extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 50),
               Row(
                 children: [
                   Text(
                     '결제정보',
-                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    style: TextStyle(color: Colors.black, fontSize: 20),
                   ),
                 ],
               ),
@@ -70,10 +70,17 @@ class PaySuccess extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('예약번호', style: TextStyle(color: Colors.grey)),
+                  Text(
+                    '예약번호',
+                    style: TextStyle(color: Colors.grey, fontSize: 18),
+                  ),
                   Text(
                     '${reservationInfo.reservationId}',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
@@ -81,10 +88,17 @@ class PaySuccess extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('상품명', style: TextStyle(color: Colors.grey)),
+                  Text(
+                    '상품명',
+                    style: TextStyle(color: Colors.grey, fontSize: 18),
+                  ),
                   Text(
                     '${reservationInfo.serviceName} 이용권',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
@@ -92,10 +106,17 @@ class PaySuccess extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('좌석', style: TextStyle(color: Colors.grey)),
+                  Text(
+                    '좌석',
+                    style: TextStyle(color: Colors.grey, fontSize: 18),
+                  ),
                   Text(
                     reservationInfo.seatInfo,
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
@@ -103,17 +124,35 @@ class PaySuccess extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('결제금액', style: TextStyle(color: Colors.grey)),
-                  Text('${formatAmount(reservationInfo.amount!)}원'),
+                  Text(
+                    '결제금액',
+                    style: TextStyle(color: Colors.grey, fontSize: 18),
+                  ),
+                  Text(
+                    '${formatAmount(reservationInfo.amount!)}원',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ],
               ),
               SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('예약일시', style: TextStyle(color: Colors.grey)),
+                  Text(
+                    '예약일시',
+                    style: TextStyle(color: Colors.grey, fontSize: 18),
+                  ),
                   Text(
                     reservationInfo.reservationDate.toString().split(' ')[0],
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
@@ -125,22 +164,22 @@ class PaySuccess extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
+                    alignment: Alignment.center,
                     width: double.infinity,
                     height: 58,
                     decoration: BoxDecoration(
-                      color: Color(0xffa31d1d),
+                      color: Color(0xffaaaaaa),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 15, left: 15.0),
+                      padding: const EdgeInsets.only(left: 15.0),
                       child: Text(
                         '예약내역 보기',
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
+                          color: Color.fromARGB(255, 80, 80, 80),
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
@@ -154,22 +193,22 @@ class PaySuccess extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
+                    alignment: Alignment.center,
                     width: double.infinity,
                     height: 58,
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 9, 3, 61),
+                      color: Color(0xffd84040),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 15, left: 15.0),
+                      padding: const EdgeInsets.only(left: 10),
                       child: Text(
                         '홈으로 돌아가기',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 17,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),

@@ -32,23 +32,27 @@ class _MainHomeViewState extends State<MainHomeView> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 80, left: 20),
+                    padding: const EdgeInsets.only(
+                      top: 50,
+                      left: 20,
+                      bottom: 20,
+                    ),
                     child: Text(
-                      '${user!.displayName} 님의 이용권',
+                      '${user!.displayName}\n님의 이용권',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 36,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 40),
+
               Container(
                 width: MediaQuery.of(context).size.width * 0.83,
                 height: MediaQuery.of(context).size.height * 0.63,
                 decoration: BoxDecoration(
-                  color: const Color(0xffe4d7c4),
+                  color: const Color(0xfff8f2de),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: FutureBuilder(
@@ -67,16 +71,17 @@ class _MainHomeViewState extends State<MainHomeView> {
                             Icon(
                               CupertinoIcons.ticket,
                               size: 130,
-                              color: Colors.grey,
+                              color: Color(0xffd84040),
                             ),
-                            SizedBox(height: 80),
+                            SizedBox(height: 50),
                             Text(
-                              '이용권 구매는 상단 오른쪽의\n이용권 구매에서도 가능합니다.',
+                              '사용가능한 이용권이 없습니다\n이용권을 구매 해주세요.',
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.grey,
+                                color: Color(0xff777777),
                               ),
+                              textAlign: TextAlign.center,
                             ),
                             SizedBox(height: 50),
                             GestureDetector(
@@ -94,7 +99,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                                   height: 50,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
-                                    color: Color(0xff305cde),
+                                    color: Color(0xffd84040),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Text(
