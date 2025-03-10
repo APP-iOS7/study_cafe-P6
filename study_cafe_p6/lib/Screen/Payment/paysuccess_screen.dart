@@ -120,6 +120,12 @@ class PaySuccess extends StatelessWidget {
               SizedBox(height: 100),
               GestureDetector(
                 onTap: () {
+                  Get.back(
+                    result: {
+                      'seatNumber': reservationInfo.seatInfo,
+                      'reservationDate': reservationInfo.reservationDate,
+                    },
+                  );
                   Get.to(() => ReservationhistoryScreen());
                 },
                 child: Padding(
@@ -149,6 +155,12 @@ class PaySuccess extends StatelessWidget {
               SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
+                  Get.back(
+                    result: {
+                      'seatNumber': reservationInfo.seatInfo,
+                      'reservationDate': reservationInfo.reservationDate,
+                    },
+                  );
                   Get.off(() => BottomTabBar());
                 },
                 child: Padding(
