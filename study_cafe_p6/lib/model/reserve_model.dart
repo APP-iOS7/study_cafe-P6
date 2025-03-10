@@ -12,6 +12,7 @@ class ReservationInfo {
   DateTime createdAt;
   DateTime? paidAt;
   String? paymentMethodType;
+
   ReservationInfo({
     this.reservationId,
     this.serviceName,
