@@ -71,7 +71,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                         child: Column(
                           children: [
                             Icon(
-                              CupertinoIcons.ticket,
+                              CupertinoIcons.tickets,
                               size: 130,
                               color: Color(0xffd84040),
                             ),
