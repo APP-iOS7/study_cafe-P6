@@ -286,13 +286,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           if (paymentResult.success != null) {
                             try {
                               await _firestore
-                                  .collection('users')
-                                  .doc(currentUser.uid)
+                                  // .collection('users')
+                                  // .doc(currentUser.uid)
                                   .collection('reservations')
-                                  .doc(widget.reservationInfo.reservationId)
+                                  .doc(currentUser.uid)
                                   .set({
-                                    'reservation':
-                                        widget.reservationInfo.toJson(),
+                                    'reservation': FieldValue.arrayUnion([
+                                      widget.reservationInfo.toJson(),
+                                    ]),
                                     'userId': currentUser.uid,
                                     'updatedAt': FieldValue.serverTimestamp(),
                                   }, SetOptions(merge: true));
