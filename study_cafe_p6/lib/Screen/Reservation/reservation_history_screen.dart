@@ -120,7 +120,6 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                     print('[E]${snapshot.error}');
                     return Center(child: Text("오류 : ${snapshot.error}"));
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    // print('[D]check uid = ${user!.uid}');
                     return Center(
                       child: Text(
                         '예약 내역이 없습니다.',
