@@ -44,11 +44,11 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                RoundCircle(size: 100),
+                RoundCircle(size: 130),
                 SizedBox(width: 50, height: 0),
                 Text(
                   '${user!.displayName}',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
