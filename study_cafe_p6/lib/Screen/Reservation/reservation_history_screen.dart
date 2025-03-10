@@ -14,6 +14,7 @@ class ReservationhistoryScreen extends StatefulWidget {
 class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
   User? user = FirebaseAuth.instance.currentUser;
   final ReservationRepository _reservationRepo = ReservationRepository();
+  double borderRadius = 5;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,7 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: Color(0xFFECDCBF),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(borderRadius),
                       ),
                       child: Text(
                         '${user!.displayName}',
@@ -78,7 +79,7 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: Color(0xFFECDCBF),
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(borderRadius),
                   ),
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -93,7 +94,7 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                         '예약 내역',
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 25,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -141,30 +142,51 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                           vertical: 5,
                         ),
                         child: ListTile(
-                          tileColor: Color(0xA0ECDCBF),
+                          tileColor: Color(0x77ECDCBF),
                           leading: Icon(Icons.watch_later, color: Colors.black),
-                          title: Text(
-                            reservation.serviceName ?? "서비스 없음",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          title: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '${reservation.reservationDate.toLocal()}'
+                                    .split(' ')[0],
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                '공부 다방',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                '좌석 번호 : ${reservation.seatInfo}, 이용권 : ${reservation.serviceName}' ??
+                                    '서비스 없음',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
-                          subtitle: Text(
-                            "${reservation.reservationDate.toLocal()}".split(
-                              '.',
-                            )[0],
-                            style: TextStyle(fontSize: 15),
-                          ),
+                          // subtitle: Text(
+                          // '${reservation.reservationDate.toLocal()}'.split(
+                          // ' ',
+                          //   )[0],
+                          //   style: TextStyle(fontSize: 13),
+                          // ),
                           trailing: Text(
-                            "${reservation.amount?.toString() ?? '0'}원",
+                            '${reservation.amount?.toString() ?? '0'}원',
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           onTap: () {
-                            print("[D] ${reservation.serviceName} 확인");
+                            print('[D] ${reservation.serviceName} 확인');
                           },
                         ),
                       );
