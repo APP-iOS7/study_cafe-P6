@@ -26,174 +26,147 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("내 정보 화면"),
-        backgroundColor: Colors.white,
-      ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: Colors.white,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 50,
-                bottom: 10,
-                left: 10,
-                right: 10,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  RoundCircle(size: 100),
-                  SizedBox(width: 50, height: 0),
-                  Text(
-                    '${user!.displayName}',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-
-            SizedBox(height: 50),
-
-            GestureDetector(
-              onTap: () {
-                print("[D]예약내역확인");
-                Get.to(() => ReservationhistoryScreen());
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 10,
-                  bottom: 10,
-                  left: 10,
-                  right: 10,
-                ),
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFECDCBF),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    '예약 내역 확인',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            SizedBox(height: 10),
-
-            GestureDetector(
-              onTap: () {
-                print("[D]비밀번호변경");
-                // Get.to(() => ReservationhistoryScreen());
-                passwordChangeAlert(context: context);
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 10,
-                  bottom: 10,
-                  left: 10,
-                  right: 10,
-                ),
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFECDCBF),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    '비밀번호 변경',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            SizedBox(height: 10),
-
-            GestureDetector(
-              onTap: () {
-                loginViewModel.signOut();
-                Get.off(() => LoginScreen());
-                print("[D]로그아웃");
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 10,
-                  bottom: 10,
-                  left: 10,
-                  right: 10,
-                ),
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFD84040),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    '로그아웃',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            SizedBox(height: 10),
-
-            GestureDetector(
-              onTap: () {
-                print("[D]회원탈퇴");
-                deleteAccountAlert(context: context);
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 10,
-                  bottom: 10,
-                  left: 10,
-                  right: 10,
-                ),
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFD84040),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    '회원 탈퇴',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
+        title: const Text(
+          '내 정보 화면',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        backgroundColor: Color(0xffe4d7c4),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 100,
+              bottom: 10,
+              left: 10,
+              right: 10,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RoundCircle(size: 100),
+                SizedBox(width: 50, height: 0),
+                Text(
+                  '${user!.displayName}',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+
+          SizedBox(height: 100),
+
+          GestureDetector(
+            onTap: () {
+              print("[D]예약내역확인");
+              Get.to(() => ReservationhistoryScreen());
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Container(
+                width: double.infinity,
+                height: 50,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Color(0xffe4d7c4),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  '예약 내역 확인',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+          SizedBox(height: 20),
+
+          GestureDetector(
+            onTap: () {
+              print("[D]비밀번호변경");
+              // Get.to(() => ReservationhistoryScreen());
+              passwordChangeAlert(context: context);
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Container(
+                width: double.infinity,
+                height: 50,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Color(0xffe4d7c4),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  '비밀번호 변경',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    print("[D]회원탈퇴");
+                    deleteAccountAlert(context: context);
+                  },
+                  child: Container(
+                    width: 120,
+                    height: 50,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      '회원탈퇴',
+                      style: TextStyle(color: Colors.red, fontSize: 15),
+                    ),
+                  ),
+                ),
+                Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    loginViewModel.signOut();
+                    Get.off(() => LoginScreen());
+                    print("[D]로그아웃");
+                  },
+                  child: Container(
+                    width: 120,
+                    height: 50,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFD84040),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      '로그아웃',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 80),
+        ],
       ),
     );
   }

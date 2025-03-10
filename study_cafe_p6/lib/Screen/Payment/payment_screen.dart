@@ -75,8 +75,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('결제하기'),
-        backgroundColor: Color(0xfff8f2de),
+        title: Text('결제하기', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: Color(0xffe4d7c4),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20.0),
@@ -333,7 +333,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           width: double.infinity,
                           height: 53,
                           decoration: BoxDecoration(
-                            color: Color(0xffa31d1d),
+                            color: Color(0xff305cde),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Padding(

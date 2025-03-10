@@ -26,7 +26,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
-        selectedItemColor: Color(0xffd84040),
+        selectedItemColor: Color(0xff305cde),
         unselectedItemColor: Colors.grey,
         items: [
           BottomNavigationBarItem(
@@ -57,18 +57,19 @@ class _BottomTabBarState extends State<BottomTabBar> {
       children: [
         Icon(
           icon,
-          color: _selectedIndex == index ? Color(0xffd84040) : Colors.grey,
-          size: 30,
+          color: _selectedIndex == index ? Color(0xff305cde) : Colors.grey,
+          size: 24,
         ),
         Text(
           label,
           style: TextStyle(
-            color: _selectedIndex == index ? Color(0xffd84040) : Colors.grey,
+            color: _selectedIndex == index ? Color(0xff305cde) : Colors.grey,
+            fontSize: 12,
           ),
         ),
         SizedBox(height: 4),
         if (_selectedIndex == index)
-          Container(width: 50, height: 3, color: Color(0xffd84040))
+          Container(width: 45, height: 2, color: Color(0xff305cde))
         else
           SizedBox(height: 2),
       ],

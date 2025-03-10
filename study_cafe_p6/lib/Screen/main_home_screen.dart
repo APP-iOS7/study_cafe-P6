@@ -48,7 +48,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                 width: MediaQuery.of(context).size.width * 0.83,
                 height: MediaQuery.of(context).size.height * 0.63,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 235, 233, 233),
+                  color: const Color(0xffe4d7c4),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: FutureBuilder(
@@ -64,13 +64,18 @@ class _MainHomeViewState extends State<MainHomeView> {
                         padding: const EdgeInsets.only(top: 130),
                         child: Column(
                           children: [
-                            Icon(CupertinoIcons.ticket, size: 130),
+                            Icon(
+                              CupertinoIcons.ticket,
+                              size: 130,
+                              color: Colors.grey,
+                            ),
                             SizedBox(height: 100),
                             Text(
                               '이용권 구매는 상단 오른쪽의\n이용권 구매에서도 가능합니다.',
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
+                                color: Colors.grey,
                               ),
                             ),
                             SizedBox(height: 30),
@@ -82,14 +87,14 @@ class _MainHomeViewState extends State<MainHomeView> {
                                 padding: const EdgeInsets.only(
                                   left: 50,
                                   right: 50,
-                                  bottom: 30,
+                                  top: 20,
                                 ),
                                 child: Container(
                                   width: double.infinity,
                                   height: 50,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
-                                    color: Colors.red,
+                                    color: Color(0xff305cde),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Text(
