@@ -15,11 +15,6 @@ class MainHomeView extends StatefulWidget {
   State<MainHomeView> createState() => _MainHomeViewState();
 }
 
-Future<String> fetchData() async {
-  await Future.delayed(Duration(seconds: 1));
-  return '서버에서 받아온 데이터';
-}
-
 class _MainHomeViewState extends State<MainHomeView> {
   User? user = FirebaseAuth.instance.currentUser;
 
@@ -42,11 +37,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                       bottom: 20,
                     ),
                     child: Text(
-<<<<<<< HEAD
-                      '${user?.displayName ?? "사용자"} 님의 이용권',
-=======
                       '${user!.displayName}\n님의 이용권',
->>>>>>> develop
                       style: TextStyle(
                         fontSize: 36,
                         fontWeight: FontWeight.bold,
@@ -63,17 +54,21 @@ class _MainHomeViewState extends State<MainHomeView> {
                   color: const Color(0xfff8f2de),
                   borderRadius: BorderRadius.circular(10),
                 ),
+
                 child: FutureBuilder<ReservationInfo?>(
-                  future: fetchLatestReservation(),
+                  future: fetchData(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Center(child: CircularProgressIndicator());
                     }
+                    if (snapshot.hasError) {
+                      return Text("에러 발생");
+                    }
 
-                    if (snapshot.hasError || snapshot.data == null) {
-                      return Center(
+                    if (snapshot.data == null) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 130),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
                               CupertinoIcons.ticket,
@@ -82,12 +77,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                             ),
                             SizedBox(height: 50),
                             Text(
-<<<<<<< HEAD
-                              '이용권 구매는 상단 오른쪽의\n이용권 구매에서도 가능합니다.',
-                              textAlign: TextAlign.center,
-=======
                               '사용가능한 이용권이 없습니다\n이용권을 구매 해주세요.',
->>>>>>> develop
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -100,22 +90,12 @@ class _MainHomeViewState extends State<MainHomeView> {
                               onTap: () {
                                 Get.to(() => SeatPageView());
                               },
-                              child: Container(
-                                width: double.infinity,
-                                height: 50,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  color: Color(0xff305cde),
-                                  borderRadius: BorderRadius.circular(10),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 50,
+                                  right: 50,
+                                  top: 20,
                                 ),
-<<<<<<< HEAD
-                                child: Text(
-                                  '이용권 구매',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-=======
                                 child: Container(
                                   width: double.infinity,
                                   height: 50,
@@ -131,7 +111,6 @@ class _MainHomeViewState extends State<MainHomeView> {
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
->>>>>>> develop
                                   ),
                                 ),
                               ),
@@ -140,7 +119,6 @@ class _MainHomeViewState extends State<MainHomeView> {
                         ),
                       );
                     }
-
                     ReservationInfo reservation = snapshot.data!;
                     return Padding(
                       padding: const EdgeInsets.all(20.0),
@@ -149,56 +127,141 @@ class _MainHomeViewState extends State<MainHomeView> {
                         children: [
                           SizedBox(height: 20),
                           Text(
-                            '현재 예약 완료된 이용권',
+                            '현재 예약 된 이용권',
                             style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Divider(color: Colors.black45),
+                          Divider(color: Colors.black),
                           SizedBox(height: 10),
-                          _reservationDetailRow(
-                            "예약번호",
-                            reservation.reservationId ?? "N/A",
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "예약번호 :",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                reservation.reservationId ?? 'N/A',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
-                          _reservationDetailRow(
-                            "상품명",
-                            "${reservation.serviceName} 이용권",
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "상품명 :",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                "${reservation.serviceName} 이용권",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
-                          _reservationDetailRow("좌석", reservation.seatInfo),
-                          _reservationDetailRow(
-                            "결제금액",
-                            "${NumberFormat('#,###').format(reservation.amount!)}원",
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "좌석 :",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                reservation.seatInfo,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
-                          _reservationDetailRow(
-                            "예약일시",
-                            reservation.reservationDate.toString().split(
-                              ' ',
-                            )[0],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "결제금액 :",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                "${NumberFormat('#,###').format(reservation.amount!)}원",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
-                          // SizedBox(height: 30),
-                          // GestureDetector(
-                          //   onTap: () {
-                          //     Get.to(() => ReservationhistoryScreen());
-                          //   },
-                          //   child: Container(
-                          //     width: double.infinity,
-                          //     height: 50,
-                          //     alignment: Alignment.center,
-                          //     decoration: BoxDecoration(
-                          //       color: Color(0xff305cde),
-                          //       borderRadius: BorderRadius.circular(10),
-                          //     ),
-                          //     child: Text(
-                          //       '예약내역 보기',
-                          //       style: TextStyle(
-                          //         fontSize: 20,
-                          //         fontWeight: FontWeight.bold,
-                          //         color: Colors.white,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "예약일시 :",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                reservation.reservationDate.toString().split(
+                                  ' ',
+                                )[0],
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 50),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => ReservationhistoryScreen());
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                left: 50,
+                                right: 50,
+                                top: 20,
+                              ),
+                              child: Container(
+                                width: double.infinity,
+                                height: 50,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Color(0xffd84040),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Text(
+                                  '예약내역 보기',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     );
@@ -212,39 +275,17 @@ class _MainHomeViewState extends State<MainHomeView> {
     );
   }
 
-  Widget _reservationDetailRow(String title, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(title, style: TextStyle(color: Colors.grey, fontSize: 16)),
-          Text(
-            value,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
+  Future<ReservationInfo?> fetchData() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return null;
+
+    final reservations = await ReservationRepository().getUserReservations(
+      user.uid,
     );
-  }
+    if (reservations.isEmpty) return null;
 
-  Future<ReservationInfo?> fetchLatestReservation() async {
-    if (FirebaseAuth.instance.currentUser == null) {
-      return null;
-    }
-
-    String uid = FirebaseAuth.instance.currentUser!.uid;
-    ReservationRepository reservationRepo = ReservationRepository();
-    List<ReservationInfo> reservations = await reservationRepo
-        .getUserReservations(uid);
-
-    // 가장 최근 예약 정보 가져오기 (createdAt 기준 정렬)
-    reservations.sort((a, b) => b.createdAt.compareTo(a.createdAt));
-
-    return reservations.isNotEmpty ? reservations.first : null;
+    return reservations.reduce(
+      (a, b) => a.createdAt.isAfter(b.createdAt) ? a : b,
+    );
   }
 }
