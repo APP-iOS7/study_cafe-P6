@@ -34,24 +34,31 @@ onAuthStateChanged(auth, async (user) => {
 
         // Firestore에서 예약 데이터 가져오기 
         try {
-            const querySnapshot = await getDocs(collection(db, "users")); // 로그인한 사용자의 UID 문서 조회 
-            userDataList.innerHTML = ""; // 기존 내용 초기화
-            querySnapshot.forEach((doc) => {
-                const userData = doc.data();
-                console.log('사용자 데이터:', userData);
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td> ${userData.username || "없음"}</td>
-                    <td> ${userData.email || "없음"}</td>
-                    <td>없음</td>
-                `;
-                userDataList.appendChild(tr);
-            })
+            const q = query(collection(db, "reservations"), where("userId", "==", user.uid));
+            const querySnapshot = await getDocs(q);
+
+            userDataList.innerHTML = ""; // 기존 내용 
             if (querySnapshot.empty) {
                 userDataList.innerHTML = "<li>사용자 데이터가 없습니다.</li>";
+            } else {
+                querySnapshot.forEach((doc) => {
+                    const reserveData = doc.data();
+                    console.log('사용자 데이터:', reserveData);
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td> ${reserveData.customerName || "없음"}</td>
+                        <td> ${reserveData.amount || "없음"}</td>
+                        <td> ${reserveData.reservationId || "없음"}</td>
+                        <td> ${reserveData.seatInfo || "없음"}</td>
+                        <td>없음</td>
+                    `;
+                    userDataList.appendChild(tr);
+                })
             }
+
+
         } catch (error) {
-            console.error('사용자 데이터 가져오기 실패:', error.mesage);
+            console.error('사용자 데이터 가져오기 실패:', error.message);
             userDataList.innerHTML = `<li>데이터 가져오기 실패: ${error.message}</li>`;
         }
     } else {
