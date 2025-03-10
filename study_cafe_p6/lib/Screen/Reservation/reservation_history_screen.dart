@@ -29,7 +29,6 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
         height: double.infinity,
         color: Colors.white,
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               children: [
