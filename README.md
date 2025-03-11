@@ -55,19 +55,19 @@ Firebase Firestore와 연동하여 회원 관리 및 예약 내역 등 데이터
 ## 예약
 | - | - | - | - |
 | - | - | - | - |
-| <div align="center"><img src="https://github.com/user-attachments/assets/eb86bb20-bafb-47cb-bbc9-5396de496b4c" width="500" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/7bd4782b-984b-470c-8000-35e20ae3452c" width="500" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/c2fda935-ef0e-4c06-b1d3-a6e716141ec8" width="500" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/fcdc9ac1-c6cb-4187-afd6-24852c5c7d15" width="500" height="500"/></div> |
+| <div align="center"><img src="https://github.com/user-attachments/assets/eb86bb20-bafb-47cb-bbc9-5396de496b4c" width="600" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/7bd4782b-984b-470c-8000-35e20ae3452c" width="600" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/c2fda935-ef0e-4c06-b1d3-a6e716141ec8" width="600" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/fcdc9ac1-c6cb-4187-afd6-24852c5c7d15" width="600" height="500"/></div> |
 | <div align="center">좌석선택 1</div> | <div align="center">좌석선택 2</div> | <div align="center">날짜 선택</div> | <div align="center">상품 선택</div> |
 
 ## 결제
 | - | - | - | - | - |
 | - | - | - | - | - |
-| <div align="center"><img src="https://github.com/user-attachments/assets/704a9c90-6e79-4e6c-8459-10fd654a0890" width="500" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/8aadca16-36f6-4fad-b182-3fccce8a361b" width="500" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/a71cc304-9037-4831-b6e1-cf5ff59ebd89" width="500" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/f3dbd49a-fc22-4728-bfcf-99b3901f9143" width="500" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/ff147bef-ff6b-41d8-b904-fba7608b013e" width="500" height="500"/></div> |
+| <div align="center"><img src="https://github.com/user-attachments/assets/704a9c90-6e79-4e6c-8459-10fd654a0890" width="600" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/8aadca16-36f6-4fad-b182-3fccce8a361b" width="600" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/a71cc304-9037-4831-b6e1-cf5ff59ebd89" width="600" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/f3dbd49a-fc22-4728-bfcf-99b3901f9143" width="600" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/ff147bef-ff6b-41d8-b904-fba7608b013e" width="600" height="500"/></div> |
 | <div align="center">결제 1</div> | <div align="center">결제 2</div> | <div align="center">결제 3</div> | <div align="center">결제 완료</div> | <div align="center">결제 실패</div> |
 
 ## 내정보
 | - | - | - | - | - |
 | - | - | - | - | - |
-| <div align="center"><img src="https://github.com/user-attachments/assets/15f9f5fc-bd4e-4611-8908-9b8ea9172f83" width="500" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/b5e10586-4f67-4fb4-82ae-1ecaccfe47d4" width="500" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/d30de69d-4f22-44f1-aaaf-c7e195291d7a" width="500" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/e770eaa5-3368-41ed-bd21-3e8819fe5776" width="500" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/ee5705ba-8dfb-428b-b429-1452184f3922" width="500" height="500"/></div> |
+| <div align="center"><img src="https://github.com/user-attachments/assets/15f9f5fc-bd4e-4611-8908-9b8ea9172f83" width="600" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/b5e10586-4f67-4fb4-82ae-1ecaccfe47d4" width="600" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/d30de69d-4f22-44f1-aaaf-c7e195291d7a" width="600" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/e770eaa5-3368-41ed-bd21-3e8819fe5776" width="600" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/ee5705ba-8dfb-428b-b429-1452184f3922" width="600" height="500"/></div> |
 | <div align="center">내 정보</div> | <div align="center">예약 내역</div> | <div align="center">계정 관리</div> | <div align="center">비밀번호 변경</div> | <div align="center">회원 탈퇴</div> |
 
 # 역할 및 회고
@@ -83,11 +83,11 @@ Firebase Firestore와 연동하여 회원 관리 및 예약 내역 등 데이터
     - 디자인 보조.
   - 회고
     - 이번 프로젝트를 통하여 목표로 했던 것은 세가지입니다. 
-1.팀원들과의 커뮤니케이션. 2.flutter UI View 익숙해지기. 3.기능 한두개라도 구현해서 적용해보기. 위 목표로 프로젝트에 임하였으며, 첫번째 a 목표는 정말 대성공이었습니다. 자신있게 저의 팀이 분위기가 가장 좋았으며, 열정적이었다고 말할 수 있습니다. 서로 피드백을 주고받으며 수정하고, 받아들이고 의견을 어필하며 매일매일을 새벽 늦게까지 함께 작업하였습니다.
+      1.팀원들과의 커뮤니케이션. 2.flutter UI View 익숙해지기. 3.기능 한두개라도 구현해서 적용해보기. 위 목표로 프로젝트에 임하였으며, 첫번째 a 목표는 정말 대성공이었습니다. 자신있게 저의 팀이 분위기가 가장 좋았으며, 열정적이었다고 말할 수 있습니다. 서로 피드백을 주고받으며 수정하고, 받아들이고 의견을 어필하며 매일매일을 새벽 늦게까지 함께 작업하였습니다.
 
-두번째 b 목표도 실력있고 정말 좋은 팀원들 덕분에 이전과는 다르게 머리에 생각한 구상의 초안은 그릴 수 있으며, 좀 더 다듬는 다면 정말 원했던 UI를 구상할 수 있을 거라는 자신감이 생겼습니다. 저의 UI 실력 증진의 바램을 팀원분들이 잘 받아주셔서 메인 뷰와 좌석 예약 뷰를 맡게 되었으며, 아직은 많이 부족한 부분이 많지만 이전과는 비교도 할 수 없이 성장한 것을 느낍니다.
+      두번째 b 목표도 실력있고 정말 좋은 팀원들 덕분에 이전과는 다르게 머리에 생각한 구상의 초안은 그릴 수 있으며, 좀 더 다듬는 다면 정말 원했던 UI를 구상할 수 있을 거라는 자신감이 생겼습니다. 저의 UI 실력 증진의 바램을 팀원분들이 잘 받아주셔서 메인 뷰와 좌석 예약 뷰를 맡게 되었으며, 아직은 많이 부족한 부분이 많지만 이전과는 비교도 할 수 없이 성장한 것을 느낍니다.
 
-세번째 c 목표도 이번 프로젝트에서는 Firebase를 사용하여 구상하였으며 직접적으로 Firebase 작업에는 참여하지 않았지만, 만들어준 모델과 예시들로 인하여 데이터를 가져와 메인뷰에 적용하게 하였습니다. 또한, 일부는 반응형 레이아웃을 사용하여 안드로이드와 IOS 기기에서 동일한 위치를 가질 수 있게 하였습니다.
+      세번째 c 목표도 이번 프로젝트에서는 Firebase를 사용하여 구상하였으며 직접적으로 Firebase 작업에는 참여하지 않았지만, 만들어준 모델과 예시들로 인하여 데이터를 가져와 메인뷰에 적용하게 하였습니다. 또한, 일부는 반응형 레이아웃을 사용하여 안드로이드와 IOS 기기에서 동일한 위치를 가질 수 있게 하였습니다.
     - 부족했던 점
       - Firebase를 제대로 사용못하는 점과 모델 및 Firebase 데이터를 사용하는 법,  MVC, MVVM 패턴 적용 부분에 있어서 많은 아쉬움이 있으며, 더 많은 공부와 연습이 필요 할 것 같습니다. 좌석 부분에 있어서는 시간 상 초안부분에서 크게 벗어나지 않게 하기 위하여 적용을 하지 못하였으나, 추후 수정하며 초기 기획 단계의 중요성을 다시 한번 깨달았습니다.
 - 김태건
