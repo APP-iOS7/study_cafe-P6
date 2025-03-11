@@ -30,24 +30,35 @@ Firebase Firestore와 연동하여 회원 관리 및 예약 내역 등 데이터
 
 # 스크린샷
 ## Splash & AppIcon
-|이미지|이미지|
-|설명|이나 간단 문구|
+
+| Splash | AppIcon |
+| - | - |
+| <div align="center"><img src="" width="150" height="320"/></div>|<div align="center"><img src= "" width="150" height="320"/></div> |
+| <div align="center">앱 실행시 화면</div> | <div align="center">앱 아이콘</div> |
 
 ## Login 관련
-|이미지|이미지|
-|설명|이나 간단 문구|
+| - | - |
+| - | - |
+| <div align="center"><img src="" width="150" height="320"/></div>|<div align="center"><img src= "" width="150" height="320"/></div> |
+| <div align="center">설명</div> | <div align="center">설명</div> |
 
 ## 예약 관련
-|이미지|이미지|
-|설명|이나 간단 문구|
+| - | - |
+| - | - |
+| <div align="center"><img src="" width="150" height="320"/></div>|<div align="center"><img src= "" width="150" height="320"/></div> |
+| <div align="center">설명</div> | <div align="center">설명</div> |
 
 ## 결제 관련
-|이미지|이미지|
-|설명|이나 간단 문구|
+| - | - |
+| - | - |
+| <div align="center"><img src="" width="150" height="320"/></div>|<div align="center"><img src= "" width="150" height="320"/></div> |
+| <div align="center">설명</div> | <div align="center">설명</div> |
 
 ## 내정보 관련
-|이미지|이미지|
-|설명|이나 간단 문구|
+| - | - |
+| - | - |
+| <div align="center"><img src="" width="150" height="320"/></div>|<div align="center"><img src= "" width="150" height="320"/></div> |
+| <div align="center">설명</div> | <div align="center">설명</div> |
 
 # 역할 및 회고
 - 김덕원(팀장)
