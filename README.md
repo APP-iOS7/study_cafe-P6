@@ -37,7 +37,7 @@ Firebase Firestore와 연동하여 회원 관리 및 예약 내역 등 데이터
 
 | Splash | AppIcon |
 | - | - |
-| <div align="center"><img src="" width="150" height="320"/></div>|<div align="center"><img src= "https://github.com/user-attachments/assets/bcff77d4-84d5-41b6-97d4-2fba59459033" width="150" height="320"/></div> |
+| <div align="center"><img src="https://github.com/user-attachments/assets/bcff77d4-84d5-41b6-97d4-2fba59459033" width="300" height="520"/></div>| <div align="center"><img src= "https://github.com/user-attachments/assets/f4a59a2b-5d51-4843-9255-23953599b59d" width="150" height="320"/></div> |
 | <div align="center">앱 실행시 화면</div> | <div align="center">앱 아이콘</div> |
 
 ## Login
