@@ -23,301 +23,316 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(color: Colors.white),
-        title: const Text(
-          '내 정보 화면',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Color(0xfff8f2de),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Color(0xffd84040),
+          title: Text(
+            '내 정보',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
-        backgroundColor: Color(0xffd84040),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 30,
-                bottom: 10,
-                left: 30,
-                right: 50,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 30,
+                  bottom: 10,
+                  left: 30,
+                  right: 50,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    RoundCircle(size: 130),
+                    Text(
+                      '${user!.displayName}',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              child: Row(
+              SizedBox(height: 50),
+              GestureDetector(
+                onTap: () {
+                  print("[D]예약내역확인");
+                  Get.to(() => ReservationhistoryScreen());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      // color: Color(0xffd84040),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Text(
+                            '예약 내역 확인',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Icon(Icons.chevron_right, size: 30),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15),
+                child: SizedBox(
+                  height: 1,
+                  width: double.infinity,
+                  child: Divider(
+                    color: const Color.fromARGB(255, 200, 198, 198),
+                  ),
+                ),
+              ),
+              SizedBox(height: 5),
+
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => AccountManager());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      // color: Color(0xffd84040),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            '계정 관리',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Icon(Icons.chevron_right, size: 30),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15),
+                child: SizedBox(
+                  height: 1,
+                  width: double.infinity,
+                  child: Divider(
+                    color: const Color.fromARGB(255, 200, 198, 198),
+                  ),
+                ),
+              ),
+              SizedBox(height: 5),
+
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  RoundCircle(size: 130),
-                  Text(
-                    '${user!.displayName}',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "고객센터",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: 50),
-            GestureDetector(
-              onTap: () {
-                print("[D]예약내역확인");
-                Get.to(() => ReservationhistoryScreen());
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: Container(
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15),
+                child: SizedBox(
+                  height: 1,
                   width: double.infinity,
-                  height: 50,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    // color: Color(0xffd84040),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          '예약 내역 확인',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Icon(Icons.chevron_right, size: 30),
-                    ],
+                  child: Divider(
+                    color: const Color.fromARGB(255, 200, 198, 198),
                   ),
                 ),
               ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: SizedBox(
-                height: 1,
-                width: double.infinity,
-                child: Divider(color: const Color.fromARGB(255, 200, 198, 198)),
-              ),
-            ),
-            SizedBox(height: 5),
-
-            GestureDetector(
-              onTap: () {
-                Get.to(() => AccountManager());
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    // color: Color(0xffd84040),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          '계정 관리',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Icon(Icons.chevron_right, size: 30),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: SizedBox(
-                height: 1,
-                width: double.infinity,
-                child: Divider(color: const Color.fromARGB(255, 200, 198, 198)),
-              ),
-            ),
-            SizedBox(height: 5),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "고객센터",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: SizedBox(
-                height: 1,
-                width: double.infinity,
-                child: Divider(color: const Color.fromARGB(255, 200, 198, 198)),
-              ),
-            ),
-            SizedBox(height: 5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "이용약관",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: SizedBox(
-                height: 1,
-                width: double.infinity,
-                child: Divider(color: const Color.fromARGB(255, 200, 198, 198)),
-              ),
-            ),
-            SizedBox(height: 5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "개인 정보 처리방침",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: SizedBox(
-                height: 1,
-                width: double.infinity,
-                child: Divider(color: const Color.fromARGB(255, 200, 198, 198)),
-              ),
-            ),
-            SizedBox(height: 5),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "버전 정보",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      '1.0.1',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: SizedBox(
-                height: 1,
-                width: double.infinity,
-                child: Divider(color: const Color.fromARGB(255, 200, 198, 198)),
-              ),
-            ),
-            SizedBox(height: 5),
-
-            GestureDetector(
-              onTap: () {
-                print("[D]로그아웃");
-                // Get.to(() => ReservationhistoryScreen());
-                loginViewModel.signOut();
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    // color: Color(0xffd84040),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Icon(
-                          Icons.logout,
-                          size: 30,
-                          color: Color(0xffd84040),
-                        ),
-                      ),
-                      Text(
-                        '로그아웃',
+              SizedBox(height: 5),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "이용약관",
                         style: TextStyle(
-                          color: Color(0xffd84040),
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
-                    ],
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15),
+                child: SizedBox(
+                  height: 1,
+                  width: double.infinity,
+                  child: Divider(
+                    color: const Color.fromARGB(255, 200, 198, 198),
                   ),
                 ),
               ),
-            ),
-          ],
+              SizedBox(height: 5),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "개인 정보 처리방침",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15),
+                child: SizedBox(
+                  height: 1,
+                  width: double.infinity,
+                  child: Divider(
+                    color: const Color.fromARGB(255, 200, 198, 198),
+                  ),
+                ),
+              ),
+              SizedBox(height: 5),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "버전 정보",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        '1.0.1',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15),
+                child: SizedBox(
+                  height: 1,
+                  width: double.infinity,
+                  child: Divider(
+                    color: const Color.fromARGB(255, 200, 198, 198),
+                  ),
+                ),
+              ),
+              SizedBox(height: 5),
+
+              GestureDetector(
+                onTap: () {
+                  print("[D]로그아웃");
+                  // Get.to(() => ReservationhistoryScreen());
+                  loginViewModel.signOut();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      // color: Color(0xffd84040),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Icon(
+                            Icons.logout,
+                            size: 30,
+                            color: Color(0xffd84040),
+                          ),
+                        ),
+                        Text(
+                          '로그아웃',
+                          style: TextStyle(
+                            color: Color(0xffd84040),
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

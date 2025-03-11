@@ -97,7 +97,7 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                     itemBuilder: (context, index) {
                       final reservation = reservations[index];
                       return SizedBox(
-                        height: 70,
+                        height: 77,
                         child: Card(
                           margin: EdgeInsets.symmetric(
                             horizontal: 20,

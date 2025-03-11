@@ -6,7 +6,8 @@ import 'package:study_cafe_p6/model/reserve_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SeatPageView extends StatefulWidget {
-  const SeatPageView({super.key});
+  final bool isFromHome; // 홈에서 접근했는지 여부
+  const SeatPageView({super.key, this.isFromHome = false});
 
   @override
   State<SeatPageView> createState() => _SeatPageViewState();
@@ -96,166 +97,174 @@ class _SeatPageViewState extends State<SeatPageView> {
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> nowSeatData = changeSeats(date);
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(color: Colors.white),
-        title: const Text(
-          '좌석 현황',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+    return PopScope(
+      canPop: widget.isFromHome, // 홈에서 왔을 때만 뒤로가기 가능
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: widget.isFromHome,
+          foregroundColor: Colors.white, // 홈에서 왔을 때만 뒤로가기 버튼 표시
+          backgroundColor: const Color(0xffd84040),
+          title: const Text(
+            '좌석 현황',
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-        backgroundColor: const Color(0xffd84040),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Row(
-                          children: [
-                            Icon(Icons.circle, color: Color(0xffd84040)),
-                            SizedBox(width: 5),
-                            Text('선택 가능'),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Icon(Icons.circle, color: Color(0xffafafaf)),
-                            SizedBox(width: 5),
-                            Text('선택 불가능'),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        IconButton(
-                          icon: const Icon(
-                            CupertinoIcons.calendar,
-                            size: 30,
-                            color: Color(0xffd84040),
-                          ),
-                          onPressed: () async {
-                            final selectedData = await showDatePicker(
-                              context: context,
-                              initialDate: date,
-                              firstDate: DateTime.now(),
-                              lastDate: DateTime.now().add(
-                                const Duration(days: 90),
-                              ),
-                            );
-                            if (selectedData != null) {
-                              setState(() {
-                                date = selectedData;
-                              });
-                            }
-                          },
-                        ),
-                        Text('${date.year}-${date.month}-${date.day}'),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('예약 가능한 좌석', style: TextStyle(fontSize: 18)),
-                  ),
-                ],
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: MediaQuery.of(context).size.height * 0.5,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 235, 235, 235),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Stack(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ...nowSeatData.map((seat) => _seatIconButton(seat)),
-                      Positioned(
-                        top: 275,
-                        left: 300,
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.08,
-                          height: MediaQuery.of(context).size.height * 0.08,
-                          child: const Icon(
-                            Icons.local_cafe,
-                            color: Colors.brown,
-                            size: 30,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Row(
+                            children: [
+                              Icon(Icons.circle, color: Color(0xffd84040)),
+                              SizedBox(width: 5),
+                              Text('선택 가능'),
+                            ],
                           ),
-                        ),
+                          Row(
+                            children: [
+                              Icon(Icons.circle, color: Color(0xffafafaf)),
+                              SizedBox(width: 5),
+                              Text('선택 불가능'),
+                            ],
+                          ),
+                        ],
                       ),
-                      Positioned(
-                        top: 340,
-                        left: 300,
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.08,
-                          height: MediaQuery.of(context).size.height * 0.08,
-                          child: const Icon(
-                            Icons.wc,
-                            color: Colors.blue,
-                            size: 30,
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(
+                              CupertinoIcons.calendar,
+                              size: 30,
+                              color: Color(0xffd84040),
+                            ),
+                            onPressed: () async {
+                              final selectedData = await showDatePicker(
+                                context: context,
+                                initialDate: date,
+                                firstDate: DateTime.now(),
+                                lastDate: DateTime.now().add(
+                                  const Duration(days: 90),
+                                ),
+                              );
+                              if (selectedData != null) {
+                                setState(() {
+                                  date = selectedData;
+                                });
+                              }
+                            },
                           ),
-                        ),
+                          Text('${date.year}-${date.month}-${date.day}'),
+                        ],
                       ),
                     ],
                   ),
                 ),
-              ),
-              SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                  child: InkWell(
-                    onTap:
-                        selectedSeat != null
-                            ? () => Get.to(
-                              () => ReservationScreen(
-                                reservationInfo: ReservationInfo(
-                                  reservationDate: date,
-                                  uid: FirebaseAuth.instance.currentUser?.uid,
-                                  seatInfo: selectedSeat!,
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('예약 가능한 좌석', style: TextStyle(fontSize: 18)),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 235, 235, 235),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Stack(
+                      children: [
+                        ...nowSeatData.map((seat) => _seatIconButton(seat)),
+                        Positioned(
+                          top: 275,
+                          left: 300,
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.08,
+                            height: MediaQuery.of(context).size.height * 0.08,
+                            child: const Icon(
+                              Icons.local_cafe,
+                              color: Colors.brown,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 340,
+                          left: 300,
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.08,
+                            height: MediaQuery.of(context).size.height * 0.08,
+                            child: const Icon(
+                              Icons.wc,
+                              color: Colors.blue,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 20,
+                      left: 20,
+                      right: 20,
+                    ),
+                    child: InkWell(
+                      onTap:
+                          selectedSeat != null
+                              ? () => Get.to(
+                                () => ReservationScreen(
+                                  reservationInfo: ReservationInfo(
+                                    reservationDate: date,
+                                    uid: FirebaseAuth.instance.currentUser?.uid,
+                                    seatInfo: selectedSeat!,
+                                  ),
                                 ),
-                              ),
-                            )
-                            : null,
-                    child: Container(
-                      width: double.infinity,
-                      height: 50,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color:
-                            selectedSeat != null
-                                ? Color(0xffd84040)
-                                : Colors.grey,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: const Text(
-                        '예약하기',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                              )
+                              : null,
+                      child: Container(
+                        width: double.infinity,
+                        height: 50,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color:
+                              selectedSeat != null
+                                  ? Color(0xffd84040)
+                                  : Colors.grey,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Text(
+                          '예약하기',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

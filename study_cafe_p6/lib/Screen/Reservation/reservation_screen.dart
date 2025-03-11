@@ -31,12 +31,15 @@ class _ReservationScreenState extends State<ReservationScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(color: Colors.white),
-        title: Text(
-          '예약하기',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new, color: Colors.white),
+          onPressed: () => Get.back(),
         ),
         backgroundColor: Color(0xffd84040),
+        title: Text(
+          '예약하기',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Column(
         children: [

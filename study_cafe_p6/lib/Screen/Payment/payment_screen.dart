@@ -77,17 +77,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Color(0xffd84040),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Icon(Icons.close_rounded, size: 30, color: Colors.white),
-            ),
-          ),
-        ],
       ),
       body: SafeArea(
         child: Expanded(
