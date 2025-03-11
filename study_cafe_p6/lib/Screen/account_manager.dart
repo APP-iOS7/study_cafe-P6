@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:study_cafe_p6/Screen/alertdialog_screen.dart';
 
@@ -8,7 +7,15 @@ class AccountManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('계정 관리')),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        leading: const BackButton(color: Colors.white),
+        title: Text(
+          '계정 관리',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Color(0xffd84040),
+      ),
 
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,

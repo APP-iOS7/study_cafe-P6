@@ -100,6 +100,7 @@ class _SeatPageViewState extends State<SeatPageView> {
     return PopScope(
       canPop: widget.isFromHome, // 홈에서 왔을 때만 뒤로가기 가능
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: widget.isFromHome,
           foregroundColor: Colors.white, // 홈에서 왔을 때만 뒤로가기 버튼 표시

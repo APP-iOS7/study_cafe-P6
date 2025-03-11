@@ -42,6 +42,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
               onTap: _onItemTapped,
               selectedItemColor: Color(0xffd84040),
               unselectedItemColor: Colors.grey,
+              backgroundColor: Colors.white,
               items: [
                 BottomNavigationBarItem(
                   icon: _selectedTabItem(Icons.home_outlined, '홈', 0),

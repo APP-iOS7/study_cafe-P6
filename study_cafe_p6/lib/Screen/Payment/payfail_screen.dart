@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_cafe_p6/Screen/main_home_screen.dart';
 import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 
 class PayFailed extends StatelessWidget {
@@ -9,6 +8,7 @@ class PayFailed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

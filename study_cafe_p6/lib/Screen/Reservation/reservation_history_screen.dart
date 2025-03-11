@@ -25,11 +25,12 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: const BackButton(color: Colors.white),
         title: const Text(
           "예약 내역 화면",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Color(0xffd84040),
         scrolledUnderElevation: 0,
@@ -97,11 +98,11 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                     itemBuilder: (context, index) {
                       final reservation = reservations[index];
                       return SizedBox(
-                        height: 77,
+                        height: 85,
                         child: Card(
                           margin: EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 7,
+                            horizontal: 15,
+                            vertical: 12,
                           ),
                           child: ListTile(
                             tileColor: Color(0x77ECDCBF),
@@ -133,12 +134,15 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                                 ),
                               ],
                             ),
-                            trailing: Text(
-                              '${formatAmount(reservation.amount!)}원',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xffd84040),
+                            trailing: Padding(
+                              padding: const EdgeInsets.only(top: 4),
+                              child: Text(
+                                '${formatAmount(reservation.amount!)}원',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xffd84040),
+                                ),
                               ),
                             ),
                             onTap: () {

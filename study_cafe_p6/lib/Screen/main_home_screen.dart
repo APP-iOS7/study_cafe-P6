@@ -23,6 +23,7 @@ class _MainHomeViewState extends State<MainHomeView> {
     return PopScope(
       canPop: false,
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),

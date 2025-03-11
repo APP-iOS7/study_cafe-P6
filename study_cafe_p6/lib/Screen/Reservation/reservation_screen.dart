@@ -30,6 +30,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_new, color: Colors.white),

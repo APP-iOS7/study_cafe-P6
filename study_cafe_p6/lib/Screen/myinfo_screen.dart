@@ -26,6 +26,7 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
     return PopScope(
       canPop: false,
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Color(0xffd84040),
@@ -393,7 +394,10 @@ class _RoundCircleState extends State<RoundCircle> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.grey[300],
-          border: Border.all(color: Colors.black, width: 2),
+          border: Border.all(
+            color: const Color.fromARGB(255, 217, 216, 216),
+            width: 2,
+          ),
           image:
               _base64Image != null
                   ? DecorationImage(
