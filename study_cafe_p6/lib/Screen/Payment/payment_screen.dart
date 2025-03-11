@@ -41,7 +41,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
     super.initState();
 
     _paymentWidget = PaymentWidget(
-      clientKey: "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm",
+      clientKey:
+          "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm", // 테스트 키 릴리즈 모드시 릴리즈 키 필요
       customerKey: widget.reservationInfo.reservationId ?? '사용자 확인불가',
       // 결제위젯에 브랜드페이 추가하기!
       // paymentWidgetOptions: PaymentWidgetOptions(brandPayOption: BrandPayOption("리다이렉트 URL")) // Access Token 발급에 사용되는 리다이렉트 URL
