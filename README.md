@@ -43,13 +43,13 @@ Firebase Firestore와 연동하여 회원 관리 및 예약 내역 등 데이터
 ## Login
 | - | - |
 | - | - |
-| <div align="center"><img src="https://github.com/user-attachments/assets/188450ff-bf87-4676-99cf-1e5f9d45a24f" width="350" height="520"/></div>|<div align="center"><img src= "https://github.com/user-attachments/assets/aba1f040-5f8e-41a6-8e23-1e24e8dfa618" width="150" height="320"/></div> |
+| <div align="center"><img src="https://github.com/user-attachments/assets/188450ff-bf87-4676-99cf-1e5f9d45a24f" width="350" height="520"/></div>|<div align="center"><img src= "https://github.com/user-attachments/assets/aba1f040-5f8e-41a6-8e23-1e24e8dfa618" width="350" height="520"/></div> |
 | <div align="center">회원가입</div> | <div align="center">로그인</div> |
 
 ## 홈
 | - | - |
 | - | - |
-| <div align="center"><img src="https://github.com/user-attachments/assets/e5b868fe-4ac0-46df-8cf9-aaf317363817" width="350" height="520"/></div>|<div align="center"><img src= "https://github.com/user-attachments/assets/4e607f52-7b57-47c9-8ae5-5e8ee82365ef" width="150" height="320"/></div> |
+| <div align="center"><img src="https://github.com/user-attachments/assets/e5b868fe-4ac0-46df-8cf9-aaf317363817" width="350" height="520"/></div>|<div align="center"><img src= "https://github.com/user-attachments/assets/4e607f52-7b57-47c9-8ae5-5e8ee82365ef" width="350" height="520"/></div> |
 | <div align="center">홈 1</div> | <div align="center">홈 2</div> |
 
 ## 예약
