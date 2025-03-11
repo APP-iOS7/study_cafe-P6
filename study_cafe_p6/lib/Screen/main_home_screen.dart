@@ -39,7 +39,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                     child: Text(
                       '${user!.displayName}\n님의 이용권',
                       style: TextStyle(
-                        fontSize: 36,
+                        fontSize: 33,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -49,10 +49,18 @@ class _MainHomeViewState extends State<MainHomeView> {
 
               Container(
                 width: MediaQuery.of(context).size.width * 0.83,
-                height: MediaQuery.of(context).size.height * 0.63,
+                height: MediaQuery.of(context).size.height * 0.62,
                 decoration: BoxDecoration(
                   color: const Color(0xfff8f2de),
                   borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color.fromARGB(35, 0, 0, 0), // 그림자 색상
+                      offset: Offset(4, 4), // 그림자 위치 (오른쪽 아래로 4px)
+                      blurRadius: 10, // 흐림 정도
+                      spreadRadius: 2, // 확산 정도
+                    ),
+                  ],
                 ),
 
                 child: FutureBuilder<ReservationInfo?>(
@@ -229,7 +237,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 150),
+                          SizedBox(height: 130),
                           GestureDetector(
                             onTap: () {
                               Get.to(() => ReservationhistoryScreen());

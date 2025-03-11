@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:study_cafe_p6/Screen/Payment/payfail_screen.dart';
 import 'package:study_cafe_p6/Screen/Payment/paysuccess_screen.dart';
-import 'package:study_cafe_p6/login/login_screen.dart';
+import 'package:study_cafe_p6/Screen/login/login_screen.dart';
 import 'package:study_cafe_p6/model/reserve_model.dart';
 import 'package:tosspayments_widget_sdk_flutter/model/payment_info.dart';
 import 'package:tosspayments_widget_sdk_flutter/model/payment_widget_options.dart';

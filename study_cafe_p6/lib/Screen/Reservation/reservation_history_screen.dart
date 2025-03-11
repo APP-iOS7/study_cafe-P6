@@ -56,7 +56,7 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                       '${user!.displayName} 님의 \n예약 내역',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 30,
+                        fontSize: 28,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -119,22 +119,15 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                                   '${reservation.reservationDate.toLocal()}'
                                       .split(' ')[0],
                                   style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                // Text(
-                                //   '공부 다방',
-                                //   style: TextStyle(
-                                //     fontSize: 15,
-                                //     fontWeight: FontWeight.bold,
-                                //   ),
-                                // ),
                                 Text(
                                   '좌석 번호 : ${reservation.seatInfo}, 이용권 : ${reservation.serviceName}' ??
                                       '서비스 없음',
                                   style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 13,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),

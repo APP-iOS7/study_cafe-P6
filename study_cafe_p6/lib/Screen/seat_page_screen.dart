@@ -218,7 +218,7 @@ class _SeatPageViewState extends State<SeatPageView> {
               ),
               SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 30, left: 20, right: 20),
+                  padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
                   child: InkWell(
                     onTap:
                         selectedSeat != null

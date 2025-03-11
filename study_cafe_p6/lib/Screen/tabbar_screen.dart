@@ -48,7 +48,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
                   label: '',
                 ),
                 BottomNavigationBarItem(
-                  icon: _selectedTabItem(Icons.chair_outlined, '좌석현황', 1),
+                  icon: _selectedTabItem(Icons.chair_outlined, '예약하기', 1),
                   label: '',
                 ),
                 BottomNavigationBarItem(

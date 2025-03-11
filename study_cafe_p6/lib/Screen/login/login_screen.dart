@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 import 'package:study_cafe_p6/Screen/text_field.dart';
-import 'package:study_cafe_p6/login/signup_screen.dart';
-import 'package:study_cafe_p6/loginViewModel/login_view_model.dart';
+import 'package:study_cafe_p6/Screen/login/signup_screen.dart';
+import 'package:study_cafe_p6/ViewModel/login_view_model.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_cafe_p6/login/login_screen.dart';
+import 'package:study_cafe_p6/Screen/login/login_screen.dart';
 
 Future<void> deleteUserAccount(BuildContext context) async {
   try {

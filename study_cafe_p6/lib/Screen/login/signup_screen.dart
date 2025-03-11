@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 import 'package:study_cafe_p6/Screen/text_field.dart';
-import 'package:study_cafe_p6/login/login_screen.dart';
+import 'package:study_cafe_p6/Screen/login/login_screen.dart';
 import 'package:study_cafe_p6/model/user_model.dart';
 
 class SignupScreen extends StatefulWidget {

@@ -1,22 +1,11 @@
 // Firebase 모듈 가져오기
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
 import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
-import { getFirestore, getDoc, doc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
-
-// Firebase 구성
-const firebaseConfig = {
-    apiKey: "AIzaSyA-ztBVtA18Uy6naYg4XVgsDJgRsAegsw8",
-    authDomain: "studycafe-p6.firebaseapp.com",
-    projectId: "studycafe-p6",
-    storageBucket: "studycafe-p6.firebasestorage.app",
-    messagingSenderId: "664297103546",
-    appId: "1:664297103546:web:438d5e40d9005e7ac9e283",
-    measurementId: "G-R8K8E1J33P"
-};
+import { getFirestore, getDoc, doc, collection, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+import { firebaseConfig } from './config.js';
 
 const admin = document.getElementById('admin');
 const userDataList = document.getElementById('reserveData');
-
 
 // Firebase 초기화
 const app = initializeApp(firebaseConfig);
@@ -85,11 +74,14 @@ const checkAdminRole = async (userId) => {
 };
 
 // Firestore에서 예약 데이터 가져오기 
-const fetchAllReservations = async () => {
-    try {
-        // UID를 동적으로 변경 (사용자의 UID를 매개변수로 받음)
-        const reservationCol = collection(db, "reservations");
-        const snapshot = await getDocs(reservationCol);
+const setupRealtimeListener = () => {
+    const statusDisplay = document.getElementById('statusDisplay');
+    if (statusDisplay) statusDisplay.textContent = "데이터 로딩 중...";
+
+    const reservationCol = collection(db, "reservations");
+
+    // 실시간 리스너 설정
+    return onSnapshot(reservationCol, (snapshot) => {
         const allReservations = [];
 
         snapshot.forEach(docSnapshot => {
@@ -105,12 +97,21 @@ const fetchAllReservations = async () => {
             }
         });
 
-        console.log("가져온 예약 데이터:", allReservations.length, "건");
-        return allReservations;
-    } catch (error) {
-        console.error("예약 데이터 가져오기 실패:", error.message);
-        return [];
-    }
+        console.log("실시간 예약 데이터:", allReservations.length, "건");
+        if (statusDisplay) statusDisplay.textContent = `실시간 데이터 감지 중 (${allReservations.length}건)`;
+
+        // 날짜순으로 정렬 (최신순)
+        const sortedReservations = allReservations.sort((a, b) => {
+            const dateA = a.reservationDate?.toDate?.() || new Date(a.reservationDate);
+            const dateB = b.reservationDate?.toDate?.() || new Date(b.reservationDate);
+            return dateB - dateA;
+        });
+
+        renderReservationData(sortedReservations);
+    }, error => {
+        console.error("실시간 데이터 감지 실패:", error);
+        if (statusDisplay) statusDisplay.textContent = "데이터 로딩 실패";
+    });
 };
 
 const renderReservationData = (reservations) => {
@@ -148,16 +149,16 @@ onAuthStateChanged(auth, async (user) => {
             const displayName = user.displayName || "관리자";
             admin.textContent = `환영합니다 ${displayName}님`;
 
-            // 예약 데이터 가져오기 
-            console.log("예약 데이터 가져오기 시작");
-            const allReservations = await fetchAllReservations();
-            console.log("가져온 모든 예약:", allReservations);
-            renderReservationData(allReservations);
+            // 실시간 데이터 리스너 설정 
+            const unsubscribe = setupRealtimeListener();
 
             // 로그아웃 이벤트
             const logoutButton = document.getElementById('logoutButton');
             logoutButton.addEventListener("click", async function (event) {
                 event.preventDefault();
+
+                // 실시간 리스너 해제
+                unsubscribe();
 
                 try {
                     await signOut(auth);

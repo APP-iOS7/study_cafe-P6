@@ -79,7 +79,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
             child: ListView.builder(
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                final plan = ['1 시간', '2 시간', '4 시간', '6 시간', '일주일', '한 달'];
+                final plan = ['1 시간', '2 시간', '4 시간', '6 시간', '7 일', '30 일'];
                 final price = planPrice(plan[index]);
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 10.0), // 오타 수정 필요
@@ -145,7 +145,14 @@ class _ReservationScreenState extends State<ReservationScreen> {
                   int selectedIndex = _toggledStates.indexOf(true);
                   //이용권 선택시 버튼 활성화
                   if (selectedIndex != -1) {
-                    final plan = ['1 시간', '2 시간', '4 시간', '6 시간', '일주일', '한 달'];
+                    final plan = [
+                      '1 시간',
+                      '2 시간',
+                      '4 시간',
+                      '6 시간',
+                      '7 일',
+                      '30 일',
+                    ];
                     final selectedPlan = plan[selectedIndex];
                     final selectedPrice = planPrice(selectedPlan);
 
@@ -212,9 +219,9 @@ int planPrice(String plan) {
       return 40000;
     case '6 시간':
       return 60000;
-    case '일주일':
+    case '7 일':
       return 1200000;
-    case '한 달':
+    case '30 일':
       return 4000000;
     default:
       return 0;
