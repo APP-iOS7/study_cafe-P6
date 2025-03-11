@@ -43,19 +43,19 @@ Firebase Firestore와 연동하여 회원 관리 및 예약 내역 등 데이터
 ## Login
 | - | - |
 | - | - |
-| <div align="center"><img src="https://github.com/user-attachments/assets/188450ff-bf87-4676-99cf-1e5f9d45a24f" width="350" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/aba1f040-5f8e-41a6-8e23-1e24e8dfa618" width="350" height="520"/></div> |
+| <div align="center"><img src="https://github.com/user-attachments/assets/188450ff-bf87-4676-99cf-1e5f9d45a24f" width="350" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/aba1f040-5f8e-41a6-8e23-1e24e8dfa618" width="350" height="500"/></div> |
 | <div align="center">회원가입</div> | <div align="center">로그인</div> |
 
 ## 홈
 | - | - |
 | - | - |
-| <div align="center"><img src="https://github.com/user-attachments/assets/e5b868fe-4ac0-46df-8cf9-aaf317363817" width="350" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/4e607f52-7b57-47c9-8ae5-5e8ee82365ef" width="350" height="520"/></div> |
+| <div align="center"><img src="https://github.com/user-attachments/assets/e5b868fe-4ac0-46df-8cf9-aaf317363817" width="350" height="500"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/4e607f52-7b57-47c9-8ae5-5e8ee82365ef" width="350" height="500"/></div> |
 | <div align="center">홈 1</div> | <div align="center">홈 2</div> |
 
 ## 예약
 | - | - | - | - |
 | - | - | - | - |
-| <div align="center"><img src="https://github.com/user-attachments/assets/eb86bb20-bafb-47cb-bbc9-5396de496b4c" width="350" height="520"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/7bd4782b-984b-470c-8000-35e20ae3452c" width="350" height="520"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/c2fda935-ef0e-4c06-b1d3-a6e716141ec8" width="350" height="520"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/fcdc9ac1-c6cb-4187-afd6-24852c5c7d15" width="350" height="520"/></div> |
+| <div align="center"><img src="https://github.com/user-attachments/assets/eb86bb20-bafb-47cb-bbc9-5396de496b4c" width="350" height="620"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/7bd4782b-984b-470c-8000-35e20ae3452c" width="350" height="620"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/c2fda935-ef0e-4c06-b1d3-a6e716141ec8" width="350" height="620"/></div> | <div align="center"><img src= "https://github.com/user-attachments/assets/fcdc9ac1-c6cb-4187-afd6-24852c5c7d15" width="350" height="620"/></div> |
 | <div align="center">좌석선택 1</div> | <div align="center">좌석선택 2</div> | <div align="center">날짜 선택</div> | <div align="center">상품 선택</div> |
 
 ## 결제
