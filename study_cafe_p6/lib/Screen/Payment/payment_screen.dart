@@ -307,12 +307,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           } else if (paymentResult.fail != null) {
                             Get.off(() => PayFailed());
                           }
-                          // 결제 성공 시 결제 성공 화면으로 이동
-                          // Get.to(
-                          //   () => PaySuccess(
-                          //     reservationInfo: widget.reservationInfo,
-                          //   ),
-                          // );
                         } catch (e) {
                           print('결제 오류: $e');
                           Get.snackbar(

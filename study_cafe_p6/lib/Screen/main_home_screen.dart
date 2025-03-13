@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:study_cafe_p6/Screen/Reservation/reservation_history_screen.dart';
 import 'package:study_cafe_p6/Screen/seat_page_screen.dart';
+import 'package:study_cafe_p6/ViewModel/auth_view_model.dart';
 import 'package:study_cafe_p6/ViewModel/reservation_history_model.dart';
 import 'package:study_cafe_p6/model/reserve_model.dart';
 
@@ -17,6 +19,8 @@ class MainHomeView extends StatefulWidget {
 
 class _MainHomeViewState extends State<MainHomeView> {
   User? user = FirebaseAuth.instance.currentUser;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final _authViewModel = Get.put(AuthViewModel());
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +42,28 @@ class _MainHomeViewState extends State<MainHomeView> {
                         left: 20,
                         bottom: 20,
                       ),
-                      child: Text(
-                        '${user!.displayName}\n님의 이용권',
-                        style: TextStyle(
-                          fontSize: 33,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      child: FutureBuilder<String>(
+                        future: _authViewModel.getUserName(),
+                        builder: (context, usernameSnapshot) {
+                          if (usernameSnapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Text(
+                              '로딩중...\n님의 이용권',
+                              style: TextStyle(
+                                fontSize: 33,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          }
+                          final username = usernameSnapshot.data ?? '정보없음';
+                          return Text(
+                            '$username\n님의 이용권',
+                            style: TextStyle(
+                              fontSize: 33,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ],

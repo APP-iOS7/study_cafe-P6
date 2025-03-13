@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:study_cafe_p6/Screen/splash_screen.dart';
 import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 import 'package:get/route_manager.dart';
@@ -11,6 +12,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  KakaoSdk.init(
+    nativeAppKey: 'e66072d11dd5b4fe1b7b37d6ebe50885',
+    javaScriptAppKey: '9bd21100e83fd3d8142f4818af42fde7',
+  );
   runApp(const MyApp());
 }
 

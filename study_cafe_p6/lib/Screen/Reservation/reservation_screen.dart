@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:study_cafe_p6/Screen/Payment/payment_screen.dart';
+import 'package:study_cafe_p6/ViewModel/auth_view_model.dart';
 import 'package:study_cafe_p6/model/reserve_model.dart';
 
 class ReservationScreen extends StatefulWidget {
@@ -25,6 +26,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
+    final authViewModel = Get.put(AuthViewModel());
     if (user != null) {
       print('현재 사용자 이름: ${user.displayName}');
     }
@@ -49,9 +51,28 @@ class _ReservationScreenState extends State<ReservationScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  user?.displayName ?? '익명',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+                FutureBuilder<String>(
+                  future: authViewModel.getUserName(),
+                  builder: (context, usernameSnapshot) {
+                    if (usernameSnapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return Text(
+                        '로딩중...\n',
+                        style: TextStyle(
+                          fontSize: 33,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    }
+                    final username = usernameSnapshot.data ?? '정보없음';
+                    return Text(
+                      username,
+                      style: TextStyle(
+                        fontSize: 33,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  },
                 ),
                 Text(
                   '좌석: ${widget.reservationInfo.seatInfo}',
@@ -145,7 +166,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
             child: Padding(
               padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
               child: InkWell(
-                onTap: () {
+                onTap: () async {
                   int selectedIndex = _toggledStates.indexOf(true);
                   //이용권 선택시 버튼 활성화
                   if (selectedIndex != -1) {
@@ -166,7 +187,8 @@ class _ReservationScreenState extends State<ReservationScreen> {
                           'rsv${DateTime.now().millisecondsSinceEpoch}',
                       amount: selectedPrice,
                       serviceName: selectedPlan,
-                      customerName: user?.displayName ?? '익명',
+                      // 사용자 이름 가져오기//카카오 닉네임
+                      customerName: await authViewModel.getUserName(),
                       uid: user?.uid,
                       seatInfo: widget.reservationInfo.seatInfo,
                       reservationDate: widget.reservationInfo.reservationDate,

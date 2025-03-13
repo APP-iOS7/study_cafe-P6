@@ -42,6 +42,7 @@ dependencies:
   tosspayments_widget_sdk_flutter: ^2.1.1
   image_picker: ^1.0.4
   flutter_native_splash: ^2.4.5
+  kakao_flutter_sdk: ^1.9.7+3
 
 dev_dependencies:
   flutter_test:

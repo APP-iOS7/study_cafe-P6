@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:study_cafe_p6/Screen/Reservation/reservation_history_screen.dart';
 import 'package:study_cafe_p6/Screen/account_manager.dart';
+import 'package:study_cafe_p6/ViewModel/auth_view_model.dart';
 import 'package:study_cafe_p6/ViewModel/user_profile_model.dart';
 import 'package:study_cafe_p6/ViewModel/login_view_model.dart';
 
@@ -18,6 +20,9 @@ class MyinfoScreen extends StatefulWidget {
 
 class _MyinfoScreenState extends State<MyinfoScreen> {
   User? user = FirebaseAuth.instance.currentUser;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final _authViewModel = Get.find<AuthViewModel>();
+
   var loginViewModel = LoginViewModel();
   int selectIndex = 2;
 
@@ -49,12 +54,28 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     RoundCircle(size: 130),
-                    Text(
-                      '${user!.displayName}',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    FutureBuilder<String>(
+                      future: _authViewModel.getUserName(),
+                      builder: (context, usernameSnapshot) {
+                        if (usernameSnapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Text(
+                            '로딩중...\n',
+                            style: TextStyle(
+                              fontSize: 33,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          );
+                        }
+                        final username = usernameSnapshot.data ?? '정보없음';
+                        return Text(
+                          username,
+                          style: TextStyle(
+                            fontSize: 33,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),

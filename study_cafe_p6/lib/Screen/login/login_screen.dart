@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:study_cafe_p6/Screen/Login/kakao_login.dart';
 import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 import 'package:study_cafe_p6/Screen/text_field.dart';
 import 'package:study_cafe_p6/Screen/login/signup_screen.dart';
@@ -151,6 +152,46 @@ class _LoginScreenState extends State<LoginScreen> {
                                   color: Color(0xffd84040),
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'or 카카오 로그인',
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 35),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                kakaoLogin();
+                              },
+                              child: Container(
+                                width: 300,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: Color(0xffFEE500),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/kakao.png',
+                                      height: 20,
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text('카카오 로그인', style: TextStyle()),
+                                  ],
                                 ),
                               ),
                             ),
