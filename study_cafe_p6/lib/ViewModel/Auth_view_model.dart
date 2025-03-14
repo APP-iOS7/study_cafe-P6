@@ -1,3 +1,4 @@
+// ignore_for_file: unused_field
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:get/get.dart';
 import 'package:study_cafe_p6/model/user_model.dart';
@@ -36,11 +37,12 @@ class AuthViewModel extends GetxController {
   Future<String> getUserName() async {
     final user = firebase_auth.FirebaseAuth.instance.currentUser;
     if (user == null) return '정보없음';
-    
+
     try {
       // Check if this user exists in Firestore (Kakao login users are stored in Firestore)
-      DocumentSnapshot userDoc = await _firestore.collection('users').doc(user.uid).get();
-      
+      DocumentSnapshot userDoc =
+          await _firestore.collection('users').doc(user.uid).get();
+
       if (userDoc.exists) {
         // User exists in Firestore, likely a Kakao login user
         Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
@@ -56,4 +58,3 @@ class AuthViewModel extends GetxController {
     }
   }
 }
-

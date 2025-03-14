@@ -12,7 +12,7 @@ void kakaoLogin() async {
 
   if (await isKakaoTalkInstalled()) {
     try {
-      kakao_sdk.OAuthToken token = await UserApi.instance.loginWithKakaoTalk();
+      kakao_sdk.OAuthToken _ = await UserApi.instance.loginWithKakaoTalk();
       kakao_sdk.User kakaoUser = await UserApi.instance.me();
       print('카카오톡으로 로그인 성공');
 
@@ -32,7 +32,7 @@ void kakaoLogin() async {
   } else {
     try {
       var provider = firebase_auth.OAuthProvider('oidc.studycafe-p6');
-      OAuthToken token = await UserApi.instance.loginWithKakaoTalk();
+      OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
       var credential = provider.credential(
         idToken: token.idToken,
         accessToken: token.accessToken,

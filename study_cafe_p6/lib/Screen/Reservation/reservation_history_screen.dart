@@ -143,8 +143,7 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                                   ),
                                 ),
                                 Text(
-                                  '좌석 번호 : ${reservation.seatInfo}, 이용권 : ${reservation.serviceName}' ??
-                                      '서비스 없음',
+                                  '좌석 번호 : ${reservation.seatInfo}, 이용권 : ${reservation.serviceName}',
                                   style: TextStyle(
                                     fontSize: 13,
                                     fontWeight: FontWeight.bold,
