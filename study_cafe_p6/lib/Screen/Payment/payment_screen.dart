@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:slide_to_act/slide_to_act.dart';
+import 'package:study_cafe_p6/Screen/Notification/noti_service.dart';
 import 'package:study_cafe_p6/Screen/Payment/payfail_screen.dart';
 import 'package:study_cafe_p6/Screen/Payment/paysuccess_screen.dart';
 import 'package:study_cafe_p6/Screen/login/login_screen.dart';
@@ -282,10 +284,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
                           // 결제 결과를 성공 형태로 변환(실제 결제 성공 여부에 따라처리)
                           if (paymentResult.success != null) {
+                            NotiService().showNotification(
+                              title: '결제 성공',
+                              body: '결제가 성공적으로 완료되었습니다.',
+                            );
                             try {
                               await _firestore
-                                  // .collection('users')
-                                  // .doc(currentUser.uid)
                                   .collection('reservations')
                                   .doc(currentUser.uid)
                                   .set({

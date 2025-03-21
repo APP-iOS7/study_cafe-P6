@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:study_cafe_p6/Screen/Reservation/reservation_history_screen.dart';
 import 'package:study_cafe_p6/Screen/account_manager.dart';
+import 'package:study_cafe_p6/Screen/login/login_screen.dart';
 import 'package:study_cafe_p6/ViewModel/auth_view_model.dart';
 import 'package:study_cafe_p6/ViewModel/user_profile_model.dart';
 import 'package:study_cafe_p6/ViewModel/login_view_model.dart';
@@ -319,6 +320,10 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
                   print("[D]로그아웃");
                   // Get.to(() => ReservationhistoryScreen());
                   loginViewModel.signOut();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
