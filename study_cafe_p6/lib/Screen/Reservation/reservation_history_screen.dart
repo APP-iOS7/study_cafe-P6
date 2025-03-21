@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:study_cafe_p6/ViewModel/auth_view_model.dart';
 import 'package:study_cafe_p6/ViewModel/reservation_history_model.dart';
 import 'package:study_cafe_p6/model/reserve_model.dart';
 
@@ -15,6 +17,7 @@ class ReservationhistoryScreen extends StatefulWidget {
 class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
   User? user = FirebaseAuth.instance.currentUser;
   final ReservationRepository _reservationRepo = ReservationRepository();
+  final _authViewModel = Get.put(AuthViewModel());
   double borderRadius = 5;
 
   String formatAmount(int amount) {
@@ -53,13 +56,28 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                       left: 20,
                       right: 0,
                     ),
-                    child: Text(
-                      '${user!.displayName} 님의 \n예약 내역',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: FutureBuilder<String>(
+                      future: _authViewModel.getUserName(),
+                      builder: (context, usernameSnapshot) {
+                        if (usernameSnapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Text(
+                            '로딩중...\n',
+                            style: TextStyle(
+                              fontSize: 33,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          );
+                        }
+                        final username = usernameSnapshot.data ?? '정보없음';
+                        return Text(
+                          '$username 님의 \n예약 내역',
+                          style: TextStyle(
+                            fontSize: 33,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -125,8 +143,7 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                                   ),
                                 ),
                                 Text(
-                                  '좌석 번호 : ${reservation.seatInfo}, 이용권 : ${reservation.serviceName}' ??
-                                      '서비스 없음',
+                                  '좌석 번호 : ${reservation.seatInfo}, 이용권 : ${reservation.serviceName}',
                                   style: TextStyle(
                                     fontSize: 13,
                                     fontWeight: FontWeight.bold,

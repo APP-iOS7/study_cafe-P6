@@ -1,8 +1,11 @@
+// ignore_for_file: unused_field
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:slide_to_act/slide_to_act.dart';
+import 'package:study_cafe_p6/Screen/Notification/noti_service.dart';
 import 'package:study_cafe_p6/Screen/Payment/payfail_screen.dart';
 import 'package:study_cafe_p6/Screen/Payment/paysuccess_screen.dart';
 import 'package:study_cafe_p6/Screen/login/login_screen.dart';
@@ -41,7 +44,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
     super.initState();
 
     _paymentWidget = PaymentWidget(
-      clientKey: "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm",
+      clientKey:
+          "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm", // 테스트 키 릴리즈 모드시 릴리즈 키 필요
       customerKey: widget.reservationInfo.reservationId ?? '사용자 확인불가',
       // 결제위젯에 브랜드페이 추가하기!
       // paymentWidgetOptions: PaymentWidgetOptions(brandPayOption: BrandPayOption("리다이렉트 URL")) // Access Token 발급에 사용되는 리다이렉트 URL
@@ -280,10 +284,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
                           // 결제 결과를 성공 형태로 변환(실제 결제 성공 여부에 따라처리)
                           if (paymentResult.success != null) {
+                            NotiService().showNotification(
+                              title: '결제 성공',
+                              body: '결제가 성공적으로 완료되었습니다.',
+                            );
                             try {
                               await _firestore
-                                  // .collection('users')
-                                  // .doc(currentUser.uid)
                                   .collection('reservations')
                                   .doc(currentUser.uid)
                                   .set({
@@ -306,12 +312,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           } else if (paymentResult.fail != null) {
                             Get.off(() => PayFailed());
                           }
-                          // 결제 성공 시 결제 성공 화면으로 이동
-                          // Get.to(
-                          //   () => PaySuccess(
-                          //     reservationInfo: widget.reservationInfo,
-                          //   ),
-                          // );
                         } catch (e) {
                           print('결제 오류: $e');
                           Get.snackbar(
