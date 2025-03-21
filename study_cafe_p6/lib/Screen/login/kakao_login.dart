@@ -32,7 +32,9 @@ void kakaoLogin() async {
   } else {
     try {
       var provider = firebase_auth.OAuthProvider('oidc.studycafe-p6');
-      OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
+      OAuthToken token =
+          await UserApi.instance
+              .loginWithKakaoAccount(); // 카카오계정으로 로그인 실기기에선 loginWithKakaoTalk() 사용
       var credential = provider.credential(
         idToken: token.idToken,
         accessToken: token.accessToken,
