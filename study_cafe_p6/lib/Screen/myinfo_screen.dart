@@ -1,16 +1,12 @@
 // ignore_for_file: unused_field
-import 'dart:convert';
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:study_cafe_p6/Screen/Reservation/reservation_history_screen.dart';
 import 'package:study_cafe_p6/Screen/account_manager.dart';
 import 'package:study_cafe_p6/Screen/login/login_screen.dart';
 import 'package:study_cafe_p6/ViewModel/auth_view_model.dart';
-import 'package:study_cafe_p6/ViewModel/user_profile_model.dart';
 import 'package:study_cafe_p6/ViewModel/login_view_model.dart';
 import 'package:study_cafe_p6/round_circle.dart';
 
