@@ -9,6 +9,7 @@ import 'package:study_cafe_p6/Screen/splash_screen.dart';
 import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 import 'package:get/route_manager.dart';
 import 'package:study_cafe_p6/ViewModel/login_view_model.dart';
+import 'package:study_cafe_p6/ViewModel/round_circle_view_model.dart';
 import 'package:study_cafe_p6/firebase_options.dart';
 
 Future<void> main() async {
@@ -26,6 +27,7 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => LoginViewModel()),
+        ChangeNotifierProvider(create: (context) => RoundCircleViewModel()),
       ],
       child: const MyApp(),
     ),
