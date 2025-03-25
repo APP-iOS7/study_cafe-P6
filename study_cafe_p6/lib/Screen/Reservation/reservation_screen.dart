@@ -54,16 +54,6 @@ class _ReservationScreenState extends State<ReservationScreen> {
                 FutureBuilder<String>(
                   future: authViewModel.getUserName(),
                   builder: (context, usernameSnapshot) {
-                    if (usernameSnapshot.connectionState ==
-                        ConnectionState.waiting) {
-                      return Text(
-                        '로딩중...\n',
-                        style: TextStyle(
-                          fontSize: 33,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      );
-                    }
                     final username = usernameSnapshot.data ?? '정보없음';
                     return Text(
                       username,

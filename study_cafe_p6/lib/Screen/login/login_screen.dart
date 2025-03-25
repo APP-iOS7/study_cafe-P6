@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:study_cafe_p6/Screen/Login/kakao_login.dart';
+import 'package:study_cafe_p6/Screen/login/reset_pw_page.dart';
 import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 import 'package:study_cafe_p6/Screen/text_field.dart';
 import 'package:study_cafe_p6/Screen/login/signup_screen.dart';
@@ -116,6 +117,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
+
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -183,6 +185,37 @@ class LoginScreen extends StatelessWidget {
                                         SizedBox(width: 10),
                                         Text('카카오 로그인', style: TextStyle()),
                                       ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '비밀번호를 잊어버리셨나요?',
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ResetPwPage(),
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                    '비밀번호 찾기',
+                                    style: TextStyle(
+                                      color: Color(0xffd84040),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),

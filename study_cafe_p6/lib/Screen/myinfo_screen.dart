@@ -12,6 +12,7 @@ import 'package:study_cafe_p6/Screen/login/login_screen.dart';
 import 'package:study_cafe_p6/ViewModel/auth_view_model.dart';
 import 'package:study_cafe_p6/ViewModel/user_profile_model.dart';
 import 'package:study_cafe_p6/ViewModel/login_view_model.dart';
+import 'package:study_cafe_p6/round_circle.dart';
 
 class MyinfoScreen extends StatefulWidget {
   const MyinfoScreen({super.key});
@@ -94,10 +95,6 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
                     width: double.infinity,
                     height: 50,
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      // color: Color(0xffd84040),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -141,10 +138,6 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
                     width: double.infinity,
                     height: 50,
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      // color: Color(0xffd84040),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -331,10 +324,6 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
                     width: double.infinity,
                     height: 50,
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      // color: Color(0xffd84040),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -362,81 +351,6 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class RoundCircle extends StatefulWidget {
-  final double size;
-  const RoundCircle({super.key, required this.size});
-
-  @override
-  _RoundCircleState createState() => _RoundCircleState();
-}
-
-class _RoundCircleState extends State<RoundCircle> {
-  String? _base64Image;
-  final UserRepository _userRepo = UserRepository();
-
-  @override
-  void initState() {
-    super.initState();
-    _loadProfileImage();
-  }
-
-  Future<void> _loadProfileImage() async {
-    var user = await _userRepo.getUserFromFirestore();
-    if (user != null && user.profileImage != null) {
-      setState(() {
-        _base64Image = user.profileImage;
-      });
-    }
-  }
-
-  Future<void> _pickAndSaveImage() async {
-    final pickedFile = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
-    );
-    if (pickedFile == null) return;
-
-    File imageFile = File(pickedFile.path);
-    List<int> imageBytes = await imageFile.readAsBytes();
-    String base64Image = base64Encode(imageBytes);
-
-    await _userRepo.updateProfileImage(base64Image);
-
-    setState(() {
-      _base64Image = base64Image;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _pickAndSaveImage,
-      child: Container(
-        width: widget.size,
-        height: widget.size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.grey[300],
-          border: Border.all(
-            color: const Color.fromARGB(255, 217, 216, 216),
-            width: 2,
-          ),
-          image:
-              _base64Image != null
-                  ? DecorationImage(
-                    image: MemoryImage(base64Decode(_base64Image!)),
-                    fit: BoxFit.cover,
-                  )
-                  : null,
-        ),
-        child:
-            _base64Image == null
-                ? Icon(Icons.camera_alt, size: 40, color: Colors.black54)
-                : null,
       ),
     );
   }

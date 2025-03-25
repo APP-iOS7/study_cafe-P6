@@ -45,7 +45,7 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 30, left: 20, bottom: 10),
+              padding: const EdgeInsets.only(top: 30, left: 10, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -71,13 +71,25 @@ class _ReservationhistoryScreenState extends State<ReservationhistoryScreen> {
                         }
                         final username = usernameSnapshot.data ?? '정보없음';
                         return Text(
-                          '$username 님의 \n예약 내역',
+                          username,
                           style: TextStyle(
                             fontSize: 33,
                             fontWeight: FontWeight.bold,
+                            fontFamily: 'EBS Hunminjeongeum',
                           ),
                         );
                       },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Text(
+                      '님의 예약 내역',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'EBS Hunminjeongeum',
+                      ),
                     ),
                   ),
                 ],
