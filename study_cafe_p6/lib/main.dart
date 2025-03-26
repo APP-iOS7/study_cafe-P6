@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:provider/provider.dart';
@@ -19,9 +20,11 @@ Future<void> main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
+  await dotenv.load(fileName: '.env');
+
   KakaoSdk.init(
-    nativeAppKey: 'e66072d11dd5b4fe1b7b37d6ebe50885',
-    javaScriptAppKey: '9bd21100e83fd3d8142f4818af42fde7',
+    nativeAppKey: dotenv.env['KAKAO_NATIVE_APP_KEY'],
+    javaScriptAppKey: dotenv.env['KAKAO_JAVASCRIPT_APP_KEY'],
   );
   runApp(
     MultiProvider(
