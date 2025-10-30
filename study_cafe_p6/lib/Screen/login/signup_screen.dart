@@ -1,82 +1,21 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:study_cafe_p6/Screen/tabbar_screen.dart';
 import 'package:study_cafe_p6/Screen/text_field.dart';
 import 'package:study_cafe_p6/Screen/login/login_screen.dart';
-import 'package:study_cafe_p6/model/user_model.dart';
+import 'package:study_cafe_p6/ViewModel/login_view_model.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
-
-  @override
-  State<SignupScreen> createState() => _SignupScreenState();
-}
-
-class _SignupScreenState extends State<SignupScreen> {
+class SignupScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  bool _isLoading = false;
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-  // Firebase Auth 초기화
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-  // 회원가입 함수
-  Future<void> _signUp() async {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-      });
-
-      try {
-        final UserCredential userCredential = await _auth
-            .createUserWithEmailAndPassword(
-              email: _emailController.text,
-              password: _passwordController.text,
-            );
-
-        await userCredential.user?.updateDisplayName(
-          _usernameController.text.trim(),
-        );
-
-        await userCredential.user?.reload();
-        User? updatedUser = FirebaseAuth.instance.currentUser;
-
-        UserModel user = UserModel(
-          username: _usernameController.text,
-          useremail: _emailController.text,
-          uid: userCredential.user!.uid,
-        );
-        // 회원가입 성공 후 Firestore에 사용자 정보 저장
-        await _firestore.collection('users').doc(userCredential.user!.uid).set({
-          'username': user.username,
-          'email': user.useremail,
-          'uid': user.uid,
-          'createdAt': FieldValue.serverTimestamp(),
-        });
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('회원가입 성공! 이름:${updatedUser?.displayName}')),
-        );
-        Get.off(() => BottomTabBar());
-      } catch (e) {
-        debugPrint('$e');
-        setState(() {
-          _isLoading = false; // 로딩완료
-        });
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('회원가입 실패')));
-      }
-    }
-  }
+  SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<LoginViewModel>(context, listen: false);
     return Scaffold(
       backgroundColor: Color(0xfff8f2de),
       body: GestureDetector(
@@ -120,12 +59,49 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         SizedBox(height: 20),
-                        _isLoading
-                            ? Center(child: CircularProgressIndicator())
-                            : Padding(padding: const EdgeInsets.all(15)),
-
                         GestureDetector(
-                          onTap: _signUp,
+                          onTap:
+                              viewModel.isLoading
+                                  ? null
+                                  : () async {
+                                    if (_formKey.currentState!.validate()) {
+                                      bool success = await viewModel.signUp(
+                                        email: _emailController.text,
+                                        password: _passwordController.text,
+                                        username: _usernameController.text,
+                                      );
+
+                                      if (success) {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              '회원가입 성공! 이름: ${viewModel.currentUser?.displayName}',
+                                            ),
+                                          ),
+                                        );
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder:
+                                                (context) => BottomTabBar(),
+                                          ),
+                                        );
+                                      } else if (viewModel.errorMessage !=
+                                          null) {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              '회원가입  실패!${viewModel.errorMessage!}',
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    }
+                                  },
                           child: Padding(
                             padding: const EdgeInsets.only(
                               top: 30,
@@ -164,7 +140,12 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                             TextButton(
                               onPressed: () {
-                                Get.off(() => LoginScreen());
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginScreen(),
+                                  ),
+                                );
                               },
                               child: Text(
                                 '로그인',

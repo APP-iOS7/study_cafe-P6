@@ -107,7 +107,12 @@ class _SeatPageViewState extends State<SeatPageView> {
           backgroundColor: const Color(0xffd84040),
           title: const Text(
             '좌석 현황',
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontFamily: 'EBS Hunminjeongeum',
+              fontSize: 25,
+            ),
           ),
           centerTitle: true,
         ),
@@ -255,9 +260,10 @@ class _SeatPageViewState extends State<SeatPageView> {
                         child: const Text(
                           '예약하기',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 22,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
+                            fontFamily: 'EBS Hunminjeongeum',
                           ),
                         ),
                       ),

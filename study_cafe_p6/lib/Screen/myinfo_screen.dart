@@ -1,13 +1,14 @@
-import 'dart:convert';
-import 'dart:io';
+// ignore_for_file: unused_field
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:study_cafe_p6/Screen/Reservation/reservation_history_screen.dart';
 import 'package:study_cafe_p6/Screen/account_manager.dart';
-import 'package:study_cafe_p6/ViewModel/user_profile_model.dart';
+import 'package:study_cafe_p6/Screen/login/login_screen.dart';
+import 'package:study_cafe_p6/ViewModel/auth_view_model.dart';
 import 'package:study_cafe_p6/ViewModel/login_view_model.dart';
+import 'package:study_cafe_p6/round_circle.dart';
 
 class MyinfoScreen extends StatefulWidget {
   const MyinfoScreen({super.key});
@@ -18,6 +19,9 @@ class MyinfoScreen extends StatefulWidget {
 
 class _MyinfoScreenState extends State<MyinfoScreen> {
   User? user = FirebaseAuth.instance.currentUser;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final _authViewModel = Get.find<AuthViewModel>();
+
   var loginViewModel = LoginViewModel();
   int selectIndex = 2;
 
@@ -49,12 +53,28 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     RoundCircle(size: 130),
-                    Text(
-                      '${user!.displayName}',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    FutureBuilder<String>(
+                      future: _authViewModel.getUserName(),
+                      builder: (context, usernameSnapshot) {
+                        if (usernameSnapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Text(
+                            '로딩중...\n',
+                            style: TextStyle(
+                              fontSize: 33,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          );
+                        }
+                        final username = usernameSnapshot.data ?? '정보없음';
+                        return Text(
+                          username,
+                          style: TextStyle(
+                            fontSize: 33,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -71,10 +91,6 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
                     width: double.infinity,
                     height: 50,
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      // color: Color(0xffd84040),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -118,10 +134,6 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
                     width: double.infinity,
                     height: 50,
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      // color: Color(0xffd84040),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -297,6 +309,10 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
                   print("[D]로그아웃");
                   // Get.to(() => ReservationhistoryScreen());
                   loginViewModel.signOut();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -304,10 +320,6 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
                     width: double.infinity,
                     height: 50,
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      // color: Color(0xffd84040),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -335,81 +347,6 @@ class _MyinfoScreenState extends State<MyinfoScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class RoundCircle extends StatefulWidget {
-  final double size;
-  const RoundCircle({super.key, required this.size});
-
-  @override
-  _RoundCircleState createState() => _RoundCircleState();
-}
-
-class _RoundCircleState extends State<RoundCircle> {
-  String? _base64Image;
-  final UserRepository _userRepo = UserRepository();
-
-  @override
-  void initState() {
-    super.initState();
-    _loadProfileImage();
-  }
-
-  Future<void> _loadProfileImage() async {
-    var user = await _userRepo.getUserFromFirestore();
-    if (user != null && user.profileImage != null) {
-      setState(() {
-        _base64Image = user.profileImage;
-      });
-    }
-  }
-
-  Future<void> _pickAndSaveImage() async {
-    final pickedFile = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
-    );
-    if (pickedFile == null) return;
-
-    File imageFile = File(pickedFile.path);
-    List<int> imageBytes = await imageFile.readAsBytes();
-    String base64Image = base64Encode(imageBytes);
-
-    await _userRepo.updateProfileImage(base64Image);
-
-    setState(() {
-      _base64Image = base64Image;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _pickAndSaveImage,
-      child: Container(
-        width: widget.size,
-        height: widget.size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.grey[300],
-          border: Border.all(
-            color: const Color.fromARGB(255, 217, 216, 216),
-            width: 2,
-          ),
-          image:
-              _base64Image != null
-                  ? DecorationImage(
-                    image: MemoryImage(base64Decode(_base64Image!)),
-                    fit: BoxFit.cover,
-                  )
-                  : null,
-        ),
-        child:
-            _base64Image == null
-                ? Icon(Icons.camera_alt, size: 40, color: Colors.black54)
-                : null,
       ),
     );
   }
